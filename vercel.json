@@ -1,0 +1,130 @@
+{
+  "cleanUrls": true,
+
+  "redirects": [
+    {
+      "source": "/about-us.html",
+      "destination": "/about-us",
+      "permanent": true
+    },
+    {
+      "source": "/privacy.html",
+      "destination": "/privacy",
+      "permanent": true
+    },
+    {
+      "source": "/services.html",
+      "destination": "/services",
+      "permanent": true
+    },
+    {
+      "source": "/structure.html",
+      "destination": "/structure",
+      "permanent": true
+    },
+    {
+      "source": "/terms.html",
+      "destination": "/terms",
+      "permanent": true
+    },
+    {
+      "source": "/thanks.html",
+      "destination": "/thanks",
+      "permanent": true
+    },
+
+    {
+      "source": "/services/business-registration.html",
+      "destination": "/services/business-registration",
+      "permanent": true
+    },
+    {
+      "source": "/services/moneipoint.html",
+      "destination": "/services/moneipoint",
+      "permanent": true
+    },
+    {
+      "source": "/services/travel.html",
+      "destination": "/services/travel",
+      "permanent": true
+    },
+    {
+      "source": "/services/web-development.html",
+      "destination": "/services/web-development",
+      "permanent": true
+    },
+    {
+      "source": "/services/form-preview.html",
+      "destination": "/services/form-preview",
+      "permanent": true
+    },
+
+    {
+      "source": "/services/business-registration/annual-return.html",
+      "destination": "/services/business-registration/annual-return",
+      "permanent": true
+    },
+    {
+      "source": "/services/business-registration/business-name.html",
+      "destination": "/services/business-registration/business-name",
+      "permanent": true
+    },
+    {
+      "source": "/services/business-registration/company-registration.html",
+      "destination": "/services/business-registration/company-registration",
+      "permanent": true
+    },
+    {
+      "source": "/services/business-registration/ngo.html",
+      "destination": "/services/business-registration/ngo",
+      "permanent": true
+    },
+    {
+      "source": "/services/business-registration/npo.html",
+      "destination": "/services/business-registration/npo",
+      "permanent": true
+    },
+    {
+      "source": "/services/business-registration/scuml.html",
+      "destination": "/services/business-registration/scuml",
+      "permanent": true
+    },
+    {
+      "source": "/services/business-registration/tin.html",
+      "destination": "/services/business-registration/tin",
+      "permanent": true
+    },
+    {
+      "source": "/services/business-registration/trademark.html",
+      "destination": "/services/business-registration/trademark",
+      "permanent": true
+    },
+
+    {
+      "source": "/services/moneipoint/account-opening.html",
+      "destination": "/services/moneipoint/account-opening",
+      "permanent": true
+    },
+    {
+      "source": "/services/moneipoint/loans.html",
+      "destination": "/services/moneipoint/loans",
+      "permanent": true
+    },
+    {
+      "source": "/services/moneipoint/pos.html",
+      "destination": "/services/moneipoint/pos",
+      "permanent": true
+    },
+
+    {
+      "source": "/services/travel visa/visa.html",
+      "destination": "/services/travel visa/visa",
+      "permanent": true
+    },
+    {
+      "source": "/services/travel visa/visa-country.html",
+      "destination": "/services/travel visa/visa-country",
+      "permanent": true
+    }
+  ]
+}
