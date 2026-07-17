@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon - Use under45.png as the icon in search results -->
+  <link class="icon" type="image/png" href="under45.png" />
+  <link rel="apple-touch-icon" href="/assets/logo.png" />
+  <link rel="shortcut icon" href="/assets/logo.png" />
+  
+    <title>Terms of Service — GeepChris Bridge</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8fafc;
+            color: #0f172a;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ===== HEADER / NAVBAR ===== */
+        .navbar{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            padding:20px 24px;
+            position:fixed;
+            top:0;
+            left:0;
+            right:0;
+            z-index:1000;
+            width:100%;
+            background:rgba(2,6,23,0.95);
+            backdrop-filter:blur(12px);
+            border-bottom:1px solid rgba(255,255,255,0.06);
+        }
+        .navbar .logo img{ height:40px; width:auto; display:block; }
+        .nav-links{ display:flex; gap:2rem; list-style:none; align-items:center; }
+        .nav-links a{ color:#fff; text-decoration:none; font-weight:500; font-size:.95rem; transition:.3s; }
+        .nav-links a:hover{ color:#22c55e; }
+        .has-dropdown{ position:relative; }
+        .dropdown-trigger{ display:flex; align-items:center; gap:4px; cursor:pointer; }
+        .arrow-down{ font-size:.75rem; transition:transform .3s ease; }
+        .has-dropdown:hover .arrow-down{ transform:rotate(180deg); }
+        .dropdown-menu{
+            position:absolute; top:calc(100% + 12px); left:50%; transform:translateX(-50%) translateY(8px);
+            background:rgba(2,6,23,.98); backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,0.10);
+            border-radius:12px; padding:10px; min-width:260px; opacity:0; visibility:hidden; pointer-events:none;
+            transition:all .28s cubic-bezier(.4,0,.2,1); z-index:200; box-shadow:0 20px 50px rgba(0,0,0,.5);
+        }
+        .has-dropdown:hover .dropdown-menu{ opacity:1; visibility:visible; pointer-events:all; transform:translateX(-50%) translateY(0); }
+        .dropdown-menu a{
+            display:block; padding:11px 16px; border-radius:8px; color:rgba(255,255,255,.85);
+            font-size:.88rem; font-weight:500; text-decoration:none; transition:all .2s ease;
+        }
+        .dropdown-menu a:hover{ background:rgba(34,197,94,.12); color:#22c55e; padding-left:22px; }
+        .nav-btn{
+            text-decoration:none; padding:10px 22px; border-radius:999px; background:#16a34a; color:#fff;
+            font-weight:600; font-size:.9rem; transition:.3s;
+        }
+        .nav-btn:hover{ transform:translateY(-2px); background:#22c55e; }
+        .menu-toggle{ display:none; background:none; border:none; cursor:pointer; padding:4px; }
+        .menu-toggle span{ display:block; width:26px; height:2.5px; background:#fff; margin:5px 0; border-radius:5px; transition:.3s; }
+
+        /* ===== MOBILE MENU ===== */
+        .mobile-menu{
+            position:fixed; top:0; left:0; right:0; bottom:0; width:100vw; height:100vh;
+            display:flex; flex-direction:column; justify-content:center; align-items:center; gap:1.2rem;
+            background:rgba(2,6,23,.98); backdrop-filter:blur(20px); padding:40px 24px; opacity:0; visibility:hidden;
+            transform:scale(.96); transition:all .4s cubic-bezier(.4,0,.2,1); z-index:999;
+        }
+        .mobile-menu.active{ opacity:1; visibility:visible; transform:scale(1); }
+        .mobile-menu-close{
+            position:absolute; top:20px; right:20px; width:40px; height:40px; background:none; border:none; cursor:pointer;
+        }
+        .mobile-menu-close span{
+            display:block; position:absolute; top:50%; left:50%; width:24px; height:2.5px; background:#fff; border-radius:5px; transition:transform .3s ease;
+        }
+        .mobile-menu-close span:first-child{ transform:translate(-50%,-50%) rotate(45deg); }
+        .mobile-menu-close span:last-child{ transform:translate(-50%,-50%) rotate(-45deg); }
+        .mobile-menu > a{ color:#fff; text-decoration:none; font-weight:700; font-size:1.2rem; padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.08); width:100%; text-align:center; }
+        .mobile-menu > a:hover{ color:#22c55e; }
+        .mobile-services-group{ width:100%; border-bottom:1px solid rgba(255,255,255,0.08); padding-bottom:12px; text-align:center; }
+        .mobile-services-toggle{
+            background:none; border:none; color:#fff; font-weight:700; font-size:1.2rem; padding:12px 0; cursor:pointer;
+            display:flex; align-items:center; justify-content:center; gap:8px; width:100%;
+        }
+        .mobile-services-toggle span{ transition:transform .3s; font-size:.9rem; }
+        .mobile-services-toggle.active span{ display:inline-block; transform:rotate(180deg); }
+        .mobile-services-dropdown{ display:none; padding-top:10px; }
+        .mobile-services-dropdown.active{ display:flex; flex-direction:column; gap:8px; align-items:center; }
+        .mobile-services-dropdown a{ color:rgba(255,255,255,.8); text-decoration:none; font-size:.95rem; padding:6px 0; font-weight:500; transition:color .3s; }
+        .mobile-services-dropdown a:hover{ color:#22c55e; }
+        .mobile-btn{ margin-top:10px; background:#16a34a; padding:14px 40px; text-align:center; border-radius:999px; color:#fff !important; font-weight:700 !important; border:none !important; font-size:1rem !important; width:auto; min-width:200px; }
+        .mobile-btn:hover{ background:#22c55e; }
+
+        /* ===== CONTAINER ===== */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+            width: 100%;
+        }
+
+        /* ===== TERMS PAGE ===== */
+        .terms-page {
+            padding-top: 120px;
+            padding-bottom: 80px;
+            background: #ffffff;
+        }
+
+        .terms-header {
+            padding-bottom: 32px;
+            border-bottom: 2px solid #f1f5f9;
+            margin-bottom: 48px;
+        }
+
+        .terms-header h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+
+        .terms-header .effective-date {
+            color: #64748b;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .terms-header .effective-date i {
+            color: #16a34a;
+        }
+
+        .terms-grid {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        /* ===== SIDEBAR ===== */
+        .terms-sidebar {
+            position: sticky;
+            top: 100px;
+        }
+
+        .terms-sidebar .sidebar-title {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #94a3b8;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .terms-sidebar ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .terms-sidebar ul li a {
+            display: block;
+            padding: 10px 14px;
+            color: #64748b;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .terms-sidebar ul li a:hover {
+            color: #0f172a;
+            background: #f8fafc;
+        }
+
+        .terms-sidebar ul li a.active {
+            color: #16a34a;
+            background: rgba(22, 163, 74, 0.06);
+            border-left-color: #16a34a;
+        }
+
+        /* ===== CONTENT ===== */
+        .terms-content {
+            min-width: 0;
+        }
+
+        .terms-section {
+            margin-bottom: 48px;
+            scroll-margin-top: 100px;
+        }
+
+        .terms-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .terms-section h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 12px;
+            letter-spacing: -0.01em;
+        }
+
+        .terms-section p {
+            color: #334155;
+            font-size: 0.95rem;
+            line-height: 1.9;
+            margin-bottom: 12px;
+        }
+
+        .terms-section p:last-child {
+            margin-bottom: 0;
+        }
+
+        .terms-section .highlight-box {
+            background: #f8fafc;
+            border-left: 4px solid #16a34a;
+            padding: 20px 24px;
+            border-radius: 0 8px 8px 0;
+            margin: 16px 0;
+        }
+
+        .terms-section .highlight-box p {
+            margin-bottom: 0;
+            color: #0f172a;
+            font-weight: 500;
+        }
+
+        .terms-section .notice-box {
+            background: #fefce8;
+            border: 1px solid #fef08a;
+            padding: 20px 24px;
+            border-radius: 8px;
+            margin: 16px 0;
+        }
+
+        .terms-section .notice-box p {
+            margin-bottom: 0;
+            color: #854d0e;
+        }
+
+        .terms-section .notice-box p i {
+            color: #eab308;
+            margin-right: 8px;
+        }
+
+        /* ===== ACKNOWLEDGMENT ===== */
+        .acknowledgment {
+            margin-top: 48px;
+            padding: 32px;
+            background: #f8fafc;
+            border-radius: 12px;
+            border: 2px solid #e2e8f0;
+            text-align: center;
+        }
+
+        .acknowledgment p {
+            font-size: 1rem;
+            color: #0f172a;
+            font-weight: 600;
+            margin-bottom: 0;
+        }
+
+        .acknowledgment p i {
+            color: #16a34a;
+            margin-right: 10px;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .nav-links, .nav-btn { display: none; }
+            .menu-toggle { display: block; }
+            .terms-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            .terms-sidebar {
+                position: relative;
+                top: 0;
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .terms-page { padding-top: 100px; padding-bottom: 60px; }
+            .terms-header h1 { font-size: 2rem; }
+            .terms-section h2 { font-size: 1.3rem; }
+            .terms-section p { font-size: 0.9rem; }
+            .container { padding: 0 16px; }
+            .acknowledgment { padding: 20px; }
+            .acknowledgment p { font-size: 0.9rem; }
+        }
+
+        @media (max-width: 480px) {
+            .terms-header h1 { font-size: 1.6rem; }
+            .terms-section h2 { font-size: 1.1rem; }
+            .terms-section p { font-size: 0.85rem; }
+            .terms-section .highlight-box { padding: 16px; }
+            .terms-section .notice-box { padding: 16px; }
+        }
+
+        /* ===== FOOTER ===== */
+        .footer { background: #020617; padding: 50px 0 20px; border-top: 1px solid rgba(255,255,255,0.08); }
+        .footer-grid { display: grid; grid-template-columns: 1.8fr 1fr 1fr 1.3fr; gap: 40px; padding-bottom: 40px; }
+        .footer-logo { margin-bottom: 18px; }
+        .footer-logo img { height: 45px; width: auto; display: block; }
+        .footer-brand p { font-size: .88rem; line-height: 1.7; color: rgba(255,255,255,.6); margin-bottom: 24px; max-width: 300px; }
+        .footer-socials { display: flex; gap: 12px; }
+        .footer-socials a { width: 38px; height: 38px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.10); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.5); transition: all .3s ease; }
+        .footer-socials a svg { width: 16px; height: 16px; }
+        .footer-socials a:hover { background: #16a34a; border-color: #16a34a; color: #fff; transform: translateY(-3px); }
+        .footer-col h4 { font-size: .85rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #fff; margin-bottom: 20px; }
+        .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+        .footer-col ul li a, .footer-col ul li { font-size: .85rem; color: rgba(255,255,255,.6); text-decoration: none; transition: color .3s; line-height: 1.5; }
+        .footer-col ul li a:hover { color: #22c55e; }
+        .footer-contact { display: flex; flex-direction: column; gap: 12px !important; }
+        .footer-contact li { display: flex; align-items: flex-start; gap: 10px; }
+        .footer-contact li svg { width: 16px; height: 16px; min-width: 16px; stroke: #22c55e; margin-top: 1px; }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding: 20px 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+        .footer-bottom p { font-size: .8rem; color: rgba(255,255,255,.4); }
+        .footer-bottom-links { display: flex; gap: 24px; }
+        .footer-bottom-links a { font-size: .8rem; color: rgba(255,255,255,.4); text-decoration: none; transition: color .3s; }
+        .footer-bottom-links a:hover { color: #22c55e; }
+
+        @media (max-width: 992px) {
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 768px) {
+            .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+            .logo img { height: 50px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- =================== NAVBAR =================== -->
+      <nav class="navbar" id="navbar">
+                <a href="index.html" class="logo">
+                    <img src="assets/logo.png" alt="GeepChris Bridge">
+                </a>
+
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="has-dropdown">
+                        <a href="services.html" class="dropdown-trigger">Services <span class="arrow-down">▾</span></a>
+                        <div class="dropdown-menu">
+                            <a href="/services/moniepoint.html">Moniepoint Financial Services</a>
+                            <a href="/services/travel.html">Travel & Global Mobility</a>
+                            <a href="/services/business-registration.html">Business Registration</a>
+                            <a href="/servies/travel/visa.html">Visa Countries</a>
+                        </div>
+                    </li>
+                    
+                    <li><a href="about-us.html">About</a></li>
+                    <li><a href="faq.html">FAQs</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+
+                <a href="contact.html" class="nav-btn">Get Started</a>
+
+                <button class="menu-toggle" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
+
+            </nav>
+
+            <!-- MOBILE MENU -->
+            <div class="mobile-menu">
+                <button class="mobile-menu-close" aria-label="Close menu">
+                    <span></span><span></span>
+                </button>
+                <a href="index.html">Home</a>
+                <div class="mobile-services-group">
+                    <button class="mobile-services-toggle">Services <span>▾</span></button>
+                    <div class="mobile-services-dropdown">
+                        <a href="/services/moniepoint.html">Moniepoint Financial Services</a>
+                        <a href="/services/travel.html">Travel & Global Mobility</a>
+                        <a href="/services/business-registration.html">Business Registration</a>
+                        <a href="/services/travel/visa.html">Visa Countries</a>
+                    </div>
+                </div>
+                
+                <a href="about-us.html">About</a>
+                <a href="faq.html">FAQs</a>
+                <a href="contact.html">Contact</a>
+                <a href="contact.html" class="mobile-btn">Get Started</a>
+            </div>
+
+    <!-- =================== TERMS PAGE =================== -->
+    <main class="terms-page">
+        <div class="container">
+            <!-- Header -->
+            <div class="terms-header">
+                <h1>Terms of Service</h1>
+                <div class="effective-date">
+                    <i class="fa-regular fa-calendar"></i>
+                    <span>Last Updated: July 2026</span>
+                </div>
+            </div>
+
+            <!-- Grid -->
+            <div class="terms-grid">
+                <!-- Sidebar -->
+                <aside class="terms-sidebar">
+                    <div class="sidebar-title">On This Page</div>
+                    <ul>
+                        <li><a href="#section-introduction" class="active">Introduction</a></li>
+                        <li><a href="#section-who-we-are">Who We Are</a></li>
+                        <li><a href="#section-acceptance">Acceptance of Terms</a></li>
+                        <li><a href="#section-information">Information You Provide</a></li>
+                        <li><a href="#section-documents">Document Upload Requirements</a></li>
+                        <li><a href="#section-processing">Service Processing</a></li>
+                        <li><a href="#section-payments">Payments</a></li>
+                        <li><a href="#section-refund">Refund Policy</a></li>
+                        <li><a href="#section-delays">Application Delays</a></li>
+                        <li><a href="#section-responsibilities">User Responsibilities</a></li>
+                        <li><a href="#section-prohibited">Prohibited Activities</a></li>
+                        <li><a href="#section-intellectual">Intellectual Property</a></li>
+                        <li><a href="#section-thirdparty">Third-Party Services</a></li>
+                        <li><a href="#section-security">Data Security</a></li>
+                        <li><a href="#section-availability">Service Availability</a></li>
+                        <li><a href="#section-liability">Limitation of Liability</a></li>
+                        <li><a href="#section-cancellation">Cancellation of Services</a></li>
+                        <li><a href="#section-communication">Communication</a></li>
+                        <li><a href="#section-changes">Changes to These Terms</a></li>
+                        <li><a href="#section-governing">Governing Law</a></li>
+                        <li><a href="#section-contact">Contact Us</a></li>
+                    </ul>
+                </aside>
+
+                <!-- Content -->
+                <div class="terms-content">
+
+                    <!-- Section: Introduction -->
+                    <section class="terms-section" id="section-introduction">
+                        <h2>Introduction</h2>
+                        <p>
+                            Welcome to <strong>GeepChris Bridge Enterprise</strong>. These Terms of Service govern your access to and use of our website, online application forms, digital services, and any services provided by GeepChris Bridge Enterprise.
+                        </p>
+                        <p>
+                            By accessing this website or using any of our services, you agree to these Terms. If you do not agree, please discontinue use of the website and our services.
+                        </p>
+                    </section>
+
+                    <!-- Section: Who We Are -->
+                    <section class="terms-section" id="section-who-we-are">
+                        <h2>Who We Are</h2>
+                        <p>
+                            GeepChris Bridge Enterprise provides professional processing and support services including but not limited to business registration, company registration, NGO registration, Moniepoint services, POS applications, corporate account opening, travel and visa assistance, passport processing, identity documentation, immigration support, business compliance services, and other administrative and digital processing services.
+                        </p>
+                        <div class="highlight-box">
+                            <p>
+                                <i class="fa-solid fa-shield" style="color:#16a34a;margin-right:10px;"></i>
+                                We act as a processing and facilitation service. Unless expressly stated, we are not a government agency, embassy, immigration office, or financial institution.
+                            </p>
+                        </div>
+                    </section>
+
+                    <!-- Section: Acceptance -->
+                    <section class="terms-section" id="section-acceptance">
+                        <h2>Acceptance of These Terms</h2>
+                        <p>
+                            By visiting this website, completing an online form, uploading documents, making a payment, or requesting our services, you confirm that you are at least 18 years old or have permission from a parent or guardian, that the information you provide is accurate, that you understand these Terms, and that you agree to be legally bound by them.
+                        </p>
+                    </section>
+
+                    <!-- Section: Information -->
+                    <section class="terms-section" id="section-information">
+                        <h2>Information You Provide</h2>
+                        <p>
+                            You agree that all information submitted through our website is accurate, complete, current, and truthful. You must not submit false information, forged documents, altered certificates, fake identification, or someone else's personal information without authorization.
+                        </p>
+                        <div class="notice-box">
+                            <p>
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                                Providing false information may result in immediate cancellation of your application without refund and may be reported to the appropriate authorities where required.
+                            </p>
+                        </div>
+                    </section>
+
+                    <!-- Section: Documents -->
+                    <section class="terms-section" id="section-documents">
+                        <h2>Document Upload Requirements</h2>
+                        <p>
+                            Some services require supporting documents including but not limited to passport photographs, National Identification Number (NIN), BVN, National ID, Driver's License, International Passport, utility bills, birth certificates, Local Government identification, CAC documents, tax documents, signatures, and business documents.
+                        </p>
+                        <p>
+                            You confirm that you own these documents or have legal permission to submit them, that the documents are genuine, and that they are not stolen or fraudulently obtained.
+                        </p>
+                    </section>
+
+                    <!-- Section: Processing -->
+                    <section class="terms-section" id="section-processing">
+                        <h2>Service Processing</h2>
+                        <p>
+                            Submitting an application does not automatically mean your request has been approved. Applications remain subject to verification, eligibility checks, government regulations, institutional approval, and availability of the requested service.
+                        </p>
+                        <div class="highlight-box">
+                            <p>
+                                <i class="fa-regular fa-circle-check" style="color:#16a34a;margin-right:10px;"></i>
+                                We cannot guarantee approval where another organization makes the final decision.
+                            </p>
+                        </div>
+                    </section>
+
+                    <!-- Section: Payments -->
+                    <section class="terms-section" id="section-payments">
+                        <h2>Payments</h2>
+                        <p>
+                            Some services require payment before processing begins. By making payment, you acknowledge that prices displayed are accurate at the time of payment, that government fees may change without prior notice, that additional charges may apply if government agencies revise official fees after submission, and that processing begins only after payment confirmation where applicable.
+                        </p>
+                    </section>
+
+                    <!-- Section: Refund -->
+                    <section class="terms-section" id="section-refund">
+                        <h2>Refund Policy</h2>
+                        <p>
+                            Unless otherwise stated, processing fees already spent on submitted applications may not be refundable. Refund eligibility depends on the service requested, the stage of processing, government charges already incurred, and third-party fees already paid. Refund requests are reviewed individually.
+                        </p>
+                    </section>
+
+                    <!-- Section: Delays -->
+                    <section class="terms-section" id="section-delays">
+                        <h2>Application Delays</h2>
+                        <p>
+                            Processing timelines are estimates only. Delays may occur due to government agencies, banks, immigration authorities, identity verification, public holidays, technical issues, missing documentation, or force majeure events.
+                        </p>
+                        <div class="highlight-box">
+                            <p>
+                                <i class="fa-regular fa-clock" style="color:#16a34a;margin-right:10px;"></i>
+                                GeepChris Bridge Enterprise is not liable for delays outside our control.
+                            </p>
+                        </div>
+                    </section>
+
+                    <!-- Section: Responsibilities -->
+                    <section class="terms-section" id="section-responsibilities">
+                        <h2>User Responsibilities</h2>
+                        <p>
+                            You agree to submit genuine information, upload clear and readable documents, respond promptly when additional information is requested, monitor your email or phone for updates, and keep your contact information current. Failure to cooperate may delay or cancel your application.
+                        </p>
+                    </section>
+
+                    <!-- Section: Prohibited -->
+                    <section class="terms-section" id="section-prohibited">
+                        <h2>Prohibited Activities</h2>
+                        <p>
+                            You may not use this website to commit fraud, upload malware, interfere with website security, attempt unauthorized access, submit fake applications, impersonate another individual, abuse our staff, or disrupt our systems. Violation may result in suspension of access and possible legal action.
+                        </p>
+                    </section>
+
+                    <!-- Section: Intellectual Property -->
+                    <section class="terms-section" id="section-intellectual">
+                        <h2>Intellectual Property</h2>
+                        <p>
+                            Unless otherwise stated, all website content including logos, graphics, icons, text, designs, layouts, branding, source code, and images are the property of GeepChris Bridge Enterprise and are protected by applicable intellectual property laws. You may not copy, reproduce, distribute, or modify our content without written permission.
+                        </p>
+                    </section>
+
+                    <!-- Section: Third-Party -->
+                    <section class="terms-section" id="section-thirdparty">
+                        <h2>Third-Party Services</h2>
+                        <p>
+                            Our services may involve third-party organizations including government agencies, immigration authorities, banks, financial institutions, payment gateways, cloud storage providers, and identity verification providers. We are not responsible for the policies, actions, or decisions of these third parties.
+                        </p>
+                    </section>
+
+                    <!-- Section: Security -->
+                    <section class="terms-section" id="section-security">
+                        <h2>Data Security</h2>
+                        <p>
+                            We implement reasonable administrative, technical, and organizational measures to protect your information. However, no internet transmission or electronic storage system can be guaranteed to be completely secure. Users submit information at their own risk.
+                        </p>
+                    </section>
+
+                    <!-- Section: Availability -->
+                    <section class="terms-section" id="section-availability">
+                        <h2>Service Availability</h2>
+                        <p>
+                            We strive to keep our website available at all times. However, we may temporarily suspend access for maintenance, upgrades, security improvements, emergency repairs, or technical failures. We are not liable for losses caused by temporary downtime.
+                        </p>
+                    </section>
+
+                    <!-- Section: Liability -->
+                    <section class="terms-section" id="section-liability">
+                        <h2>Limitation of Liability</h2>
+                        <p>
+                            To the fullest extent permitted by law, GeepChris Bridge Enterprise shall not be liable for indirect damages, consequential losses, loss of income, missed opportunities, business interruption, delays caused by third parties, government decisions, visa refusals, loan rejections, bank decisions, or application denials.
+                        </p>
+                        <div class="highlight-box">
+                            <p>
+                                <i class="fa-solid fa-scale-balanced" style="color:#16a34a;margin-right:10px;"></i>
+                                Our maximum liability shall not exceed the amount paid for the specific service giving rise to the claim, except where prohibited by law.
+                            </p>
+                        </div>
+                    </section>
+
+                    <!-- Section: Cancellation -->
+                    <section class="terms-section" id="section-cancellation">
+                        <h2>Cancellation of Services</h2>
+                        <p>
+                            We reserve the right to suspend or terminate services if false information is submitted, fraud is suspected, payments are reversed or disputed fraudulently, users violate these Terms, or government regulations require cancellation.
+                        </p>
+                    </section>
+
+                    <!-- Section: Communication -->
+                    <section class="terms-section" id="section-communication">
+                        <h2>Communication</h2>
+                        <p>
+                            By using our services, you consent to receive communications through email, SMS, phone calls, WhatsApp, and website notifications. These communications may include application updates, requests for documents, payment confirmations, security notifications, and service announcements.
+                        </p>
+                    </section>
+
+                    <!-- Section: Changes -->
+                    <section class="terms-section" id="section-changes">
+                        <h2>Changes to These Terms</h2>
+                        <p>
+                            We may update these Terms at any time. Changes become effective immediately upon publication on this website. Continued use of our services after changes means you accept the updated Terms.
+                        </p>
+                    </section>
+
+                    <!-- Section: Governing Law -->
+                    <section class="terms-section" id="section-governing">
+                        <h2>Governing Law</h2>
+                        <p>
+                            These Terms shall be governed by and interpreted in accordance with the laws of the <strong>Federal Republic of Nigeria</strong>. Any disputes arising from these Terms shall be subject to the jurisdiction of the competent courts of Nigeria.
+                        </p>
+                    </section>
+
+                    <!-- Section: Contact -->
+                    <section class="terms-section" id="section-contact">
+                        <h2>Contact Us</h2>
+                        <p>
+                            If you have questions regarding these Terms, please contact us.
+                        </p>
+                        <p>
+                            <strong>GeepChris Bridge Enterprise</strong><br>
+                            Email: chrisposguy@gmail.com<br>
+                            Phone: +2347061507103, +2347051299684<br>
+                            Address: 15 college road opposite 2nd Gate college of Education Abata Nsugbe<br>
+                            Business Hours: Monday – Saturday, 8:00 AM – 6:00 PM
+                        </p>
+                    </section>
+
+                    <!-- ===== ACKNOWLEDGMENT ===== -->
+                    <div class="acknowledgment">
+                        <p>
+                            <i class="fa-regular fa-circle-check"></i>
+                            By using this website or submitting an application through GeepChris Bridge Enterprise, you acknowledge that you have read, understood, and agreed to these Terms of Service.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- =================== FOOTER =================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col footer-brand">
+                    <div class="footer-logo">
+                        <img src="/assets/logo.png" alt="GeepChris Bridge">
+                    </div>
+                    <p>GeepChris Bridge Enterprise simplifies essential business, financial, identity, and travel processes through professional guidance and reliable service delivery.</p>
+                    <div class="footer-socials">
+                        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+                        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+                        <a href="#" aria-label="Twitter / X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                        <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="faq.html">FAQs</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Our Services</h4>
+                    <ul>
+                        <li><a href="/services/moniepoint.html">Moniepoint Services</a></li>
+                        <li><a href="/services/travel.html">Travel & Mobility</a></li>
+                        <li><a href="/services/business-registration.html">Business Registration</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul class="footer-contact">
+                       <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.5 2 2 0 0 1 3.6 1.29h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.4a16 16 0 0 0 5.69 5.69l1.19-1.19a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.71 15z"/></svg><span>+2347061507103, +2347051299684</span></li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span>chrisposguy@gmail.com</span></li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span>15 college road opposite 2nd Gate college of Education Abata Nsugbe</span></li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>Mon – Sat: 8am – 6pm</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>
+    © 2025 GeepChris Bridge Enterprise. All Rights Reserved.<br>
+    Website by <a href="https://vintechdigitalservices.com" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.5); text-decoration:none; transition:color 0.3s ease;">Vintech Digital Services</a>
+</p>
+                <div class="footer-bottom-links">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script>
+        // Navbar
+        const navbar = document.getElementById('navbar');
+        const menuToggle = document.querySelector(".menu-toggle");
+        const mobileMenu = document.querySelector(".mobile-menu");
+        const mobileClose = document.querySelector(".mobile-menu-close");
+
+        menuToggle.addEventListener("click", () => {
+            mobileMenu.classList.toggle("active");
+            document.body.style.overflow = mobileMenu.classList.contains("active") ? "hidden" : "";
+        });
+
+        if (mobileClose) {
+            mobileClose.addEventListener("click", () => {
+                mobileMenu.classList.remove("active");
+                document.body.style.overflow = "";
+            });
+        }
+
+        const mobileServicesToggle = document.querySelector(".mobile-services-toggle");
+        const mobileServicesDropdown = document.querySelector(".mobile-services-dropdown");
+
+        if (mobileServicesToggle) {
+            mobileServicesToggle.addEventListener("click", () => {
+                mobileServicesToggle.classList.toggle("active");
+                mobileServicesDropdown.classList.toggle("active");
+            });
+        }
+
+        document.querySelectorAll(".mobile-menu a").forEach(link => {
+            link.addEventListener("click", () => {
+                mobileMenu.classList.remove("active");
+                document.body.style.overflow = "";
+            });
+        });
+
+        // Active section highlighting for sidebar
+        const sections = document.querySelectorAll('.terms-section');
+        const sidebarLinks = document.querySelectorAll('.terms-sidebar ul li a');
+
+        function updateActiveSection() {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 120;
+                if (window.pageYOffset >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            sidebarLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveSection);
+
+        // Smooth scroll for sidebar links
+        document.querySelectorAll('.terms-sidebar a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener("scroll", () => {
+            const scrolled = window.pageYOffset;
+            if (scrolled > 80) {
+                navbar.classList.add("scrolled");
+            } else {
+                navbar.classList.remove("scrolled");
+            }
+        });
+    </script>
+
+</body>
+</html>

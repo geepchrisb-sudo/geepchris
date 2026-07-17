@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon - Use under45.png as the icon in search results -->
+  <link class="icon" type="image/png" href="under45.png" />
+  <link rel="apple-touch-icon" href="/assets/logo.png" />
+  <link rel="shortcut icon" href="/assets/logo.png" />
+  
+    
+    <!-- ===== PRIMARY META TAGS ===== -->
+    <title>Visa Countries — Travel & Global Mobility Services | GeepChris Bridge</title>
+    <meta name="description" content="Explore available visa countries for Nigerian citizens. We offer professional visa processing services for business, tourism, study, and work visas worldwide. Fast, reliable, and expert guidance.">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="GeepChris Bridge Enterprise">
+    <meta name="keywords" content="visa countries, travel visa, business visa, tourist visa, study visa, work visa, global mobility, international travel, visa processing Nigeria, travel documentation, passport services, immigration support, visa application assistance, Nigerian passport holders, visa consultation, proof of funds, travel services Nigeria, embassy visa, visa application, travel agency Nigeria, visa assistance, document verification, travel clearance">
+    <link rel="canonical" href="https://geepchris.com/visa.html">
+
+    <!-- ===== OPEN GRAPH / SOCIAL MEDIA META TAGS ===== -->
+    <meta property="og:title" content="Visa Countries — Travel & Global Mobility Services | GeepChris Bridge">
+    <meta property="og:description" content="Explore available visa countries for Nigerian citizens. We offer professional visa processing services for business, tourism, study, and work visas worldwide. Fast, reliable, and expert guidance.">
+    <meta property="og:url" content="https://geepchris.com/visa.html">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://geepchris.com/assets/geepchris.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="en_NG">
+    <meta property="og:site_name" content="GeepChris Bridge Enterprise">
+
+    <!-- ===== TWITTER CARDS ===== -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Visa Countries — Travel & Global Mobility Services | GeepChris Bridge">
+    <meta name="twitter:description" content="Explore available visa countries for Nigerian citizens. We offer professional visa processing services for business, tourism, study, and work visas worldwide.">
+    <meta name="twitter:image" content="https://geepchris.com/assets/geepchris.jpg">
+
+    <!-- ===== ADDITIONAL SEO META TAGS ===== -->
+    <meta name="geo.region" content="NG">
+    <meta name="geo.placename" content="Lagos">
+    <meta name="geo.position" content="6.5244;3.3792">
+    <meta name="ICBM" content="6.5244, 3.3792">
+    <meta name="revisit-after" content="7 days">
+
+    <!-- ===== SCHEMA MARKUP (JSON-LD) ===== -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Visa Processing & Global Mobility Services",
+        "provider": {
+            "@type": "Organization",
+            "name": "GeepChris Bridge Enterprise",
+            "url": "https://geepchris.com",
+            "logo": "https://geepchris.com/assets/logo.png"
+        },
+        "description": "We provide professional visa processing, travel documentation, and global mobility services for Nigerian citizens. Services include business visas, tourist visas, study visas, work visas, and immigration support.",
+        "serviceType": "Visa Processing",
+        "areaServed": "Nigeria",
+        "url": "https://geepchris.com/visa.html"
+    }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8fafc;
+            color: #0f172a;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* ===== HEADER / NAVBAR ===== */
+        .navbar{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            padding:20px 24px;
+            position:fixed;
+            top:0;
+            left:0;
+            right:0;
+            z-index:1000;
+            width:100%;
+            background:rgba(2,6,23,0.95);
+            backdrop-filter:blur(12px);
+            border-bottom:1px solid rgba(255,255,255,0.06);
+        }
+        .navbar .logo img{ height:40px; width:auto; display:block; }
+        .nav-links{ display:flex; gap:2rem; list-style:none; align-items:center; }
+        .nav-links a{ color:#fff; text-decoration:none; font-weight:500; font-size:.95rem; transition:.3s; }
+        .nav-links a:hover{ color:#22c55e; }
+        .has-dropdown{ position:relative; }
+        .dropdown-trigger{ display:flex; align-items:center; gap:4px; cursor:pointer; }
+        .arrow-down{ font-size:.75rem; transition:transform .3s ease; }
+        .has-dropdown:hover .arrow-down{ transform:rotate(180deg); }
+        .dropdown-menu{
+            position:absolute; top:calc(100% + 12px); left:50%; transform:translateX(-50%) translateY(8px);
+            background:rgba(2,6,23,.98); backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,0.10);
+            border-radius:12px; padding:10px; min-width:260px; opacity:0; visibility:hidden; pointer-events:none;
+            transition:all .28s cubic-bezier(.4,0,.2,1); z-index:200; box-shadow:0 20px 50px rgba(0,0,0,.5);
+        }
+        .has-dropdown:hover .dropdown-menu{ opacity:1; visibility:visible; pointer-events:all; transform:translateX(-50%) translateY(0); }
+        .dropdown-menu a{
+            display:block; padding:11px 16px; border-radius:8px; color:rgba(255,255,255,.85);
+            font-size:.88rem; font-weight:500; text-decoration:none; transition:all .2s ease;
+        }
+        .dropdown-menu a:hover{ background:rgba(34,197,94,.12); color:#22c55e; padding-left:22px; }
+        .nav-btn{
+            text-decoration:none; padding:10px 22px; border-radius:999px; background:#16a34a; color:#fff;
+            font-weight:600; font-size:.9rem; transition:.3s;
+        }
+        .nav-btn:hover{ transform:translateY(-2px); background:#22c55e; }
+        .menu-toggle{ display:none; background:none; border:none; cursor:pointer; padding:4px; }
+        .menu-toggle span{ display:block; width:26px; height:2.5px; background:#fff; margin:5px 0; border-radius:5px; transition:.3s; }
+
+        /* ===== MOBILE MENU ===== */
+        .mobile-menu{
+            position:fixed; top:0; left:0; right:0; bottom:0; width:100vw; height:100vh;
+            display:flex; flex-direction:column; justify-content:center; align-items:center; gap:1.2rem;
+            background:rgba(2,6,23,.98); backdrop-filter:blur(20px); padding:40px 24px; opacity:0; visibility:hidden;
+            transform:scale(.96); transition:all .4s cubic-bezier(.4,0,.2,1); z-index:999;
+        }
+        .mobile-menu.active{ opacity:1; visibility:visible; transform:scale(1); }
+        .mobile-menu-close{
+            position:absolute; top:20px; right:20px; width:40px; height:40px; background:none; border:none; cursor:pointer;
+        }
+        .mobile-menu-close span{
+            display:block; position:absolute; top:50%; left:50%; width:24px; height:2.5px; background:#fff; border-radius:5px; transition:transform .3s ease;
+        }
+        .mobile-menu-close span:first-child{ transform:translate(-50%,-50%) rotate(45deg); }
+        .mobile-menu-close span:last-child{ transform:translate(-50%,-50%) rotate(-45deg); }
+        .mobile-menu > a{ color:#fff; text-decoration:none; font-weight:700; font-size:1.2rem; padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.08); width:100%; text-align:center; }
+        .mobile-menu > a:hover{ color:#22c55e; }
+        .mobile-services-group{ width:100%; border-bottom:1px solid rgba(255,255,255,0.08); padding-bottom:12px; text-align:center; }
+        .mobile-services-toggle{
+            background:none; border:none; color:#fff; font-weight:700; font-size:1.2rem; padding:12px 0; cursor:pointer;
+            display:flex; align-items:center; justify-content:center; gap:8px; width:100%;
+        }
+        .mobile-services-toggle span{ transition:transform .3s; font-size:.9rem; }
+        .mobile-services-toggle.active span{ display:inline-block; transform:rotate(180deg); }
+        .mobile-services-dropdown{ display:none; padding-top:10px; }
+        .mobile-services-dropdown.active{ display:flex; flex-direction:column; gap:8px; align-items:center; }
+        .mobile-services-dropdown a{ color:rgba(255,255,255,.8); text-decoration:none; font-size:.95rem; padding:6px 0; font-weight:500; transition:color .3s; }
+        .mobile-services-dropdown a:hover{ color:#22c55e; }
+        .mobile-btn{ margin-top:10px; background:#16a34a; padding:14px 40px; text-align:center; border-radius:999px; color:#fff !important; font-weight:700 !important; border:none !important; font-size:1rem !important; width:auto; min-width:200px; }
+        .mobile-btn:hover{ background:#22c55e; }
+
+        /* ===== HERO (PRESERVED - KEPT THE EXISTING HEADER) ===== */
+        header {
+            position: relative;
+            background: #020617;
+            color: #ffffff;
+            padding: 48px 20px;
+            text-align: center;
+            border-bottom: 3px solid #16a34a;
+            min-height: 240px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .header-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+            z-index: 0;
+        }
+        .header-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #020617;
+            opacity: 0.85;
+            z-index: 1;
+        }
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+        header h1 { font-size: 2.2rem; font-weight: 800; margin-bottom: 8px; }
+        header h1 span { color: #22c55e; }
+        header p { color: #94a3b8; font-size: 1rem; max-width: 600px; margin: 0 auto; }
+
+        /* ===== CONTAINER ===== */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+            width: 100%;
+        }
+
+        /* ===== LOADING STATE ===== */
+        .loading-state {
+            text-align: center;
+            padding: 48px 20px;
+            color: #64748b;
+        }
+        .loading-state i {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 12px;
+            color: #cbd5e1;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* ===== CARDS GRID ===== */
+        .visa-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 32px 24px;
+        }
+
+        /* ===== THE CARD ===== */
+        .visa-card {
+            background: #ffffff;
+            border-radius: 14px;
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+            transition: all 0.25s ease;
+            box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.05);
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            margin-top: 20px;
+        }
+        .visa-card:hover {
+            transform: translateY(-6px);
+            border-color: #16a34a;
+            box-shadow: 0 16px 20px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* ===== CARD TOP: IMAGE ===== */
+        .card-image-wrapper {
+            height: 160px;
+            width: 100%;
+            background: #f1f5f9;
+            overflow: hidden;
+            position: relative;
+        }
+        .card-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .visa-card:hover .card-image-wrapper img {
+            transform: scale(1.04);
+        }
+
+        /* ===== SQUARE FLAG (Overlapping) ===== */
+        .card-flag-wrapper {
+            position: absolute;
+            left: 50%;
+            top: 160px;
+            transform: translate(-50%, -50%);
+            width: 48px;
+            height: 48px;
+            background: #ffffff;
+            border: 2px solid #e2e8f0;
+            border-radius: 0px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+            overflow: hidden;
+        }
+        .card-flag-wrapper .flag-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .card-flag-wrapper .flag-fallback {
+            font-size: 2.2rem;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ===== CARD BOTTOM: CONTENT ===== */
+        .card-body {
+            padding: 32px 20px 20px 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .card-body h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 3px;
+            color: #0f172a;
+        }
+        .card-body .visa-type {
+            font-size: .8rem;
+            color: #16a34a;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .card-body .description {
+            font-size: .85rem;
+            color: #64748b;
+            line-height: 1.5;
+            margin-bottom: 14px;
+            flex: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 14px;
+            width: 100%;
+        }
+        .card-footer .price {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #0f172a;
+        }
+        .card-footer .apply-btn {
+            background: #16a34a;
+            color: #fff;
+            padding: 6px 16px;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: .8rem;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .visa-card:hover .card-footer .apply-btn {
+            background: #22c55e;
+        }
+
+        /* ===== EMPTY STATE ===== */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #64748b;
+            grid-column: 1 / -1;
+        }
+        .empty-state i {
+            font-size: 2.5rem;
+            color: #cbd5e1;
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        /* ===== ANIMATIONS ===== */
+        .anim-fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+        .anim-fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer { background: #020617; padding: 50px 0 20px; border-top: 1px solid rgba(255,255,255,0.08); }
+        .footer-grid { display: grid; grid-template-columns: 1.8fr 1fr 1fr 1.3fr; gap: 40px; padding-bottom: 40px; }
+        .footer-logo { margin-bottom: 18px; }
+        .footer-logo img { height: 45px; width: auto; display: block; }
+        .footer-brand p { font-size: .88rem; line-height: 1.7; color: rgba(255,255,255,.6); margin-bottom: 24px; max-width: 300px; }
+        .footer-socials { display: flex; gap: 12px; }
+        .footer-socials a { width: 38px; height: 38px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.10); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.5); transition: all .3s ease; }
+        .footer-socials a svg { width: 16px; height: 16px; }
+        .footer-socials a:hover { background: #16a34a; border-color: #16a34a; color: #fff; transform: translateY(-3px); }
+        .footer-col h4 { font-size: .85rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #fff; margin-bottom: 20px; }
+        .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+        .footer-col ul li a, .footer-col ul li { font-size: .85rem; color: rgba(255,255,255,.6); text-decoration: none; transition: color .3s; line-height: 1.5; }
+        .footer-col ul li a:hover { color: #22c55e; }
+        .footer-contact { display: flex; flex-direction: column; gap: 12px !important; }
+        .footer-contact li { display: flex; align-items: flex-start; gap: 10px; }
+        .footer-contact li svg { width: 16px; height: 16px; min-width: 16px; stroke: #22c55e; margin-top: 1px; }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding: 20px 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+        .footer-bottom p { font-size: .8rem; color: rgba(255,255,255,.4); }
+        .footer-bottom-links { display: flex; gap: 24px; }
+        .footer-bottom-links a { font-size: .8rem; color: rgba(255,255,255,.4); text-decoration: none; transition: color .3s; }
+        .footer-bottom-links a:hover { color: #22c55e; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .nav-links, .nav-btn { display: none; }
+            .menu-toggle { display: block; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 768px) {
+            .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+            .logo img { height: 50px; }
+            .visa-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 640px) {
+            header h1 { font-size: 1.8rem; }
+            .visa-grid { grid-template-columns: 1fr; }
+            .card-image-wrapper { height: 140px; }
+            .card-flag-wrapper { width: 42px; height: 42px; top: 140px; }
+            .card-flag-wrapper .flag-fallback { font-size: 1.8rem; }
+            header { min-height: 200px; padding: 64px 20px 32px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- =================== NAVBAR =================== -->
+    <nav class="navbar" id="navbar">
+        <a href="index.html" class="logo">
+            <img src="assets/logo.png" alt="GeepChris Bridge">
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li class="has-dropdown">
+                <a href="services.html" class="dropdown-trigger">Services <span class="arrow-down">▾</span></a>
+                <div class="dropdown-menu">
+                    <a href="services/moniepoint.html">Moniepoint Financial Services</a>
+                    <a href="services/travel.html">Travel & Global Mobility</a>
+                    <a href="services/business-registration.html">Business Registration</a>
+                    <a href="services/web-development.html">Website Development</a>
+                </div>
+            </li>
+            
+            <li><a href="about-us.html">About</a></li>
+            <li><a href="faq.html">FAQs</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <a href="contact.html" class="nav-btn">Get Started</a>
+
+        <button class="menu-toggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu">
+        <button class="mobile-menu-close" aria-label="Close menu">
+            <span></span><span></span>
+        </button>
+        <a href="index.html">Home</a>
+        <div class="mobile-services-group">
+            <button class="mobile-services-toggle">Services <span>▾</span></button>
+            <div class="mobile-services-dropdown">
+                <a href="services/moniepoint.html">Moniepoint Financial Services</a>
+                <a href="services/travel.html">Travel & Global Mobility</a>
+                <a href="services/business-registration.html">Business Registration</a>
+                <a href="services/web-development.html">Website Development</a>
+            </div>
+        </div>
+        
+        <a href="about-us.html">About</a>
+        <a href="faq.html">FAQs</a>
+        <a href="contact.html">Contact</a>
+        <a href="contact.html" class="mobile-btn">Get Started</a>
+    </div>
+
+    <!-- =================== HERO (PRESERVED - KEPT EXISTING HEADER) =================== -->
+    <header>
+        <img src="/assets/hero.png" alt="Header Background" class="header-bg" loading="lazy" decoding="async">
+        <div class="header-overlay"></div>
+        <div class="header-content">
+            <h1>Explore <span>Visa Opportunities</span></h1>
+            <p>Choose your destination and let us handle the complexities of your visa application.</p>
+        </div>
+    </header>
+
+    <!-- =================== MAIN CONTENT =================== -->
+    <div class="container">
+        <!-- Loading State -->
+        <div id="loadingState" class="loading-state">
+            <i class="fas fa-spinner"></i>
+            <p>Loading available countries...</p>
+        </div>
+
+        <!-- Grid Container -->
+        <div id="visaGrid" class="visa-grid"></div>
+    </div>
+
+    <!-- =================== FOOTER =================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col footer-brand">
+                    <div class="footer-logo">
+                        <img src="/assets/logo.png" alt="GeepChris Bridge" loading="lazy" decoding="async">
+                    </div>
+                    <p>GeepChris Bridge Enterprise simplifies essential business, financial, identity, and travel processes through professional guidance and reliable service delivery.</p>
+                    <div class="footer-socials">
+                        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+                        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+                        <a href="#" aria-label="Twitter / X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                        <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="faq.html">FAQs</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Our Services</h4>
+                    <ul>
+                        <li><a href="/services/moniepoint.html">Moniepoint Services</a></li>
+                        <li><a href="/services/travel.html">Travel & Mobility</a></li>
+                        <li><a href="/services/business-registration.html">Business Registration</a></li>
+                        <li><a href="/services/web-development.html">Web Development</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul class="footer-contact">
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.5 2 2 0 0 1 3.6 1.29h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.4a16 16 0 0 0 5.69 5.69l1.19-1.19a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.71 15z"/></svg><span>+2347061507103, +2347051299684</span></li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span>chrisposguy@gmail.com</span></li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span>15 college road opposite 2nd Gate college of Education Abata Nsugbe</span></li>
+                        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>Mon – Sat: 8am – 6pm</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>
+    © 2025 GeepChris Bridge Enterprise. All Rights Reserved.<br>
+    Website by <a href="https://vintechdigitalservices.com" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.5); text-decoration:none; transition:color 0.3s ease;">Vintech Digital Services</a>
+</p>
+                <div class="footer-bottom-links">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== FIREBASE SDK ===== -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <script>
+        // ==========================================
+        // FIREBASE CONFIGURATION
+        // ==========================================
+        const firebaseConfig = {
+            apiKey: "AIzaSyDHSOM7-GZXQ7tYySYTRiyCAHZOn9SQhhE",
+            authDomain: "geepchris-bridge.firebaseapp.com",
+            projectId: "geepchris-bridge",
+            storageBucket: "geepchris-bridge.firebasestorage.app",
+            messagingSenderId: "61219875988",
+            appId: "1:61219875988:web:a393bb73ce2b85991b9881"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // ==========================================
+        // COUNTRY FLAG DATA
+        // ==========================================
+        const countries = [
+            { name: "Afghanistan", flag: "🇦🇫", flagUrl: "https://flagcdn.com/w40/af.png" },
+            { name: "Albania", flag: "🇦🇱", flagUrl: "https://flagcdn.com/w40/al.png" },
+            { name: "Algeria", flag: "🇩🇿", flagUrl: "https://flagcdn.com/w40/dz.png" },
+            { name: "Andorra", flag: "🇦🇩", flagUrl: "https://flagcdn.com/w40/ad.png" },
+            { name: "Angola", flag: "🇦🇴", flagUrl: "https://flagcdn.com/w40/ao.png" },
+            { name: "Antigua and Barbuda", flag: "🇦🇬", flagUrl: "https://flagcdn.com/w40/ag.png" },
+            { name: "Argentina", flag: "🇦🇷", flagUrl: "https://flagcdn.com/w40/ar.png" },
+            { name: "Armenia", flag: "🇦🇲", flagUrl: "https://flagcdn.com/w40/am.png" },
+            { name: "Australia", flag: "🇦🇺", flagUrl: "https://flagcdn.com/w40/au.png" },
+            { name: "Austria", flag: "🇦🇹", flagUrl: "https://flagcdn.com/w40/at.png" },
+            { name: "Azerbaijan", flag: "🇦🇿", flagUrl: "https://flagcdn.com/w40/az.png" },
+            { name: "Bahamas", flag: "🇧🇸", flagUrl: "https://flagcdn.com/w40/bs.png" },
+            { name: "Bahrain", flag: "🇧🇭", flagUrl: "https://flagcdn.com/w40/bh.png" },
+            { name: "Bangladesh", flag: "🇧🇩", flagUrl: "https://flagcdn.com/w40/bd.png" },
+            { name: "Barbados", flag: "🇧🇧", flagUrl: "https://flagcdn.com/w40/bb.png" },
+            { name: "Belarus", flag: "🇧🇾", flagUrl: "https://flagcdn.com/w40/by.png" },
+            { name: "Belgium", flag: "🇧🇪", flagUrl: "https://flagcdn.com/w40/be.png" },
+            { name: "Belize", flag: "🇧🇿", flagUrl: "https://flagcdn.com/w40/bz.png" },
+            { name: "Benin", flag: "🇧🇯", flagUrl: "https://flagcdn.com/w40/bj.png" },
+            { name: "Bhutan", flag: "🇧🇹", flagUrl: "https://flagcdn.com/w40/bt.png" },
+            { name: "Bolivia", flag: "🇧🇴", flagUrl: "https://flagcdn.com/w40/bo.png" },
+            { name: "Bosnia and Herzegovina", flag: "🇧🇦", flagUrl: "https://flagcdn.com/w40/ba.png" },
+            { name: "Botswana", flag: "🇧🇼", flagUrl: "https://flagcdn.com/w40/bw.png" },
+            { name: "Brazil", flag: "🇧🇷", flagUrl: "https://flagcdn.com/w40/br.png" },
+            { name: "Brunei", flag: "🇧🇳", flagUrl: "https://flagcdn.com/w40/bn.png" },
+            { name: "Bulgaria", flag: "🇧🇬", flagUrl: "https://flagcdn.com/w40/bg.png" },
+            { name: "Burkina Faso", flag: "🇧🇫", flagUrl: "https://flagcdn.com/w40/bf.png" },
+            { name: "Burundi", flag: "🇧🇮", flagUrl: "https://flagcdn.com/w40/bi.png" },
+            { name: "Cabo Verde", flag: "🇨🇻", flagUrl: "https://flagcdn.com/w40/cv.png" },
+            { name: "Cambodia", flag: "🇰🇭", flagUrl: "https://flagcdn.com/w40/kh.png" },
+            { name: "Cameroon", flag: "🇨🇲", flagUrl: "https://flagcdn.com/w40/cm.png" },
+            { name: "Canada", flag: "🇨🇦", flagUrl: "https://flagcdn.com/w40/ca.png" },
+            { name: "Central African Republic", flag: "🇨🇫", flagUrl: "https://flagcdn.com/w40/cf.png" },
+            { name: "Chad", flag: "🇹🇩", flagUrl: "https://flagcdn.com/w40/td.png" },
+            { name: "Chile", flag: "🇨🇱", flagUrl: "https://flagcdn.com/w40/cl.png" },
+            { name: "China", flag: "🇨🇳", flagUrl: "https://flagcdn.com/w40/cn.png" },
+            { name: "Colombia", flag: "🇨🇴", flagUrl: "https://flagcdn.com/w40/co.png" },
+            { name: "Comoros", flag: "🇰🇲", flagUrl: "https://flagcdn.com/w40/km.png" },
+            { name: "Congo", flag: "🇨🇬", flagUrl: "https://flagcdn.com/w40/cg.png" },
+            { name: "Costa Rica", flag: "🇨🇷", flagUrl: "https://flagcdn.com/w40/cr.png" },
+            { name: "Côte d'Ivoire", flag: "🇨🇮", flagUrl: "https://flagcdn.com/w40/ci.png" },
+            { name: "Croatia", flag: "🇭🇷", flagUrl: "https://flagcdn.com/w40/hr.png" },
+            { name: "Cuba", flag: "🇨🇺", flagUrl: "https://flagcdn.com/w40/cu.png" },
+            { name: "Cyprus", flag: "🇨🇾", flagUrl: "https://flagcdn.com/w40/cy.png" },
+            { name: "Czech Republic", flag: "🇨🇿", flagUrl: "https://flagcdn.com/w40/cz.png" },
+            { name: "Democratic Republic of the Congo", flag: "🇨🇩", flagUrl: "https://flagcdn.com/w40/cd.png" },
+            { name: "Denmark", flag: "🇩🇰", flagUrl: "https://flagcdn.com/w40/dk.png" },
+            { name: "Djibouti", flag: "🇩🇯", flagUrl: "https://flagcdn.com/w40/dj.png" },
+            { name: "Dominica", flag: "🇩🇲", flagUrl: "https://flagcdn.com/w40/dm.png" },
+            { name: "Dominican Republic", flag: "🇩🇴", flagUrl: "https://flagcdn.com/w40/do.png" },
+            { name: "Ecuador", flag: "🇪🇨", flagUrl: "https://flagcdn.com/w40/ec.png" },
+            { name: "Egypt", flag: "🇪🇬", flagUrl: "https://flagcdn.com/w40/eg.png" },
+            { name: "El Salvador", flag: "🇸🇻", flagUrl: "https://flagcdn.com/w40/sv.png" },
+            { name: "Equatorial Guinea", flag: "🇬🇶", flagUrl: "https://flagcdn.com/w40/gq.png" },
+            { name: "Eritrea", flag: "🇪🇷", flagUrl: "https://flagcdn.com/w40/er.png" },
+            { name: "Estonia", flag: "🇪🇪", flagUrl: "https://flagcdn.com/w40/ee.png" },
+            { name: "Eswatini", flag: "🇸🇿", flagUrl: "https://flagcdn.com/w40/sz.png" },
+            { name: "Ethiopia", flag: "🇪🇹", flagUrl: "https://flagcdn.com/w40/et.png" },
+            { name: "Fiji", flag: "🇫🇯", flagUrl: "https://flagcdn.com/w40/fj.png" },
+            { name: "Finland", flag: "🇫🇮", flagUrl: "https://flagcdn.com/w40/fi.png" },
+            { name: "France", flag: "🇫🇷", flagUrl: "https://flagcdn.com/w40/fr.png" },
+            { name: "Gabon", flag: "🇬🇦", flagUrl: "https://flagcdn.com/w40/ga.png" },
+            { name: "Gambia", flag: "🇬🇲", flagUrl: "https://flagcdn.com/w40/gm.png" },
+            { name: "Georgia", flag: "🇬🇪", flagUrl: "https://flagcdn.com/w40/ge.png" },
+            { name: "Germany", flag: "🇩🇪", flagUrl: "https://flagcdn.com/w40/de.png" },
+            { name: "Ghana", flag: "🇬🇭", flagUrl: "https://flagcdn.com/w40/gh.png" },
+            { name: "Greece", flag: "🇬🇷", flagUrl: "https://flagcdn.com/w40/gr.png" },
+            { name: "Grenada", flag: "🇬🇩", flagUrl: "https://flagcdn.com/w40/gd.png" },
+            { name: "Guatemala", flag: "🇬🇹", flagUrl: "https://flagcdn.com/w40/gt.png" },
+            { name: "Guinea", flag: "🇬🇳", flagUrl: "https://flagcdn.com/w40/gn.png" },
+            { name: "Guinea-Bissau", flag: "🇬🇼", flagUrl: "https://flagcdn.com/w40/gw.png" },
+            { name: "Guyana", flag: "🇬🇾", flagUrl: "https://flagcdn.com/w40/gy.png" },
+            { name: "Haiti", flag: "🇭🇹", flagUrl: "https://flagcdn.com/w40/ht.png" },
+            { name: "Honduras", flag: "🇭🇳", flagUrl: "https://flagcdn.com/w40/hn.png" },
+            { name: "Hungary", flag: "🇭🇺", flagUrl: "https://flagcdn.com/w40/hu.png" },
+            { name: "Iceland", flag: "🇮🇸", flagUrl: "https://flagcdn.com/w40/is.png" },
+            { name: "India", flag: "🇮🇳", flagUrl: "https://flagcdn.com/w40/in.png" },
+            { name: "Indonesia", flag: "🇮🇩", flagUrl: "https://flagcdn.com/w40/id.png" },
+            { name: "Iran", flag: "🇮🇷", flagUrl: "https://flagcdn.com/w40/ir.png" },
+            { name: "Iraq", flag: "🇮🇶", flagUrl: "https://flagcdn.com/w40/iq.png" },
+            { name: "Ireland", flag: "🇮🇪", flagUrl: "https://flagcdn.com/w40/ie.png" },
+            { name: "Israel", flag: "🇮🇱", flagUrl: "https://flagcdn.com/w40/il.png" },
+            { name: "Italy", flag: "🇮🇹", flagUrl: "https://flagcdn.com/w40/it.png" },
+            { name: "Jamaica", flag: "🇯🇲", flagUrl: "https://flagcdn.com/w40/jm.png" },
+            { name: "Japan", flag: "🇯🇵", flagUrl: "https://flagcdn.com/w40/jp.png" },
+            { name: "Jordan", flag: "🇯🇴", flagUrl: "https://flagcdn.com/w40/jo.png" },
+            { name: "Kazakhstan", flag: "🇰🇿", flagUrl: "https://flagcdn.com/w40/kz.png" },
+            { name: "Kenya", flag: "🇰🇪", flagUrl: "https://flagcdn.com/w40/ke.png" },
+            { name: "Kiribati", flag: "🇰🇮", flagUrl: "https://flagcdn.com/w40/ki.png" },
+            { name: "Kuwait", flag: "🇰🇼", flagUrl: "https://flagcdn.com/w40/kw.png" },
+            { name: "Kyrgyzstan", flag: "🇰🇬", flagUrl: "https://flagcdn.com/w40/kg.png" },
+            { name: "Laos", flag: "🇱🇦", flagUrl: "https://flagcdn.com/w40/la.png" },
+            { name: "Latvia", flag: "🇱🇻", flagUrl: "https://flagcdn.com/w40/lv.png" },
+            { name: "Lebanon", flag: "🇱🇧", flagUrl: "https://flagcdn.com/w40/lb.png" },
+            { name: "Lesotho", flag: "🇱🇸", flagUrl: "https://flagcdn.com/w40/ls.png" },
+            { name: "Liberia", flag: "🇱🇷", flagUrl: "https://flagcdn.com/w40/lr.png" },
+            { name: "Libya", flag: "🇱🇾", flagUrl: "https://flagcdn.com/w40/ly.png" },
+            { name: "Liechtenstein", flag: "🇱🇮", flagUrl: "https://flagcdn.com/w40/li.png" },
+            { name: "Lithuania", flag: "🇱🇹", flagUrl: "https://flagcdn.com/w40/lt.png" },
+            { name: "Luxembourg", flag: "🇱🇺", flagUrl: "https://flagcdn.com/w40/lu.png" },
+            { name: "Madagascar", flag: "🇲🇬", flagUrl: "https://flagcdn.com/w40/mg.png" },
+            { name: "Malawi", flag: "🇲🇼", flagUrl: "https://flagcdn.com/w40/mw.png" },
+            { name: "Malaysia", flag: "🇲🇾", flagUrl: "https://flagcdn.com/w40/my.png" },
+            { name: "Maldives", flag: "🇲🇻", flagUrl: "https://flagcdn.com/w40/mv.png" },
+            { name: "Mali", flag: "🇲🇱", flagUrl: "https://flagcdn.com/w40/ml.png" },
+            { name: "Malta", flag: "🇲🇹", flagUrl: "https://flagcdn.com/w40/mt.png" },
+            { name: "Marshall Islands", flag: "🇲🇭", flagUrl: "https://flagcdn.com/w40/mh.png" },
+            { name: "Mauritania", flag: "🇲🇷", flagUrl: "https://flagcdn.com/w40/mr.png" },
+            { name: "Mauritius", flag: "🇲🇺", flagUrl: "https://flagcdn.com/w40/mu.png" },
+            { name: "Mexico", flag: "🇲🇽", flagUrl: "https://flagcdn.com/w40/mx.png" },
+            { name: "Micronesia", flag: "🇫🇲", flagUrl: "https://flagcdn.com/w40/fm.png" },
+            { name: "Moldova", flag: "🇲🇩", flagUrl: "https://flagcdn.com/w40/md.png" },
+            { name: "Monaco", flag: "🇲🇨", flagUrl: "https://flagcdn.com/w40/mc.png" },
+            { name: "Mongolia", flag: "🇲🇳", flagUrl: "https://flagcdn.com/w40/mn.png" },
+            { name: "Montenegro", flag: "🇲🇪", flagUrl: "https://flagcdn.com/w40/me.png" },
+            { name: "Morocco", flag: "🇲🇦", flagUrl: "https://flagcdn.com/w40/ma.png" },
+            { name: "Mozambique", flag: "🇲🇿", flagUrl: "https://flagcdn.com/w40/mz.png" },
+            { name: "Myanmar", flag: "🇲🇲", flagUrl: "https://flagcdn.com/w40/mm.png" },
+            { name: "Namibia", flag: "🇳🇦", flagUrl: "https://flagcdn.com/w40/na.png" },
+            { name: "Nauru", flag: "🇳🇷", flagUrl: "https://flagcdn.com/w40/nr.png" },
+            { name: "Nepal", flag: "🇳🇵", flagUrl: "https://flagcdn.com/w40/np.png" },
+            { name: "Netherlands", flag: "🇳🇱", flagUrl: "https://flagcdn.com/w40/nl.png" },
+            { name: "New Zealand", flag: "🇳🇿", flagUrl: "https://flagcdn.com/w40/nz.png" },
+            { name: "Nicaragua", flag: "🇳🇮", flagUrl: "https://flagcdn.com/w40/ni.png" },
+            { name: "Niger", flag: "🇳🇪", flagUrl: "https://flagcdn.com/w40/ne.png" },
+            { name: "Nigeria", flag: "🇳🇬", flagUrl: "https://flagcdn.com/w40/ng.png" },
+            { name: "North Korea", flag: "🇰🇵", flagUrl: "https://flagcdn.com/w40/kp.png" },
+            { name: "North Macedonia", flag: "🇲🇰", flagUrl: "https://flagcdn.com/w40/mk.png" },
+            { name: "Norway", flag: "🇳🇴", flagUrl: "https://flagcdn.com/w40/no.png" },
+            { name: "Oman", flag: "🇴🇲", flagUrl: "https://flagcdn.com/w40/om.png" },
+            { name: "Pakistan", flag: "🇵🇰", flagUrl: "https://flagcdn.com/w40/pk.png" },
+            { name: "Palau", flag: "🇵🇼", flagUrl: "https://flagcdn.com/w40/pw.png" },
+            { name: "Panama", flag: "🇵🇦", flagUrl: "https://flagcdn.com/w40/pa.png" },
+            { name: "Papua New Guinea", flag: "🇵🇬", flagUrl: "https://flagcdn.com/w40/pg.png" },
+            { name: "Paraguay", flag: "🇵🇾", flagUrl: "https://flagcdn.com/w40/py.png" },
+            { name: "Peru", flag: "🇵🇪", flagUrl: "https://flagcdn.com/w40/pe.png" },
+            { name: "Philippines", flag: "🇵🇭", flagUrl: "https://flagcdn.com/w40/ph.png" },
+            { name: "Poland", flag: "🇵🇱", flagUrl: "https://flagcdn.com/w40/pl.png" },
+            { name: "Portugal", flag: "🇵🇹", flagUrl: "https://flagcdn.com/w40/pt.png" },
+            { name: "Qatar", flag: "🇶🇦", flagUrl: "https://flagcdn.com/w40/qa.png" },
+            { name: "Romania", flag: "🇷🇴", flagUrl: "https://flagcdn.com/w40/ro.png" },
+            { name: "Russia", flag: "🇷🇺", flagUrl: "https://flagcdn.com/w40/ru.png" },
+            { name: "Rwanda", flag: "🇷🇼", flagUrl: "https://flagcdn.com/w40/rw.png" },
+            { name: "Saint Kitts and Nevis", flag: "🇰🇳", flagUrl: "https://flagcdn.com/w40/kn.png" },
+            { name: "Saint Lucia", flag: "🇱🇨", flagUrl: "https://flagcdn.com/w40/lc.png" },
+            { name: "Saint Vincent and the Grenadines", flag: "🇻🇨", flagUrl: "https://flagcdn.com/w40/vc.png" },
+            { name: "Samoa", flag: "🇼🇸", flagUrl: "https://flagcdn.com/w40/ws.png" },
+            { name: "San Marino", flag: "🇸🇲", flagUrl: "https://flagcdn.com/w40/sm.png" },
+            { name: "São Tomé and Príncipe", flag: "🇸🇹", flagUrl: "https://flagcdn.com/w40/st.png" },
+            { name: "Saudi Arabia", flag: "🇸🇦", flagUrl: "https://flagcdn.com/w40/sa.png" },
+            { name: "Senegal", flag: "🇸🇳", flagUrl: "https://flagcdn.com/w40/sn.png" },
+            { name: "Serbia", flag: "🇷🇸", flagUrl: "https://flagcdn.com/w40/rs.png" },
+            { name: "Seychelles", flag: "🇸🇨", flagUrl: "https://flagcdn.com/w40/sc.png" },
+            { name: "Sierra Leone", flag: "🇸🇱", flagUrl: "https://flagcdn.com/w40/sl.png" },
+            { name: "Singapore", flag: "🇸🇬", flagUrl: "https://flagcdn.com/w40/sg.png" },
+            { name: "Slovakia", flag: "🇸🇰", flagUrl: "https://flagcdn.com/w40/sk.png" },
+            { name: "Slovenia", flag: "🇸🇮", flagUrl: "https://flagcdn.com/w40/si.png" },
+            { name: "Solomon Islands", flag: "🇸🇧", flagUrl: "https://flagcdn.com/w40/sb.png" },
+            { name: "Somalia", flag: "🇸🇴", flagUrl: "https://flagcdn.com/w40/so.png" },
+            { name: "South Africa", flag: "🇿🇦", flagUrl: "https://flagcdn.com/w40/za.png" },
+            { name: "South Korea", flag: "🇰🇷", flagUrl: "https://flagcdn.com/w40/kr.png" },
+            { name: "South Sudan", flag: "🇸🇸", flagUrl: "https://flagcdn.com/w40/ss.png" },
+            { name: "Spain", flag: "🇪🇸", flagUrl: "https://flagcdn.com/w40/es.png" },
+            { name: "Sri Lanka", flag: "🇱🇰", flagUrl: "https://flagcdn.com/w40/lk.png" },
+            { name: "Sudan", flag: "🇸🇩", flagUrl: "https://flagcdn.com/w40/sd.png" },
+            { name: "Suriname", flag: "🇸🇷", flagUrl: "https://flagcdn.com/w40/sr.png" },
+            { name: "Sweden", flag: "🇸🇪", flagUrl: "https://flagcdn.com/w40/se.png" },
+            { name: "Switzerland", flag: "🇨🇭", flagUrl: "https://flagcdn.com/w40/ch.png" },
+            { name: "Syria", flag: "🇸🇾", flagUrl: "https://flagcdn.com/w40/sy.png" },
+            { name: "Tajikistan", flag: "🇹🇯", flagUrl: "https://flagcdn.com/w40/tj.png" },
+            { name: "Tanzania", flag: "🇹🇿", flagUrl: "https://flagcdn.com/w40/tz.png" },
+            { name: "Thailand", flag: "🇹🇭", flagUrl: "https://flagcdn.com/w40/th.png" },
+            { name: "Timor-Leste", flag: "🇹🇱", flagUrl: "https://flagcdn.com/w40/tl.png" },
+            { name: "Togo", flag: "🇹🇬", flagUrl: "https://flagcdn.com/w40/tg.png" },
+            { name: "Tonga", flag: "🇹🇴", flagUrl: "https://flagcdn.com/w40/to.png" },
+            { name: "Trinidad and Tobago", flag: "🇹🇹", flagUrl: "https://flagcdn.com/w40/tt.png" },
+            { name: "Tunisia", flag: "🇹🇳", flagUrl: "https://flagcdn.com/w40/tn.png" },
+            { name: "Turkey", flag: "🇹🇷", flagUrl: "https://flagcdn.com/w40/tr.png" },
+            { name: "Turkmenistan", flag: "🇹🇲", flagUrl: "https://flagcdn.com/w40/tm.png" },
+            { name: "Tuvalu", flag: "🇹🇻", flagUrl: "https://flagcdn.com/w40/tv.png" },
+            { name: "Uganda", flag: "🇺🇬", flagUrl: "https://flagcdn.com/w40/ug.png" },
+            { name: "Ukraine", flag: "🇺🇦", flagUrl: "https://flagcdn.com/w40/ua.png" },
+            { name: "United Arab Emirates", flag: "🇦🇪", flagUrl: "https://flagcdn.com/w40/ae.png" },
+            { name: "United Kingdom", flag: "🇬🇧", flagUrl: "https://flagcdn.com/w40/gb.png" },
+            { name: "United States", flag: "🇺🇸", flagUrl: "https://flagcdn.com/w40/us.png" },
+            { name: "Uruguay", flag: "🇺🇾", flagUrl: "https://flagcdn.com/w40/uy.png" },
+            { name: "Uzbekistan", flag: "🇺🇿", flagUrl: "https://flagcdn.com/w40/uz.png" },
+            { name: "Vanuatu", flag: "🇻🇺", flagUrl: "https://flagcdn.com/w40/vu.png" },
+            { name: "Venezuela", flag: "🇻🇪", flagUrl: "https://flagcdn.com/w40/ve.png" },
+            { name: "Vietnam", flag: "🇻🇳", flagUrl: "https://flagcdn.com/w40/vn.png" },
+            { name: "Yemen", flag: "🇾🇪", flagUrl: "https://flagcdn.com/w40/ye.png" },
+            { name: "Zambia", flag: "🇿🇲", flagUrl: "https://flagcdn.com/w40/zm.png" },
+            { name: "Zimbabwe", flag: "🇿🇼", flagUrl: "https://flagcdn.com/w40/zw.png" },
+            { name: "Holy See", flag: "🇻🇦", flagUrl: "https://flagcdn.com/w40/va.png" },
+            { name: "State of Palestine", flag: "🇵🇸", flagUrl: "https://flagcdn.com/w40/ps.png" }
+        ];
+
+        // Helper function to get flag URL from country name
+        function getFlagUrl(countryName) {
+            const country = countries.find(c => c.name === countryName);
+            return country ? country.flagUrl : null;
+        }
+
+        // ==========================================
+        // LOAD VISA COUNTRIES
+        // ==========================================
+        async function loadVisaCountries() {
+            const loadingState = document.getElementById('loadingState');
+            const visaGrid = document.getElementById('visaGrid');
+
+            try {
+                const snapshot = await db.collection('visa-countries')
+                    .where('status', '==', 'available')
+                    .get();
+
+                loadingState.style.display = 'none';
+
+                if (snapshot.empty) {
+                    visaGrid.innerHTML = `
+                        <div class="empty-state">
+                            <i class="fas fa-globe"></i>
+                            <h3>No countries available yet</h3>
+                            <p>Please check back later for new visa opportunities.</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                let html = '';
+                snapshot.forEach(doc => {
+                    const data = doc.data();
+                    
+                    const price = data.price ? `₦${Number(data.price).toLocaleString()}` : 'Price on request';
+                    const slug = data.country ? data.country.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') : 'unknown';
+                    
+                    let imageHtml = '';
+                    if (data.image && data.image.trim() !== '') {
+                        imageHtml = `<img src="${data.image}" alt="${data.country || 'Country'} visa application" loading="lazy" decoding="async">`;
+                    } else {
+                        const flagUrl = getFlagUrl(data.country);
+                        if (flagUrl) {
+                            imageHtml = `<img src="${flagUrl}" alt="${data.country} flag" style="width:100%;height:100%;object-fit:cover;" loading="lazy" decoding="async">`;
+                        } else {
+                            imageHtml = `<div style="display:flex; align-items:center; justify-content:center; height:100%; font-size:6rem;">${data.flag || '🌍'}</div>`;
+                        }
+                    }
+
+                    let flagHtml = '';
+                    const flagUrl = getFlagUrl(data.country);
+                    if (flagUrl) {
+                        flagHtml = `<img src="${flagUrl}" alt="${data.country} flag" class="flag-image" loading="lazy" decoding="async" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\\'flag-fallback\\'>${data.flag || '🌍'}</span>'">`;
+                    } else {
+                        flagHtml = `<span class="flag-fallback">${data.flag || '🌍'}</span>`;
+                    }
+
+                    html += `
+                        <a href="visa-country.html?country=${slug}" class="visa-card anim-fade-up">
+                            <div class="card-image-wrapper">
+                                ${imageHtml}
+                            </div>
+                            <div class="card-flag-wrapper">
+                                ${flagHtml}
+                            </div>
+                            <div class="card-body">
+                                <h3>${data.country || 'Unknown Country'}</h3>
+                                <div class="visa-type">${data.visaType || 'Visa'}</div>
+                                <p class="description">${data.description || 'Processing time: ' + (data.duration || 'N/A')}</p>
+                                <div class="card-footer">
+                                    <span class="price">${price}</span>
+                                    <span class="apply-btn">Apply Now →</span>
+                                </div>
+                            </div>
+                        </a>
+                    `;
+                });
+
+                visaGrid.innerHTML = html;
+
+                // Trigger animations for newly added cards
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.15 });
+
+                document.querySelectorAll('.anim-fade-up').forEach(el => {
+                    observer.observe(el);
+                });
+
+            } catch (error) {
+                console.error("Error loading visa countries:", error);
+                loadingState.style.display = 'none';
+                visaGrid.innerHTML = `
+                    <div class="empty-state" style="color:#dc2626;">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <h3>Error loading data</h3>
+                        <p>${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        // ==========================================
+        // NAVBAR SCRIPTS
+        // ==========================================
+        const navbar = document.getElementById('navbar');
+        const menuToggle = document.querySelector(".menu-toggle");
+        const mobileMenu = document.querySelector(".mobile-menu");
+        const mobileClose = document.querySelector(".mobile-menu-close");
+
+        menuToggle.addEventListener("click", () => {
+            mobileMenu.classList.toggle("active");
+            document.body.style.overflow = mobileMenu.classList.contains("active") ? "hidden" : "";
+        });
+
+        if (mobileClose) {
+            mobileClose.addEventListener("click", () => {
+                mobileMenu.classList.remove("active");
+                document.body.style.overflow = "";
+            });
+        }
+
+        const mobileServicesToggle = document.querySelector(".mobile-services-toggle");
+        const mobileServicesDropdown = document.querySelector(".mobile-services-dropdown");
+
+        if (mobileServicesToggle) {
+            mobileServicesToggle.addEventListener("click", () => {
+                mobileServicesToggle.classList.toggle("active");
+                mobileServicesDropdown.classList.toggle("active");
+            });
+        }
+
+        document.querySelectorAll(".mobile-menu a").forEach(link => {
+            link.addEventListener("click", () => {
+                mobileMenu.classList.remove("active");
+                document.body.style.overflow = "";
+            });
+        });
+
+        window.addEventListener("scroll", () => {
+            const scrolled = window.pageYOffset;
+            if (scrolled > 80) {
+                navbar.classList.add("scrolled");
+            } else {
+                navbar.classList.remove("scrolled");
+            }
+        });
+
+        // ==========================================
+        // INIT
+        // ==========================================
+        document.addEventListener('DOMContentLoaded', loadVisaCountries);
+    </script>
+
+</body>
+</html>
