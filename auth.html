@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign In — GeepChris Bridge Enterprise</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <style>
+        /* ===== unchanged styles ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8fafc;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .auth-container {
+            width: 100%;
+            max-width: 440px;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+            padding: 48px 40px;
+        }
+        .auth-logo {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        .auth-logo img {
+            height: 48px;
+            width: auto;
+            display: inline-block;
+        }
+        .auth-logo h2 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin-top: 12px;
+        }
+        .auth-logo p {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-top: 4px;
+        }
+        .auth-tabs {
+            display: flex;
+            background: #f1f5f9;
+            border-radius: 12px;
+            padding: 4px;
+            margin-bottom: 28px;
+        }
+        .auth-tab {
+            flex: 1;
+            padding: 10px 16px;
+            border: none;
+            background: transparent;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .auth-tab.active {
+            background: #ffffff;
+            color: #0f172a;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+        .auth-tab:hover:not(.active) {
+            color: #0f172a;
+        }
+        .auth-form {
+            display: none;
+        }
+        .auth-form.active {
+            display: block;
+        }
+        .form-group {
+            margin-bottom: 18px;
+            position: relative;
+        }
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #334155;
+            margin-bottom: 6px;
+        }
+        .form-group label .required {
+            color: #dc2626;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            background: #f8fafc;
+            transition: 0.2s;
+            font-family: 'Inter', sans-serif;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #16a34a;
+            box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
+        }
+        .form-group input.error {
+            border-color: #dc2626;
+            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+        }
+        .form-group input.success {
+            border-color: #16a34a;
+            box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
+        }
+        .form-group .password-wrapper {
+            position: relative;
+        }
+        .form-group .password-wrapper input {
+            padding-right: 44px;
+        }
+        .form-group .password-toggle {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #94a3b8;
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 4px;
+        }
+        .form-group .password-toggle:hover {
+            color: #475569;
+        }
+        .form-group .field-error {
+            display: none;
+            font-size: 0.8rem;
+            color: #dc2626;
+            margin-top: 4px;
+            padding-left: 4px;
+        }
+        .form-group .field-error.show {
+            display: block;
+        }
+        .form-group .checkbox-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            cursor: pointer;
+        }
+        .form-group .checkbox-wrapper input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            min-width: 18px;
+            margin-top: 2px;
+            accent-color: #16a34a;
+            cursor: pointer;
+        }
+        .form-group .checkbox-wrapper .checkbox-text {
+            font-size: 0.85rem;
+            color: #475569;
+            line-height: 1.5;
+        }
+        .form-group .checkbox-wrapper .checkbox-text a {
+            color: #16a34a;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .form-group .checkbox-wrapper .checkbox-text a:hover {
+            text-decoration: underline;
+        }
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background: #16a34a;
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+        .btn-submit:hover {
+            background: #22c55e;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(34, 197, 94, 0.3);
+        }
+        .btn-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .auth-footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+        .auth-footer a {
+            color: #16a34a;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .auth-footer a:hover {
+            text-decoration: underline;
+        }
+        .general-error {
+            background: #fef2f2;
+            color: #dc2626;
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            margin-bottom: 16px;
+            display: none;
+            border: 1px solid #fecaca;
+        }
+        .general-error.show {
+            display: block;
+        }
+        .general-success {
+            background: #f0fdf4;
+            color: #16a34a;
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            margin-bottom: 16px;
+            display: none;
+            border: 1px solid #bbf7d0;
+        }
+        .general-success.show {
+            display: block;
+        }
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top: 2px solid #ffffff;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        .forgot-password-link {
+            text-align: right;
+            margin-top: -10px;
+            margin-bottom: 16px;
+        }
+        .forgot-password-link a {
+            font-size: 0.8rem;
+            color: #16a34a;
+            text-decoration: none;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        .forgot-password-link a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 480px) {
+            .auth-container {
+                padding: 32px 20px;
+            }
+            .auth-logo img {
+                height: 40px;
+            }
+            .auth-logo h2 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="auth-container" id="authContainer">
+        <!-- Logo -->
+        <div class="auth-logo">
+            <img src="assets/logo.png" alt="GeepChris Bridge" />
+            <h2>Welcome Back</h2>
+            <p>Sign in to continue or create an account</p>
+        </div>
+
+        <!-- General Error / Success Messages -->
+        <div class="general-error" id="generalError"></div>
+        <div class="general-success" id="generalSuccess"></div>
+
+        <!-- Auth Tabs -->
+        <div class="auth-tabs">
+            <button class="auth-tab active" data-form="signin" id="tabSignin">Sign In</button>
+            <button class="auth-tab" data-form="signup" id="tabSignup">Create Account</button>
+        </div>
+
+        <!-- ===== SIGN IN FORM ===== -->
+        <form class="auth-form active" id="signinForm" autocomplete="off">
+            <div class="form-group">
+                <label>Email Address <span class="required">*</span></label>
+                <input type="email" id="signinEmail" placeholder="you@example.com" required />
+                <div class="field-error" id="signinEmailError"></div>
+            </div>
+
+            <div class="form-group">
+                <label>Password <span class="required">*</span></label>
+                <div class="password-wrapper">
+                    <input type="password" id="signinPassword" placeholder="Enter your password" required />
+                    <button type="button" class="password-toggle" onclick="togglePassword('signinPassword')">
+                        <i class="fa-regular fa-eye"></i>
+                    </button>
+                </div>
+                <div class="field-error" id="signinPasswordError"></div>
+            </div>
+
+            <div class="forgot-password-link">
+                <a onclick="showForgotPassword()">Forgot password?</a>
+            </div>
+
+            <button type="submit" class="btn-submit" id="signinBtn">
+                Sign In
+            </button>
+
+            <div class="auth-footer">
+                Don't have an account? <a onclick="switchTab('signup')">Create one</a>
+            </div>
+        </form>
+
+        <!-- ===== SIGN UP FORM ===== -->
+        <form class="auth-form" id="signupForm" autocomplete="off">
+            <div class="form-group">
+                <label>Full Name <span class="required">*</span></label>
+                <input type="text" id="signupName" placeholder="John Doe" required />
+                <div class="field-error" id="signupNameError"></div>
+            </div>
+
+            <div class="form-group">
+                <label>Email Address <span class="required">*</span></label>
+                <input type="email" id="signupEmail" placeholder="you@example.com" required />
+                <div class="field-error" id="signupEmailError"></div>
+            </div>
+
+            <div class="form-group">
+                <label>Phone Number <span class="required">*</span></label>
+                <input type="tel" id="signupPhone" placeholder="+234 800 000 0000" required />
+                <div class="field-error" id="signupPhoneError"></div>
+            </div>
+
+            <div class="form-group">
+                <label>Password <span class="required">*</span></label>
+                <div class="password-wrapper">
+                    <input type="password" id="signupPassword" placeholder="Min 6 characters" required />
+                    <button type="button" class="password-toggle" onclick="togglePassword('signupPassword')">
+                        <i class="fa-regular fa-eye"></i>
+                    </button>
+                </div>
+                <div class="field-error" id="signupPasswordError"></div>
+            </div>
+
+            <div class="form-group">
+                <label>Confirm Password <span class="required">*</span></label>
+                <div class="password-wrapper">
+                    <input type="password" id="signupConfirmPassword" placeholder="Confirm your password" required />
+                    <button type="button" class="password-toggle" onclick="togglePassword('signupConfirmPassword')">
+                        <i class="fa-regular fa-eye"></i>
+                    </button>
+                </div>
+                <div class="field-error" id="signupConfirmPasswordError"></div>
+            </div>
+
+            <div class="form-group">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="termsCheckbox" required />
+                    <label for="termsCheckbox" class="checkbox-text">
+                        I agree to the <a href="terms.html" target="_blank">Terms of Service</a> and
+                        <a href="privacy.html" target="_blank">Privacy Policy</a>
+                        <span class="required">*</span>
+                    </label>
+                </div>
+                <div class="field-error" id="termsError"></div>
+            </div>
+
+            <button type="submit" class="btn-submit" id="signupBtn">
+                Create Account
+            </button>
+
+            <div class="auth-footer">
+                Already have an account? <a onclick="switchTab('signin')">Sign in</a>
+            </div>
+        </form>
+
+        <!-- ===== FORGOT PASSWORD MODAL ===== -->
+        <div id="forgotPasswordModal" style="display:none; margin-top:20px; padding-top:20px; border-top:1px solid #e2e8f0;">
+            <h3 style="font-size:1rem; font-weight:700; margin-bottom:12px; color:#0f172a;">Reset Password</h3>
+            <p style="font-size:0.85rem; color:#64748b; margin-bottom:16px;">Enter your email address and we'll send you a link to reset your password.</p>
+            <div class="form-group">
+                <input type="email" id="resetEmail" placeholder="you@example.com" />
+                <div class="field-error" id="resetEmailError"></div>
+            </div>
+            <button class="btn-submit" id="resetBtn" style="margin-bottom:12px;">Send Reset Link</button>
+            <button class="btn-submit" style="background:#e2e8f0; color:#0f172a;" onclick="hideForgotPassword()">Cancel</button>
+        </div>
+    </div>
+
+    <!-- ===== FIREBASE SDK ===== -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js">
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js">
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js">
+    </script>
+
+    <script>
+        // ==========================================
+        // FIREBASE CONFIGURATION
+        // ==========================================
+        const firebaseConfig = {
+            apiKey: "AIzaSyDHSOM7-GZXQ7tYySYTRiyCAHZOn9SQhhE",
+            authDomain: "geepchris-bridge.firebaseapp.com",
+            projectId: "geepchris-bridge",
+            storageBucket: "geepchris-bridge.firebasestorage.app",
+            messagingSenderId: "61219875988",
+            appId: "1:61219875988:web:a393bb73ce2b85991b9881"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        // ==========================================
+        // DOM REFERENCES
+        // ==========================================
+        const signinForm = document.getElementById('signinForm');
+        const signupForm = document.getElementById('signupForm');
+        const generalError = document.getElementById('generalError');
+        const generalSuccess = document.getElementById('generalSuccess');
+
+        // ==========================================
+        // HELPER: Show Field Error
+        // ==========================================
+        function showFieldError(fieldId, message) {
+            const errorEl = document.getElementById(fieldId + 'Error');
+            const inputEl = document.getElementById(fieldId);
+            if (errorEl) {
+                errorEl.textContent = message;
+                errorEl.classList.add('show');
+            }
+            if (inputEl) {
+                inputEl.classList.add('error');
+                inputEl.classList.remove('success');
+            }
+        }
+
+        function clearFieldError(fieldId) {
+            const errorEl = document.getElementById(fieldId + 'Error');
+            const inputEl = document.getElementById(fieldId);
+            if (errorEl) {
+                errorEl.classList.remove('show');
+                errorEl.textContent = '';
+            }
+            if (inputEl) {
+                inputEl.classList.remove('error');
+                inputEl.classList.add('success');
+            }
+        }
+
+        function clearAllFieldErrors() {
+            document.querySelectorAll('.field-error').forEach(el => {
+                el.classList.remove('show');
+                el.textContent = '';
+            });
+            document.querySelectorAll('input').forEach(el => {
+                el.classList.remove('error', 'success');
+            });
+        }
+
+        // ==========================================
+        // HELPER: Show General Message
+        // ==========================================
+        function showGeneralError(message) {
+            generalError.textContent = message;
+            generalError.classList.add('show');
+            generalSuccess.classList.remove('show');
+        }
+
+        function showGeneralSuccess(message) {
+            generalSuccess.textContent = message;
+            generalSuccess.classList.add('show');
+            generalError.classList.remove('show');
+        }
+
+        function clearGeneralMessages() {
+            generalError.classList.remove('show');
+            generalSuccess.classList.remove('show');
+        }
+
+        // ==========================================
+        // TAB SWITCHING
+        // ==========================================
+        function switchTab(tab) {
+            document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
+
+            if (tab === 'signin') {
+                document.getElementById('tabSignin').classList.add('active');
+                document.getElementById('signinForm').classList.add('active');
+            } else {
+                document.getElementById('tabSignup').classList.add('active');
+                document.getElementById('signupForm').classList.add('active');
+            }
+
+            clearAllFieldErrors();
+            clearGeneralMessages();
+            hideForgotPassword();
+        }
+
+        document.getElementById('tabSignin').addEventListener('click', () => switchTab('signin'));
+        document.getElementById('tabSignup').addEventListener('click', () => switchTab('signup'));
+
+        // ==========================================
+        // PASSWORD TOGGLE
+        // ==========================================
+        function togglePassword(id) {
+            const input = document.getElementById(id);
+            const icon = input.parentElement.querySelector('.password-toggle i');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.className = 'fa-regular fa-eye-slash';
+            } else {
+                input.type = 'password';
+                icon.className = 'fa-regular fa-eye';
+            }
+        }
+
+        // ==========================================
+        // SHOW / HIDE FORGOT PASSWORD
+        // ==========================================
+        function showForgotPassword() {
+            document.getElementById('forgotPasswordModal').style.display = 'block';
+        }
+
+        function hideForgotPassword() {
+            document.getElementById('forgotPasswordModal').style.display = 'none';
+            document.getElementById('resetEmail').value = '';
+            document.getElementById('resetEmailError').classList.remove('show');
+        }
+
+        // ==========================================
+        // FORGOT PASSWORD
+        // ==========================================
+        document.getElementById('resetBtn').addEventListener('click', async function() {
+            const email = document.getElementById('resetEmail').value.trim();
+            const errorEl = document.getElementById('resetEmailError');
+
+            if (!email) {
+                errorEl.textContent = 'Please enter your email address.';
+                errorEl.classList.add('show');
+                return;
+            }
+            errorEl.classList.remove('show');
+
+            try {
+                this.disabled = true;
+                this.innerHTML = 'Sending...';
+                await auth.sendPasswordResetEmail(email);
+                showGeneralSuccess('Password reset link sent! Check your email.');
+                document.getElementById('resetEmail').value = '';
+                setTimeout(hideForgotPassword, 3000);
+            } catch (error) {
+                errorEl.textContent = getFriendlyErrorMessage(error.code);
+                errorEl.classList.add('show');
+            } finally {
+                this.disabled = false;
+                this.innerHTML = 'Send Reset Link';
+            }
+        });
+
+        // ==========================================
+        // FRIENDLY ERROR MESSAGES
+        // ==========================================
+        function getFriendlyErrorMessage(errorCode) {
+            const messages = {
+                'auth/invalid-email': 'Please enter a valid email address.',
+                'auth/user-not-found': 'No account found with these login credentials.',
+                'auth/wrong-password': 'Incorrect password. Please try again.',
+                'auth/email-already-in-use': 'An account already exists with this email address.',
+                'auth/weak-password': 'Password must be at least 6 characters.',
+                'auth/too-many-requests': 'Too many failed attempts. Please try again later.',
+                'auth/network-request-failed': 'Network error. Please check your connection.',
+                'auth/requires-recent-login': 'Please sign in again to continue.',
+                'auth/invalid-login-credentials': 'No account found with these login credentials.',
+                'auth/user-disabled': 'This account has been disabled. Please contact support.',
+                'auth/operation-not-allowed': 'This sign-in method is not enabled. Please contact support.',
+                'auth/account-exists-with-different-credential': 'An account already exists with a different sign-in method.',
+                'auth/credential-already-in-use': 'This credential is already associated with an account.',
+            };
+            return messages[errorCode] || 'Something went wrong. Please try again.';
+        }
+
+        // ==========================================
+        // REAL-TIME VALIDATION: Sign In
+        // ==========================================
+        document.getElementById('signinEmail').addEventListener('input', function() {
+            if (this.value.trim()) {
+                clearFieldError('signinEmail');
+            }
+        });
+
+        document.getElementById('signinPassword').addEventListener('input', function() {
+            if (this.value) {
+                clearFieldError('signinPassword');
+            }
+        });
+
+        // ==========================================
+        // REAL-TIME VALIDATION: Sign Up
+        // ==========================================
+        document.getElementById('signupName').addEventListener('input', function() {
+            if (this.value.trim()) {
+                clearFieldError('signupName');
+            }
+        });
+
+        document.getElementById('signupEmail').addEventListener('input', function() {
+            if (this.value.trim()) {
+                clearFieldError('signupEmail');
+            }
+        });
+
+        document.getElementById('signupPhone').addEventListener('input', function() {
+            if (this.value.trim()) {
+                clearFieldError('signupPhone');
+            }
+        });
+
+        document.getElementById('signupPassword').addEventListener('input', function() {
+            if (this.value) {
+                clearFieldError('signupPassword');
+            }
+            const confirm = document.getElementById('signupConfirmPassword');
+            if (confirm.value && confirm.value !== this.value) {
+                showFieldError('signupConfirmPassword', 'Passwords do not match.');
+            } else if (confirm.value && confirm.value === this.value) {
+                clearFieldError('signupConfirmPassword');
+            }
+        });
+
+        document.getElementById('signupConfirmPassword').addEventListener('input', function() {
+            const password = document.getElementById('signupPassword').value;
+            if (this.value && this.value !== password) {
+                showFieldError('signupConfirmPassword', 'Passwords do not match.');
+            } else if (this.value && this.value === password) {
+                clearFieldError('signupConfirmPassword');
+            } else {
+                clearFieldError('signupConfirmPassword');
+            }
+        });
+
+        document.getElementById('termsCheckbox').addEventListener('change', function() {
+            if (this.checked) {
+                document.getElementById('termsError').classList.remove('show');
+            }
+        });
+
+        // ==========================================
+        // SIGN IN
+        // ==========================================
+        signinForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            clearAllFieldErrors();
+            clearGeneralMessages();
+
+            const email = document.getElementById('signinEmail').value.trim();
+            const password = document.getElementById('signinPassword').value;
+
+            let hasError = false;
+
+            if (!email) {
+                showFieldError('signinEmail', 'Please enter your email address.');
+                hasError = true;
+            }
+            if (!password) {
+                showFieldError('signinPassword', 'Please enter your password.');
+                hasError = true;
+            }
+
+            if (hasError) return;
+
+            const btn = document.getElementById('signinBtn');
+            btn.disabled = true;
+            btn.innerHTML = '<span class="loading-spinner"></span> Signing In...';
+
+            try {
+                const userCredential = await auth.signInWithEmailAndPassword(email, password);
+                const user = userCredential.user;
+
+                await db.collection('clients').doc(user.uid).update({
+                    lastLogin: firebase.firestore.FieldValue.serverTimestamp()
+                });
+
+                showGeneralSuccess('Welcome back! Redirecting...');
+
+                const urlParams = new URLSearchParams(window.location.search);
+                const redirectUrl = urlParams.get('redirect') || 'dashboard.html';
+
+                setTimeout(() => {
+                    window.location.href = redirectUrl;
+                }, 1000);
+
+            } catch (error) {
+                if (error.code === 'auth/invalid-email') {
+                    showFieldError('signinEmail', 'Please enter a valid email address.');
+                } else if (error.code === 'auth/user-not-found' || error.code === 'auth/invalid-login-credentials') {
+                    showFieldError('signinEmail', 'No account found with these login credentials.');
+                    showFieldError('signinPassword', '');
+                } else if (error.code === 'auth/wrong-password') {
+                    showFieldError('signinPassword', 'Incorrect password. Please try again.');
+                } else {
+                    showGeneralError(getFriendlyErrorMessage(error.code));
+                }
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = 'Sign In';
+            }
+        });
+
+        // ==========================================
+        // SIGN UP — FULLY FIXED: saves all fields correctly
+        // ==========================================
+        signupForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            clearAllFieldErrors();
+            clearGeneralMessages();
+
+            const fullName = document.getElementById('signupName').value.trim();
+            const email = document.getElementById('signupEmail').value.trim();
+            const phone = document.getElementById('signupPhone').value.trim();
+            const password = document.getElementById('signupPassword').value;
+            const confirmPassword = document.getElementById('signupConfirmPassword').value;
+            const termsChecked = document.getElementById('termsCheckbox').checked;
+
+            let hasError = false;
+
+            if (!fullName) {
+                showFieldError('signupName', 'Please enter your full name.');
+                hasError = true;
+            }
+            if (!email) {
+                showFieldError('signupEmail', 'Please enter your email address.');
+                hasError = true;
+            }
+            if (!phone) {
+                showFieldError('signupPhone', 'Please enter your phone number.');
+                hasError = true;
+            }
+            if (!password) {
+                showFieldError('signupPassword', 'Please enter a password.');
+                hasError = true;
+            } else if (password.length < 6) {
+                showFieldError('signupPassword', 'Password must be at least 6 characters.');
+                hasError = true;
+            }
+            if (!confirmPassword) {
+                showFieldError('signupConfirmPassword', 'Please confirm your password.');
+                hasError = true;
+            } else if (confirmPassword !== password) {
+                showFieldError('signupConfirmPassword', 'Passwords do not match.');
+                hasError = true;
+            }
+            if (!termsChecked) {
+                document.getElementById('termsError').textContent = 'Please agree to the Terms of Service and Privacy Policy.';
+                document.getElementById('termsError').classList.add('show');
+                hasError = true;
+            }
+
+            if (hasError) return;
+
+            const btn = document.getElementById('signupBtn');
+            btn.disabled = true;
+            btn.innerHTML = '<span class="loading-spinner"></span> Creating Account...';
+
+            try {
+                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+                const user = userCredential.user;
+
+                // 🔥 CORRECTLY extract first and last name
+                const nameParts = fullName.trim().split(/\s+/);
+                const firstName = nameParts[0] || fullName;
+                const lastName = nameParts.slice(1).join(' ') || '';
+
+                // 🔥 Clean phone number (remove spaces, keep plus sign if present)
+                const cleanPhone = phone.replace(/\s/g, '');
+
+                // 🔥 Save COMPLETE user profile to Firestore with ALL fields
+                await db.collection('clients').doc(user.uid).set({
+                    uid: user.uid,
+                    fullName: fullName,
+                    firstName: firstName,
+                    lastName: lastName,      // ✅ NOW saving last name
+                    email: email,
+                    phone: cleanPhone,       // ✅ Cleaned phone number
+                    photoURL: "",
+                    role: 'client',
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                    lastLogin: firebase.firestore.FieldValue.serverTimestamp(),
+                    emailVerified: false
+                });
+
+                // Send email verification
+                await user.sendEmailVerification();
+
+                showGeneralSuccess('Account created! Please check your email to verify your account.');
+
+                setTimeout(() => {
+                    switchTab('signin');
+                    document.getElementById('signinEmail').value = email;
+                    btn.disabled = false;
+                    btn.innerHTML = 'Create Account';
+                }, 2000);
+
+            } catch (error) {
+                if (error.code === 'auth/email-already-in-use') {
+                    showFieldError('signupEmail', 'An account already exists with this email address.');
+                } else {
+                    showGeneralError(getFriendlyErrorMessage(error.code));
+                }
+                btn.disabled = false;
+                btn.innerHTML = 'Create Account';
+            }
+        });
+
+        // ==========================================
+        // CHECK AUTH STATE ON LOAD
+        // ==========================================
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                const urlParams = new URLSearchParams(window.location.search);
+                const redirectUrl = urlParams.get('redirect') || 'dashboard.html';
+                if (!window.location.pathname.includes('auth.html')) {
+                    // Not on auth page, do nothing
+                } else {
+                    window.location.href = redirectUrl;
+                }
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const action = urlParams.get('action');
+            if (action === 'signup') {
+                switchTab('signup');
+            }
+        });
+    </script>
+
+</body>
+</html>

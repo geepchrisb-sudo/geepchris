@@ -3,15 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Favicon - Use under45.png as the icon in search results -->
-  <link class="icon" type="image/png" href="under45.png" />
-  <link rel="apple-touch-icon" href="/assets/logo.png" />
-  <link rel="shortcut icon" href="/assets/logo.png" />
-  
+    
+    <!-- ===== FAVICON ===== -->
+    <link class="icon" type="image/png" href="under45.png" />
+    <link rel="apple-touch-icon" href="/assets/logo.png" />
+    <link rel="shortcut icon" href="/assets/logo.png" />
+    
+    <!-- ===== PRIMARY META TAGS ===== -->
     <title>Visa Application — GeepChris Bridge</title>
+    <meta name="description" content="Apply for your visa with GeepChris Bridge. Fast, reliable visa processing services for all countries. Start your visa application today.">
+    <meta name="keywords" content="visa application, apply for visa, visa processing, visa services Nigeria, travel visa, tourist visa, business visa, visa application online, visa processing services, visa application form, visa requirements, visa assistance, visa experts, GeepChris Bridge visa application">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="GeepChris Bridge Enterprise">
+    <link rel="canonical" href="https://geepchrisbridge.com/services/travel/visa-application.html">
+    
+    <!-- ===== OPEN GRAPH / FACEBOOK META TAGS ===== -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://geepchrisbridge.com/services/travel/visa-application.html">
+    <meta property="og:title" content="Visa Application — GeepChris Bridge">
+    <meta property="og:description" content="Apply for your visa with GeepChris Bridge. Fast, reliable visa processing services for all countries.">
+    <meta property="og:image" content="https://geepchrisbridge.com/assets/geepchris.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="GeepChris Bridge Enterprise">
+    <meta property="og:locale" content="en_NG">
+    
+    <!-- ===== TWITTER CARD META TAGS ===== -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://geepchrisbridge.com/services/travel/visa-application.html">
+    <meta name="twitter:title" content="Visa Application — GeepChris Bridge">
+    <meta name="twitter:description" content="Apply for your visa with GeepChris Bridge. Fast, reliable visa processing services.">
+    <meta name="twitter:image" content="https://geepchrisbridge.com/assets/geepchris.jpg">
+    
+    <!-- ===== ADDITIONAL SEO ===== -->
+    <meta name="geo.region" content="NG-LA">
+    <meta name="geo.placename" content="Lagos">
+    <meta name="geo.position" content="6.5244;3.3792">
+    <meta name="ICBM" content="6.5244, 3.3792">
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-   <style>
+    
+    <!-- ===== FIREBASE SDK ===== -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', sans-serif;
@@ -63,6 +101,60 @@
             font-weight: 600; font-size: .82rem; transition: .3s;
         }
         .nav-btn:hover { transform: translateY(-2px); background: #22c55e; }
+        
+        /* ===== AUTH SECTION IN NAVBAR (ADDED) ===== */
+        .nav-auth { display: flex; align-items: center; gap: 12px; }
+        .nav-auth .btn-signin {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.85rem;
+            padding: 6px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.15);
+            transition: all 0.3s ease;
+        }
+        .nav-auth .btn-signin:hover {
+            background: rgba(255,255,255,0.08);
+            color: #fff;
+            border-color: rgba(255,255,255,0.3);
+        }
+        .nav-auth .user-avatar {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            text-decoration: none;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .nav-auth .user-avatar:hover {
+            border-color: #22c55e;
+        }
+        .nav-auth .user-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        .nav-auth .user-avatar .avatar-initial {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: #16a34a;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+        .nav-btn.hidden { display: none; }
+
         .menu-toggle { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
         .menu-toggle span { display: block; width: 22px; height: 2px; background: #fff; margin: 4px 0; border-radius: 4px; transition: .3s; }
 
@@ -97,6 +189,22 @@
         .mobile-services-dropdown a:hover { color: #22c55e; }
         .mobile-btn { margin-top: 8px; background: #16a34a; padding: 12px 32px; text-align: center; border-radius: 999px; color: #fff !important; font-weight: 700 !important; border: none !important; font-size: .9rem !important; width: auto; min-width: 180px; }
         .mobile-btn:hover { background: #22c55e; }
+        
+        /* ===== MOBILE AUTH SECTION (ADDED) ===== */
+        .mobile-auth-section { margin-top: 10px; width: 100%; text-align: center; }
+        .mobile-auth-section .mobile-signin {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 10px 0;
+            display: block;
+            font-weight: 500;
+        }
+        .mobile-auth-section .mobile-signin:hover { color: #22c55e; }
+        .mobile-auth-section .mobile-avatar { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 10px 0; }
+        .mobile-auth-section .mobile-avatar img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; }
+        .mobile-auth-section .mobile-avatar .avatar-initial { width: 44px; height: 44px; border-radius: 50%; background: #16a34a; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.1rem; }
+        .mobile-auth-section .mobile-avatar .mobile-user-name { color: #fff; font-weight: 600; }
 
         /* ===== HERO SECTION ===== */
         .hero {
@@ -503,7 +611,7 @@
             .form-grid .full-width { grid-column: 1; }
         }
         @media (max-width: 992px) {
-            .nav-links, .nav-btn { display: none; }
+            .nav-links, .nav-btn, .nav-auth { display: none; }
             .menu-toggle { display: block; }
             .footer-grid { grid-template-columns: 1fr 1fr; }
         }
@@ -539,57 +647,67 @@
 <body>
 
     <!-- =================== NAVBAR =================== -->
-      <nav class="navbar" id="navbar">
-                <a href="index.html" class="logo">
-                    <img src="/assets/logo.png" alt="GeepChris Bridge">
-                </a>
+    <nav class="navbar" id="navbar">
+        <a href="index.html" class="logo">
+            <img src="/assets/logo.png" alt="GeepChris Bridge">
+        </a>
 
-                <ul class="nav-links">
-                    <li><a href="index.html">Home</a></li>
-                    <li class="has-dropdown">
-                        <a href="#services" class="dropdown-trigger">Services <span class="arrow-down">▾</span></a>
-                        <div class="dropdown-menu">
-                            <a href="/services/moniepoint.html">Moniepoint Financial Services</a>
-                            <a href="/services/travel.html">Travel & Global Mobility</a>
-                            <a href="/services/business-registration.html">Business Registration</a>
-                            <a href="/servies/travel/visa.html">Visa Countries</a>
-                        </div>
-                    </li>
-                    
-                    <li><a href="about-us.html">About</a></li>
-                    <li><a href="faq.html">FAQs</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-
-                <a href="contact.html" class="nav-btn">Get Started</a>
-
-                <button class="menu-toggle" aria-label="Toggle menu">
-                    <span></span><span></span><span></span>
-                </button>
-
-            </nav>
-
-            <!-- MOBILE MENU -->
-            <div class="mobile-menu">
-                <button class="mobile-menu-close" aria-label="Close menu">
-                    <span></span><span></span>
-                </button>
-                <a href="index.html">Home</a>
-                <div class="mobile-services-group">
-                    <button class="mobile-services-toggle">Services <span>▾</span></button>
-                    <div class="mobile-services-dropdown">
-                        <a href="/services/moniepoint.html">Moniepoint Financial Services</a>
-                        <a href="/services/travel.html">Travel & Global Mobility</a>
-                        <a href="/services/business-registration.html">Business Registration</a>
-                        <a href="/services/travel/visa.html">Visa Countries</a>
-                    </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li class="has-dropdown">
+                <a href="#services" class="dropdown-trigger">Services <span class="arrow-down">▾</span></a>
+                <div class="dropdown-menu">
+                    <a href="/services/moniepoint.html">Moniepoint Financial Services</a>
+                    <a href="/services/travel.html">Travel & Global Mobility</a>
+                    <a href="/services/business-registration.html">Business Registration</a>
+                    <a href="/services/travel/visa.html">Visa Countries</a>
                 </div>
-                
-                <a href="about-us.html">About</a>
-                <a href="faq.html">FAQs</a>
-                <a href="contact.html">Contact</a>
-                <a href="contact.html" class="mobile-btn">Get Started</a>
+            </li>
+            
+            <li><a href="about-us.html">About</a></li>
+            <li><a href="faq.html">FAQs</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <a href="contact.html" class="nav-btn" id="navBtn">Get Started</a>
+        
+        <!-- ===== AUTH SECTION (ADDED) ===== -->
+        <div class="nav-auth" id="navAuth">
+            <!-- Dynamically populated by auth script -->
+        </div>
+
+        <button class="menu-toggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu">
+        <button class="mobile-menu-close" aria-label="Close menu">
+            <span></span><span></span>
+        </button>
+        <a href="index.html">Home</a>
+        <div class="mobile-services-group">
+            <button class="mobile-services-toggle">Services <span>▾</span></button>
+            <div class="mobile-services-dropdown">
+                <a href="/services/moniepoint.html">Moniepoint Financial Services</a>
+                <a href="/services/travel.html">Travel & Global Mobility</a>
+                <a href="/services/business-registration.html">Business Registration</a>
+                <a href="/services/travel/visa.html">Visa Countries</a>
             </div>
+        </div>
+        
+        <a href="about-us.html">About</a>
+        <a href="faq.html">FAQs</a>
+        <a href="contact.html">Contact</a>
+        <a href="contact.html" class="mobile-btn">Get Started</a>
+        
+        <!-- ===== MOBILE AUTH SECTION (ADDED) ===== -->
+        <div class="mobile-auth-section" id="mobileAuth">
+            <!-- Dynamically populated by auth script -->
+        </div>
+    </div>
 
     <!-- =================== HERO =================== -->
     <section class="hero">
@@ -720,7 +838,7 @@
 
     </div>
 
-     <!-- =================== FOOTER =================== -->
+    <!-- =================== FOOTER =================== -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
@@ -755,8 +873,6 @@
                         <li><a href="/services/travel.html">Travel & Mobility</a></li>
                         <li><a href="/services/business-registration.html">Business Registration</a></li>
                         <li><a href="/services/web-development.html">Web Development</a></li>
-                
-                        
                     </ul>
                 </div>
 
@@ -773,9 +889,9 @@
 
             <div class="footer-bottom">
                 <p>
-    © 2025 GeepChris Bridge Enterprise. All Rights Reserved.<br>
-    Website by <a href="https://vintechdigitalservices.com" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.5); text-decoration:none; transition:color 0.3s ease;">Vintech Digital Services</a>
-</p>
+                    © 2025 GeepChris Bridge Enterprise. All Rights Reserved.<br>
+                    Website by <a href="https://vintechdigitalservices.com" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.5); text-decoration:none; transition:color 0.3s ease;">Vintech Digital Services</a>
+                </p>
                 <div class="footer-bottom-links">
                     <a href="privacy.html">Privacy Policy</a>
                     <a href="terms.html">Terms of Service</a>
@@ -783,10 +899,6 @@
             </div>
         </div>
     </footer>
-
-    <!-- ===== FIREBASE SDK ===== -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
 
     <script>
         // ==========================================
@@ -801,8 +913,11 @@
             appId: "1:61219875988:web:a393bb73ce2b85991b9881"
         };
 
-        firebase.initializeApp(firebaseConfig);
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
         const db = firebase.firestore();
+        const auth = firebase.auth();
 
         // ==========================================
         // CLOUDINARY CONFIGURATION
@@ -1037,11 +1152,111 @@
             return allowedTypes.includes(file.type);
         }
 
-        function getFileExtension(file) {
-            return file.name.split('.').pop().toLowerCase();
+        // ==========================================
+        // UPDATE SIDEBAR AVATAR
+        // ==========================================
+        function updateSidebarAvatar(photoURL, fullName) {
+            const userAvatar = document.getElementById('userAvatar');
+            if (!userAvatar) return;
+            
+            if (photoURL && photoURL.trim() !== '') {
+                userAvatar.innerHTML = `<img src="${photoURL}" alt="Profile">`;
+                userAvatar.style.background = 'transparent';
+                userAvatar.style.display = 'flex';
+                userAvatar.style.alignItems = 'center';
+                userAvatar.style.justifyContent = 'center';
+            } else {
+                const initial = (fullName || 'A')[0].toUpperCase();
+                userAvatar.innerHTML = initial;
+                userAvatar.style.background = 'var(--green)';
+                userAvatar.style.display = 'flex';
+                userAvatar.style.alignItems = 'center';
+                userAvatar.style.justifyContent = 'center';
+            }
         }
 
-        const allowedExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg', 'pdf'];
+        // ==========================================
+        // AUTH GUARD — THIS PAGE REQUIRES LOGIN
+        // ==========================================
+        const currentUrl = window.location.pathname + window.location.search;
+
+        auth.onAuthStateChanged(async (user) => {
+            // ===== UPDATE NAVBAR AUTH =====
+            const navAuth = document.getElementById('navAuth');
+            const mobileAuth = document.getElementById('mobileAuth');
+            const navBtn = document.getElementById('navBtn');
+            const userAvatar = document.getElementById('userAvatar');
+
+            if (user) {
+                // User is logged in - fetch user data
+                try {
+                    const userDoc = await db.collection('users').doc(user.uid).get();
+                    const userData = userDoc.exists ? userDoc.data() : null;
+                    const displayName = userData?.fullName || userData?.firstName || user.email || 'User';
+                    const initial = displayName.charAt(0).toUpperCase();
+                    const photoURL = userData?.photoURL || null;
+
+                    // Desktop navbar
+                    navAuth.innerHTML = `
+                        <a href="/dashboard.html" class="user-avatar" title="${displayName}">
+                            ${photoURL 
+                                ? `<img src="${photoURL}" alt="${displayName}">` 
+                                : `<span class="avatar-initial">${initial}</span>`
+                            }
+                        </a>
+                    `;
+
+                    // Mobile menu
+                    mobileAuth.innerHTML = `
+                        <a href="/dashboard.html" class="mobile-avatar" style="display:flex; align-items:center; gap:12px; text-decoration:none;">
+                            ${photoURL 
+                                ? `<img src="${photoURL}" alt="${displayName}">` 
+                                : `<span class="avatar-initial">${initial}</span>`
+                            }
+                            <span class="mobile-user-name">${displayName}</span>
+                        </a>
+                    `;
+
+                    // Hide Get Started button (since user is logged in)
+                    if (navBtn) navBtn.style.display = 'none';
+
+                } catch (error) {
+                    console.error('Error fetching user data:', error);
+                    // Show default avatar with email initial
+                    const initial = (user.email || 'U').charAt(0).toUpperCase();
+                    navAuth.innerHTML = `
+                        <a href="/dashboard.html" class="user-avatar">
+                            <span class="avatar-initial">${initial}</span>
+                        </a>
+                    `;
+                    mobileAuth.innerHTML = `
+                        <a href="/dashboard.html" class="mobile-avatar" style="display:flex; align-items:center; gap:12px; text-decoration:none;">
+                            <span class="avatar-initial">${initial}</span>
+                            <span class="mobile-user-name">${user.email || 'User'}</span>
+                        </a>
+                    `;
+                    if (navBtn) navBtn.style.display = 'none';
+                }
+
+                // ===== PAGE IS PROTECTED — USER IS LOGGED IN, ALLOW ACCESS =====
+
+            } else {
+                // ===== USER IS NOT LOGGED IN =====
+                // Show sign-in button in navbar
+                navAuth.innerHTML = `
+                    <a href="/auth.html?redirect=${encodeURIComponent(currentUrl)}" class="btn-signin">Sign In</a>
+                `;
+                mobileAuth.innerHTML = `
+                    <a href="/auth.html?redirect=${encodeURIComponent(currentUrl)}" class="mobile-signin">Sign In</a>
+                `;
+
+                // Show Get Started button
+                if (navBtn) navBtn.style.display = 'inline-block';
+
+                // ===== REDIRECT TO AUTH PAGE =====
+                window.location.href = `/auth.html?redirect=${encodeURIComponent(currentUrl)}`;
+            }
+        });
 
         // ==========================================
         // GET COUNTRY SLUG FROM URL
@@ -1087,6 +1302,30 @@
         });
 
         // ==========================================
+        // GENERATE READABLE FIELD ID FROM LABEL
+        // ==========================================
+        function generateFieldId(label) {
+            if (!label) return 'field_' + Date.now();
+            
+            let slug = label
+                .toLowerCase()
+                .replace(/[^a-z0-9\s]/g, '')
+                .trim()
+                .replace(/\s+/g, ' ');
+            
+            const camelCase = slug
+                .split(' ')
+                .map((word, index) => {
+                    if (index === 0) return word;
+                    return word.charAt(0).toUpperCase() + word.slice(1);
+                })
+                .join('');
+            
+            if (!camelCase) return 'field_' + Date.now();
+            return camelCase;
+        }
+
+        // ==========================================
         // LOAD COUNTRY, GALLERY, AND FORM
         // ==========================================
         async function loadCountryAndForm() {
@@ -1124,7 +1363,6 @@
                 // 1. Populate Details & Main Image
                 document.getElementById('countryName').textContent = countryData.country || 'Unknown Country';
                 
-                // Use flag image in detail country
                 const flagHtml = getFlagHtml(countryData.country, countryData.flag);
                 document.getElementById('detailCountry').innerHTML = `${flagHtml} ${countryData.country || 'Unknown'}`;
                 
@@ -1142,7 +1380,6 @@
                     gallerySection.style.display = 'block';
                     
                     let galleryHtml = '';
-                    // Limit to 5 images just in case
                     const maxImages = Math.min(gallery.length, 5);
                     for(let i = 0; i < maxImages; i++) {
                         galleryHtml += `
@@ -1160,7 +1397,6 @@
                     const bottomWrapper = document.getElementById('bottomGalleryWrapper');
                     const bottomRow = document.getElementById('bottomGalleryRow');
                     
-                    // Only show up to 5 images in the row
                     const maxBottomImages = Math.min(fullImagesList.length, 5);
                     if (maxBottomImages > 0) {
                         let bottomHtml = '';
@@ -1189,6 +1425,7 @@
                 }
 
                 const formData = formDoc.data();
+                
                 renderForm(formData.fields || []);
 
                 // 5. Show UI
@@ -1204,7 +1441,7 @@
         }
 
         // ==========================================
-        // RENDER DYNAMIC FORM (Grid Style)
+        // RENDER DYNAMIC FORM
         // ==========================================
         function renderForm(fields) {
             const container = document.getElementById('formFieldsContainer');
@@ -1221,6 +1458,8 @@
                 const requiredLabel = field.required ? '<span class="required">*</span>' : '';
                 const isFullWidth = field.type === 'textarea' || field.type === 'file';
 
+                const fieldId = generateFieldId(field.label);
+
                 html += `<div class="form-group ${isFullWidth ? 'full-width' : ''}">`;
                 html += `<label>${field.label} ${requiredLabel}</label>`;
 
@@ -1230,15 +1469,15 @@
                     case 'tel':
                     case 'date':
                     case 'number':
-                        html += `<input type="${field.type}" id="${field.id}" name="${field.id}" ${requiredAttr} placeholder="${field.placeholder || ''}">`;
+                        html += `<input type="${field.type}" id="${fieldId}" name="${fieldId}" ${requiredAttr} placeholder="${field.placeholder || ''}" data-label="${field.label}">`;
                         break;
 
                     case 'textarea':
-                        html += `<textarea id="${field.id}" name="${field.id}" ${requiredAttr} placeholder="${field.placeholder || ''}"></textarea>`;
+                        html += `<textarea id="${fieldId}" name="${fieldId}" ${requiredAttr} placeholder="${field.placeholder || ''}" data-label="${field.label}"></textarea>`;
                         break;
 
                     case 'select':
-                        html += `<select id="${field.id}" name="${field.id}" ${requiredAttr}>`;
+                        html += `<select id="${fieldId}" name="${fieldId}" ${requiredAttr} data-label="${field.label}">`;
                         html += `<option value="">Select an option</option>`;
                         if (field.options && Array.isArray(field.options)) {
                             field.options.forEach(opt => {
@@ -1250,19 +1489,19 @@
 
                     case 'checkbox':
                         html += `<div style="display:flex; align-items:center; gap:8px; margin-top:4px;">`;
-                        html += `<input type="checkbox" id="${field.id}" name="${field.id}" ${requiredAttr} style="width:18px;height:18px;">`;
-                        html += `<label for="${field.id}" style="font-weight:400; font-size:0.9rem; cursor:pointer;">Yes</label>`;
+                        html += `<input type="checkbox" id="${fieldId}" name="${fieldId}" ${requiredAttr} data-label="${field.label}" style="width:18px;height:18px;">`;
+                        html += `<label for="${fieldId}" style="font-weight:400; font-size:0.9rem; cursor:pointer;">Yes</label>`;
                         html += `</div>`;
                         break;
 
                     case 'file':
                         const acceptAttr = 'image/*,.pdf,application/pdf';
-                        html += `<input type="file" id="${field.id}" name="${field.id}" ${requiredAttr} accept="${acceptAttr}">`;
+                        html += `<input type="file" id="${fieldId}" name="${fieldId}" ${requiredAttr} accept="${acceptAttr}" data-label="${field.label}">`;
                         html += `<span class="file-hint">Allowed formats: <span class="allowed-formats">JPG, PNG, GIF, WebP, SVG, PDF</span></span>`;
                         break;
 
                     default:
-                        html += `<input type="text" id="${field.id}" name="${field.id}" ${requiredAttr}>`;
+                        html += `<input type="text" id="${fieldId}" name="${fieldId}" ${requiredAttr} data-label="${field.label}">`;
                 }
 
                 html += `</div>`;
@@ -1312,7 +1551,7 @@
         }
 
         // ==========================================
-        // SUBMIT FORM
+        // SUBMIT FORM — WITH CLIENT UID TRACKING
         // ==========================================
         document.getElementById('applicationForm').addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -1329,38 +1568,18 @@
             submitBtn.disabled = true;
             submitBtn.textContent = 'Submitting...';
 
-            const formData = new FormData(this);
             const submittedData = {};
             const fileInputs = [];
 
-            // Validate all file inputs first
-            let hasInvalidFile = false;
-            document.querySelectorAll('#formFieldsContainer input[type="file"]').forEach(input => {
-                const file = input.files[0];
-                if (file && !isValidFileType(file)) {
-                    hasInvalidFile = true;
-                    alert(`File "${file.name}" is not allowed. Please upload only images (JPG, PNG, GIF, WebP, SVG) or PDF files.`);
-                    input.value = '';
-                    input.classList.add('invalid');
-                } else if (file) {
-                    input.classList.remove('invalid');
-                }
-            });
-
-            if (hasInvalidFile) {
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Submit Application';
-                return;
-            }
-
-            document.querySelectorAll('#formFieldsContainer .form-group').forEach(group => {
-                const input = group.querySelector('input, select, textarea');
+            // Collect all form data
+            document.querySelectorAll('#formFieldsContainer .form-group input, #formFieldsContainer .form-group select, #formFieldsContainer .form-group textarea').forEach(input => {
                 if (!input) return;
+                const name = input.name;
+                if (!name) return;
 
-                const id = input.id;
-                const type = input.type;
+                const label = input.dataset.label || name;
 
-                if (type === 'file') {
+                if (input.type === 'file') {
                     const file = input.files[0];
                     if (file) {
                         if (!isValidFileType(file)) {
@@ -1369,15 +1588,19 @@
                             submitBtn.textContent = 'Submit Application';
                             return;
                         }
-                        fileInputs.push({ id, file });
-                        submittedData[id] = 'uploading...';
+                        fileInputs.push({ id: name, file, label });
+                        submittedData[name] = 'uploading...';
                     } else {
-                        submittedData[id] = '';
+                        submittedData[name] = '';
                     }
-                } else if (type === 'checkbox') {
-                    submittedData[id] = input.checked;
+                } else if (input.type === 'checkbox') {
+                    submittedData[name] = input.checked;
+                    submittedData['_labels'] = submittedData['_labels'] || {};
+                    submittedData['_labels'][name] = label;
                 } else {
-                    submittedData[id] = input.value;
+                    submittedData[name] = input.value;
+                    submittedData['_labels'] = submittedData['_labels'] || {};
+                    submittedData['_labels'][name] = label;
                 }
             });
 
@@ -1403,6 +1626,10 @@
             }
 
             submitBtn.textContent = 'Saving application...';
+            
+            // ===== GET CURRENT USER FOR CLIENT TRACKING =====
+            const currentUser = auth.currentUser;
+            
             const applicationData = {
                 formId: document.getElementById('detailVisaType').textContent,
                 serviceName: document.getElementById('countryName').textContent,
@@ -1410,6 +1637,12 @@
                 status: 'new',
                 createdAt: firebase.firestore.FieldValue.serverTimestamp()
             };
+
+            // ===== ADD CLIENT UID AND EMAIL FOR TRACKING =====
+            if (currentUser) {
+                applicationData.clientUid = currentUser.uid;
+                applicationData.clientEmail = currentUser.email;
+            }
 
             try {
                 await db.collection('applications').add(applicationData);

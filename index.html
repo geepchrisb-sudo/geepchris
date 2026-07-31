@@ -80,37 +80,98 @@
 </head>
 <body>
 
-    <!-- =================== HERO =================== -->
-    <section class="hero" id="home">
+  <!-- =================== HERO =================== -->
+<section class="hero" id="home">
 
-        <div class="hero-slideshow">
-            <!-- Desktop Images -->
-            <picture>
-                <source media="(max-width: 768px)" srcset="assets/mobile1.webp">
-                <img src="assets/slide1.jpg" class="hero-slide active" data-index="0" alt="Business and financial services" loading="lazy" decoding="async">
-            </picture>
-            <picture>
-                <source media="(max-width: 768px)" srcset="assets/mobile2.webp">
-                <img src="assets/slide2.jpg" class="hero-slide" data-index="1" alt="Moniepoint financial services" loading="lazy" decoding="async">
-            </picture>
-            <picture>
-                <source media="(max-width: 768px)" srcset="assets/mobile3.webp">
-                <img src="assets/slide3.jpg" class="hero-slide" data-index="2" alt="Travel and global mobility" loading="lazy" decoding="async">
-            </picture>
-            <picture>
-                <source media="(max-width: 768px)" srcset="assets/mobile4.webp">
-                <img src="assets/slide4.jpg" class="hero-slide" data-index="3" alt="Business registration services" loading="lazy" decoding="async">
-            </picture>
-            <picture>
-                <source media="(max-width: 768px)" srcset="assets/mobile5.webp">
-                <img src="assets/slide5.jpg" class="hero-slide" data-index="4" alt="Corporate account opening" loading="lazy" decoding="async">
-            </picture>
-            <picture>
-                <source media="(max-width: 768px)" srcset="assets/mobile6.webp">
-                <img src="assets/slide6.jpg" class="hero-slide" data-index="5" alt="Web development services" loading="lazy" decoding="async">
-            </picture>
-        </div>
+    <div class="hero-slideshow">
+        <!-- ====== PRELOAD FIRST SLIDE (Critical) ====== -->
+        <link rel="preload" as="image" href="assets/slide1.webp" fetchpriority="high">
+        
+        <!-- ====== SLIDE 1 ====== -->
+        <picture>
+            <source media="(max-width: 768px)" srcset="assets/mobile1.webp" type="image/webp">
+            <img 
+                src="assets/slide1.webp" 
+                class="hero-slide active" 
+                data-index="0" 
+                alt="Business and financial services at GeepChris Bridge" 
+                loading="eager" 
+                fetchpriority="high" 
+                decoding="async" 
+                width="1920" 
+                height="1080">
+        </picture>
 
+        <!-- ====== SLIDE 2 ====== -->
+        <picture>
+            <source media="(max-width: 768px)" srcset="assets/mobile2.webp" type="image/webp">
+            <img 
+                src="assets/slide2.webp" 
+                class="hero-slide" 
+                data-index="1" 
+                alt="Moniepoint financial services for Nigerian businesses" 
+                loading="lazy" 
+                decoding="async" 
+                width="1920" 
+                height="1080">
+        </picture>
+
+        <!-- ====== SLIDE 3 ====== -->
+        <picture>
+            <source media="(max-width: 768px)" srcset="assets/mobile3.webp" type="image/webp">
+            <img 
+                src="assets/slide3.webp" 
+                class="hero-slide" 
+                data-index="2" 
+                alt="Travel and global mobility services - visa and passport assistance" 
+                loading="lazy" 
+                decoding="async" 
+                width="1920" 
+                height="1080">
+        </picture>
+
+        <!-- ====== SLIDE 4 ====== -->
+        <picture>
+            <source media="(max-width: 768px)" srcset="assets/mobile4.webp" type="image/webp">
+            <img 
+                src="assets/slide4.webp" 
+                class="hero-slide" 
+                data-index="3" 
+                alt="Business registration services - CAC and company incorporation" 
+                loading="lazy" 
+                decoding="async" 
+                width="1920" 
+                height="1080">
+        </picture>
+
+        <!-- ====== SLIDE 5 ====== -->
+        <picture>
+            <source media="(max-width: 768px)" srcset="assets/mobile5.webp" type="image/webp">
+            <img 
+                src="assets/slide5.webp" 
+                class="hero-slide" 
+                data-index="4" 
+                alt="Corporate account opening and business banking services" 
+                loading="lazy" 
+                decoding="async" 
+                width="1920" 
+                height="1080">
+        </picture>
+
+        <!-- ====== SLIDE 6 ====== -->
+        <picture>
+            <source media="(max-width: 768px)" srcset="assets/mobile6.webp" type="image/webp">
+            <img 
+                src="assets/slide6.webp" 
+                class="hero-slide" 
+                data-index="5" 
+                alt="Web development and digital solutions for businesses" 
+                loading="lazy" 
+                decoding="async" 
+                width="1920" 
+                height="1080">
+        </picture>
+    </div>
         <div class="hero-overlay"></div>
         <div class="aircraft">✈</div>
 
@@ -349,7 +410,7 @@
                 <!-- CARD 3: BUSINESS REG -->
                 <div class="service-card" id="service-business">
                     <div class="service-image-wrapper">
-                        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600&h=400&fit=crop" alt="Business documents" class="service-image" loading="lazy" decoding="async">
+                        <img src="/assets/slide4.webp" alt="Business documents" class="service-image" loading="lazy" decoding="async">
                         <div class="service-overlay">
                             <ul class="service-list">
                                 <li>Business Name Registration</li>
@@ -420,7 +481,7 @@
             </div>
 
             <div class="visa-view-more">
-                <a href="services/travel/visa/visa.html" class="primary-btn">View All Countries →</a>
+                <a href="/services/travel/visa/visa.html" class="primary-btn">View All Countries →</a>
             </div>
         </div>
     </section>
@@ -429,7 +490,7 @@
     <section class="how-section section-animate" id="how-it-works">
         <div class="container">
             <div class="section-header light">
-                <h2>Getting Started Is <span class="highlight">Easy</span></h2>
+               <h2><span style="color: #22c55e;">Getting Started Is <span class="highlight">Easy</span></h2>
                 <p>Four simple steps stand between you and a completed service.</p>
             </div>
 

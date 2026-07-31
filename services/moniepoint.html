@@ -3,14 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Favicon - Use under45.png as the icon in search results -->
-  <link class="icon" type="image/png" href="under45.png" />
-  <link rel="apple-touch-icon" href="/assets/logo.png" />
-  <link rel="shortcut icon" href="/assets/logo.png" />
-  
-    <title>Moniepoint Financial Services — GeepChris Bridge</title>
+    
+    <!-- ===== PRIMARY META TAGS ===== -->
+    <title>Moniepoint Financial Services — POS, Loans, Account Opening in Nigeria | GeepChris Bridge</title>
+    <meta name="description" content="Get Moniepoint financial services in Nigeria. POS terminals, business accounts, loans, ATM cards, fixed deposits, and foreign exchange. Fast, reliable, and trusted.">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="GeepChris Bridge Enterprise">
+    <meta name="keywords" content="Moniepoint, POS terminal Nigeria, Moniepoint account opening, Moniepoint loans, Moniepoint ATM cards, Moniebook, fixed deposit Nigeria, Monieworld foreign exchange, business banking Nigeria, payment processing Nigeria">
+    <link rel="canonical" href="https://geepchris.com/services/moniepoint.html">
+
+    <!-- ===== FAVICON ===== -->
+    <link rel="icon" type="image/png" href="/assets/under45.png" />
+    <link rel="apple-touch-icon" href="/assets/logo.png" />
+    <link rel="shortcut icon" href="/assets/logo.png" />
+
+    <!-- ===== OPEN GRAPH / SOCIAL MEDIA META TAGS ===== -->
+    <meta property="og:title" content="Moniepoint Financial Services — POS, Loans, Account Opening in Nigeria | GeepChris Bridge">
+    <meta property="og:description" content="Get Moniepoint financial services in Nigeria. POS terminals, business accounts, loans, ATM cards, fixed deposits, and foreign exchange. Fast, reliable, and trusted.">
+    <meta property="og:url" content="https://geepchris.com/services/moniepoint.html">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://geepchris.com/assets/geepchris.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="en_NG">
+    <meta property="og:site_name" content="GeepChris Bridge Enterprise">
+
+    <!-- ===== TWITTER CARDS ===== -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Moniepoint Financial Services — POS, Loans, Account Opening in Nigeria">
+    <meta name="twitter:description" content="Get Moniepoint financial services in Nigeria. POS terminals, business accounts, loans, ATM cards, fixed deposits, and foreign exchange.">
+    <meta name="twitter:image" content="https://geepchris.com/assets/geepchris.png">
+
+    <!-- ===== ADDITIONAL SEO META TAGS ===== -->
+    <meta name="geo.region" content="NG">
+    <meta name="geo.placename" content="Lagos">
+    <meta name="geo.position" content="6.5244;3.3792">
+    <meta name="ICBM" content="6.5244, 3.3792">
+    <meta name="revisit-after" content="7 days">
+
+    <!-- ===== SCHEMA MARKUP (JSON-LD) ===== -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Moniepoint Financial Services",
+        "provider": {
+            "@type": "Organization",
+            "name": "GeepChris Bridge Enterprise",
+            "url": "https://geepchris.com",
+            "logo": "https://geepchris.com/assets/logo.png"
+        },
+        "description": "Moniepoint financial services in Nigeria including POS terminals, business accounts, loans, ATM cards, Moniebook, fixed deposits, and Monieworld foreign exchange.",
+        "serviceType": "Financial Services",
+        "areaServed": "Nigeria",
+        "url": "https://geepchris.com/services/moniepoint.html"
+    }
+    </script>
+
+    <!-- ===== AUTH GUARD ===== -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyDHSOM7-GZXQ7tYySYTRiyCAHZOn9SQhhE",
+            authDomain: "geepchris-bridge.firebaseapp.com",
+            projectId: "geepchris-bridge",
+            storageBucket: "geepchris-bridge.firebasestorage.app",
+            messagingSenderId: "61219875988",
+            appId: "1:61219875988:web:a393bb73ce2b85991b9881"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
+        auth.onAuthStateChanged((user) => {
+            if (!user) {
+                const currentUrl = window.location.pathname + window.location.search;
+                window.location.href = `/auth.html?redirect=${encodeURIComponent(currentUrl)}`;
+            }
+        });
+    </script>
+    <!-- ===== END AUTH GUARD ===== -->
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -134,13 +211,11 @@
             text-align: center;
             padding: 32px 24px;
             
-            /* ===== ANIMATION SETUP ===== */
             opacity: 0;
             transform: translateX(-40px);
             transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        /* When the card enters the viewport */
         .service-card.visible {
             opacity: 1;
             transform: translateX(0);
@@ -221,57 +296,57 @@
 <body>
 
     <!-- =================== NAVBAR =================== -->
-      <nav class="navbar" id="navbar">
-                <a href="index.html" class="logo">
-                    <img src="/assets/logo.png" alt="GeepChris Bridge">
-                </a>
+    <nav class="navbar" id="navbar">
+        <a href="index.html" class="logo">
+            <img src="/assets/logo.png" alt="GeepChris Bridge">
+        </a>
 
-                <ul class="nav-links">
-                    <li><a href="index.html">Home</a></li>
-                    <li class="has-dropdown">
-                        <a href="services.html" class="dropdown-trigger">Services <span class="arrow-down">▾</span></a>
-                        <div class="dropdown-menu">
-                            <a href="/services/moniepoint.html">Moniepoint Financial Services</a>
-                            <a href="/services/travel.html">Travel & Global Mobility</a>
-                            <a href="/services/business-registration.html">Business Registration</a>
-                            <a href="/servies/travel/visa.html">Visa Countries</a>
-                        </div>
-                    </li>
-                    
-                    <li><a href="about-us.html">About</a></li>
-                    <li><a href="faq.html">FAQs</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-
-                <a href="contact.html" class="nav-btn">Get Started</a>
-
-                <button class="menu-toggle" aria-label="Toggle menu">
-                    <span></span><span></span><span></span>
-                </button>
-
-            </nav>
-
-            <!-- MOBILE MENU -->
-            <div class="mobile-menu">
-                <button class="mobile-menu-close" aria-label="Close menu">
-                    <span></span><span></span>
-                </button>
-                <a href="index.html">Home</a>
-                <div class="mobile-services-group">
-                    <button class="mobile-services-toggle">Services <span>▾</span></button>
-                    <div class="mobile-services-dropdown">
-                        <a href="/services/moniepoint.html">Moniepoint Financial Services</a>
-                        <a href="/services/travel.html">Travel & Global Mobility</a>
-                        <a href="/services/business-registration.html">Business Registration</a>
-                        <a href="/services/travel/visa.html">Visa Countries</a>
-                    </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li class="has-dropdown">
+                <a href="services.html" class="dropdown-trigger">Services <span class="arrow-down">▾</span></a>
+                <div class="dropdown-menu">
+                    <a href="/services/moniepoint.html">Moniepoint Financial Services</a>
+                    <a href="/services/travel.html">Travel & Global Mobility</a>
+                    <a href="/services/business-registration.html">Business Registration</a>
+                    <a href="/services/travel/visa.html">Visa Countries</a>
                 </div>
-                
-                <a href="about-us.html">About</a>
-                <a href="faq.html">FAQs</a>
-                <a href="contact.html">Contact</a>
-                <a href="contact.html" class="mobile-btn">Get Started</a>
+            </li>
+            
+            <li><a href="about-us.html">About</a></li>
+            <li><a href="faq.html">FAQs</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <a href="contact.html" class="nav-btn">Get Started</a>
+
+        <button class="menu-toggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu">
+        <button class="mobile-menu-close" aria-label="Close menu">
+            <span></span><span></span>
+        </button>
+        <a href="index.html">Home</a>
+        <div class="mobile-services-group">
+            <button class="mobile-services-toggle">Services <span>▾</span></button>
+            <div class="mobile-services-dropdown">
+                <a href="/services/moniepoint.html">Moniepoint Financial Services</a>
+                <a href="/services/travel.html">Travel & Global Mobility</a>
+                <a href="/services/business-registration.html">Business Registration</a>
+                <a href="/services/travel/visa.html">Visa Countries</a>
             </div>
+        </div>
+        
+        <a href="about-us.html">About</a>
+        <a href="faq.html">FAQs</a>
+        <a href="contact.html">Contact</a>
+        <a href="contact.html" class="mobile-btn">Get Started</a>
+    </div>
 
     <!-- =================== HERO =================== -->
     <section class="hero">
@@ -287,7 +362,7 @@
         </div>
 
         <div class="service-grid">
-            <!-- Card 1: Account Opening (Page) -->
+            <!-- Card 1: Account Opening -->
             <a href="/services/moniepoint/account-opening.html" class="service-card">
                 <i class="fas fa-user-plus"></i>
                 <h3>Account Opening</h3>
@@ -295,7 +370,7 @@
                 <span class="service-card-cta">Open Account →</span>
             </a>
 
-            <!-- Card 2: POS Machine (Page) -->
+            <!-- Card 2: POS Machine -->
             <a href="/services/moniepoint/pos.html" class="service-card">
                 <i class="fas fa-credit-card"></i>
                 <h3>POS Machine</h3>
@@ -303,15 +378,15 @@
                 <span class="service-card-cta">Get POS →</span>
             </a>
 
-            <!-- Card 3: ATM Cards (WhatsApp) -->
-            <a href="https://wa.me/23407061507103?text=Greetings%20%40GeepChrisBridge%2C%20I%20saw%20your%20website%20on%20google%20and%20I%20want%20to%20request%20for%20Moniepoint%20ATM%20cards%20for%20my%20business." class="service-card" target="_blank">
+            <!-- Card 3: ATM Cards -->
+            <a href="https://wa.me/23407061507103?text=Greetings%20%40GeepChrisBridge%2C%20I%20saw%20your%20website%20on%20google%20and%20I%20want%20to%20request%20for%20Moniepoint%20ATM%20cards%20for%20my%20business." class="service-card" target="_blank" rel="noopener noreferrer">
                 <i class="fas fa-id-card"></i>
                 <h3>ATM Cards</h3>
                 <p>Issue and manage Moniepoint ATM cards for your business and employees. Access cash at any ATM nationwide.</p>
                 <span class="service-card-cta">Request Card →</span>
             </a>
 
-            <!-- Card 4: Loans (Page) -->
+            <!-- Card 4: Loans -->
             <a href="/services/moniepoint/loans.html" class="service-card">
                 <i class="fas fa-hand-holding-usd"></i>
                 <h3>Loans</h3>
@@ -319,24 +394,24 @@
                 <span class="service-card-cta">Apply Now →</span>
             </a>
 
-            <!-- Card 5: Moniebook (WhatsApp) -->
-            <a href="https://wa.me/23407061507103?text=Greetings%20%40GeepChrisBridge%2C%20I%20saw%20your%20website%20on%20google%20and%20I%20want%20to%20learn%20more%20about%20Moniebook%20for%20my%20business." class="service-card" target="_blank">
+            <!-- Card 5: Moniebook -->
+            <a href="https://wa.me/23407061507103?text=Greetings%20%40GeepChrisBridge%2C%20I%20saw%20your%20website%20on%20google%20and%20I%20want%20to%20learn%20more%20about%20Moniebook%20for%20my%20business." class="service-card" target="_blank" rel="noopener noreferrer">
                 <i class="fas fa-book"></i>
                 <h3>Moniebook</h3>
                 <p>Keep track of your business finances with Moniebook. Simple, smart, and designed for Nigerian businesses.</p>
                 <span class="service-card-cta">Learn More →</span>
             </a>
 
-            <!-- Card 6: Fixed Deposit (WhatsApp) -->
-            <a href="https://wa.me/23407061507103?text=Greetings%20%40GeepChrisBridge%2C%20I%20saw%20your%20website%20on%20google%20and%20I%20want%20to%20start%20a%20Fixed%20Deposit%20account%20with%20Moniepoint." class="service-card" target="_blank">
+            <!-- Card 6: Fixed Deposit -->
+            <a href="https://wa.me/23407061507103?text=Greetings%20%40GeepChrisBridge%2C%20I%20saw%20your%20website%20on%20google%20and%20I%20want%20to%20start%20a%20Fixed%20Deposit%20account%20with%20Moniepoint." class="service-card" target="_blank" rel="noopener noreferrer">
                 <i class="fas fa-piggy-bank"></i>
                 <h3>Fixed Deposit</h3>
                 <p>Earn competitive interest rates with Moniepoint fixed deposit accounts. Secure your savings and grow your wealth.</p>
                 <span class="service-card-cta">Start Saving →</span>
             </a>
 
-            <!-- Card 7: Monieworld (WhatsApp) -->
-            <a href="https://wa.me/23407061507103?text=Greetings%20%40GeepChrisBridge%2C%20I%20saw%20your%20website%20on%20google%20and%20I%20want%20to%20make%20foreign%20exchange%20transactions%20with%20Monieworld." class="service-card" target="_blank">
+            <!-- Card 7: Monieworld -->
+            <a href="https://wa.me/23407061507103?text=Greetings%20%40GeepChrisBridge%2C%20I%20saw%20your%20website%20on%20google%20and%20I%20want%20to%20make%20foreign%20exchange%20transactions%20with%20Monieworld." class="service-card" target="_blank" rel="noopener noreferrer">
                 <i class="fas fa-globe"></i>
                 <h3>Monieworld</h3>
                 <p>Foreign exchange made easy. Access reliable currency exchange services for your business and travel needs.</p>
@@ -345,7 +420,7 @@
         </div>
     </div>
 
-     <!-- =================== FOOTER =================== -->
+    <!-- =================== FOOTER =================== -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
@@ -380,8 +455,6 @@
                         <li><a href="/services/travel.html">Travel & Mobility</a></li>
                         <li><a href="/services/business-registration.html">Business Registration</a></li>
                         <li><a href="/services/web-development.html">Web Development</a></li>
-                
-                        
                     </ul>
                 </div>
 
@@ -398,9 +471,9 @@
 
             <div class="footer-bottom">
                 <p>
-    © 2025 GeepChris Bridge Enterprise. All Rights Reserved.<br>
-    Website by <a href="https://vintechdigitalservices.com" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.5); text-decoration:none; transition:color 0.3s ease;">Vintech Digital Services</a>
-</p>
+                    © 2025 GeepChris Bridge Enterprise. All Rights Reserved.<br>
+                    Website by <a href="https://vintechdigitalservices.com" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.5); text-decoration:none; transition:color 0.3s ease;">Vintech Digital Services</a>
+                </p>
                 <div class="footer-bottom-links">
                     <a href="privacy.html">Privacy Policy</a>
                     <a href="terms.html">Terms of Service</a>
@@ -409,7 +482,7 @@
         </div>
     </footer>
 
-    <!-- ===== NAVBAR & SCROLL SCRIPTS ===== -->
+    <!-- ===== SCRIPTS ===== -->
     <script>
         const navbar = document.getElementById('navbar');
         const menuToggle = document.querySelector(".menu-toggle");
@@ -463,16 +536,13 @@
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach((entry, index) => {
                     if (entry.isIntersecting) {
-                        // Add a slight delay for each card to create a cascade effect
                         setTimeout(() => {
                             entry.target.classList.add('visible');
-                        }, index * 100); // 100ms delay between each card
-                        
-                        // Stop observing once revealed
+                        }, index * 100);
                         observer.unobserve(entry.target);
                     }
                 });
-            }, { threshold: 0.15 }); // Trigger when 15% of the card is visible
+            }, { threshold: 0.15 });
 
             cards.forEach(card => {
                 observer.observe(card);
