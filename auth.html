@@ -675,7 +675,26 @@
         });
 
         // ==========================================
-        // SIGN IN
+        // CHECK USER IN BOTH COLLECTIONS
+        // ==========================================
+        async function findUserInCollections(uid) {
+            // First check clients collection
+            const clientDoc = await db.collection('clients').doc(uid).get();
+            if (clientDoc.exists) {
+                return { collection: 'clients', data: clientDoc.data() };
+            }
+
+            // Then check staff collection (for admins)
+            const staffDoc = await db.collection('staff').doc(uid).get();
+            if (staffDoc.exists) {
+                return { collection: 'staff', data: staffDoc.data() };
+            }
+
+            return null;
+        }
+
+        // ==========================================
+        // SIGN IN - FIXED for both clients AND admins
         // ==========================================
         signinForm.addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -706,18 +725,52 @@
                 const userCredential = await auth.signInWithEmailAndPassword(email, password);
                 const user = userCredential.user;
 
-                await db.collection('clients').doc(user.uid).update({
-                    lastLogin: firebase.firestore.FieldValue.serverTimestamp()
-                });
+                // Check if user exists in either clients OR staff collection
+                const userData = await findUserInCollections(user.uid);
 
-                showGeneralSuccess('Welcome back! Redirecting...');
+                if (userData) {
+                    // Update lastLogin in the collection where they exist
+                    await db.collection(userData.collection).doc(user.uid).update({
+                        lastLogin: firebase.firestore.FieldValue.serverTimestamp()
+                    });
 
-                const urlParams = new URLSearchParams(window.location.search);
-                const redirectUrl = urlParams.get('redirect') || 'dashboard.html';
+                    showGeneralSuccess('Welcome back! Redirecting...');
 
-                setTimeout(() => {
-                    window.location.href = redirectUrl;
-                }, 1000);
+                    const urlParams = new URLSearchParams(window.location.search);
+                    let redirectUrl = urlParams.get('redirect') || 'dashboard.html';
+
+                    // If user is staff/admin, redirect to admin dashboard
+                    if (userData.collection === 'staff') {
+                        redirectUrl = redirectUrl || 'admin/dashboard.html';
+                    }
+
+                    setTimeout(() => {
+                        window.location.href = redirectUrl;
+                    }, 1000);
+                } else {
+                    // User exists in Firebase Auth but not in any collection
+                    // Create a basic client profile for them
+                    await db.collection('clients').doc(user.uid).set({
+                        uid: user.uid,
+                        email: user.email,
+                        fullName: user.displayName || 'User',
+                        firstName: user.displayName ? user.displayName.split(' ')[0] : 'User',
+                        lastName: user.displayName ? user.displayName.split(' ').slice(1).join(' ') : '',
+                        photoURL: user.photoURL || '',
+                        role: 'client',
+                        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                        lastLogin: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+
+                    showGeneralSuccess('Welcome! Redirecting...');
+
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const redirectUrl = urlParams.get('redirect') || 'dashboard.html';
+
+                    setTimeout(() => {
+                        window.location.href = redirectUrl;
+                    }, 1000);
+                }
 
             } catch (error) {
                 if (error.code === 'auth/invalid-email') {
@@ -808,9 +861,9 @@
                     uid: user.uid,
                     fullName: fullName,
                     firstName: firstName,
-                    lastName: lastName,      // ✅ NOW saving last name
+                    lastName: lastName,
                     email: email,
-                    phone: cleanPhone,       // ✅ Cleaned phone number
+                    phone: cleanPhone,
                     photoURL: "",
                     role: 'client',
                     createdAt: firebase.firestore.FieldValue.serverTimestamp(),
