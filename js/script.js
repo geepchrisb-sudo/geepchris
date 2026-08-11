@@ -440,209 +440,242 @@ const db = typeof firebase !== 'undefined' ? firebase.firestore() : null;
 
 // Country flag data — Complete list of all 195 countries including Holy See
 const visaCountries = [
-    { name: "Afghanistan", flag: "🇦🇫", flagUrl: "https://flagcdn.com/w40/af.png" },
-    { name: "Albania", flag: "🇦🇱", flagUrl: "https://flagcdn.com/w40/al.png" },
-    { name: "Algeria", flag: "🇩🇿", flagUrl: "https://flagcdn.com/w40/dz.png" },
-    { name: "Andorra", flag: "🇦🇩", flagUrl: "https://flagcdn.com/w40/ad.png" },
-    { name: "Angola", flag: "🇦🇴", flagUrl: "https://flagcdn.com/w40/ao.png" },
-    { name: "Antigua and Barbuda", flag: "🇦🇬", flagUrl: "https://flagcdn.com/w40/ag.png" },
-    { name: "Argentina", flag: "🇦🇷", flagUrl: "https://flagcdn.com/w40/ar.png" },
-    { name: "Armenia", flag: "🇦🇲", flagUrl: "https://flagcdn.com/w40/am.png" },
-    { name: "Australia", flag: "🇦🇺", flagUrl: "https://flagcdn.com/w40/au.png" },
-    { name: "Austria", flag: "🇦🇹", flagUrl: "https://flagcdn.com/w40/at.png" },
-    { name: "Azerbaijan", flag: "🇦🇿", flagUrl: "https://flagcdn.com/w40/az.png" },
-    { name: "Bahamas", flag: "🇧🇸", flagUrl: "https://flagcdn.com/w40/bs.png" },
-    { name: "Bahrain", flag: "🇧🇭", flagUrl: "https://flagcdn.com/w40/bh.png" },
-    { name: "Bangladesh", flag: "🇧🇩", flagUrl: "https://flagcdn.com/w40/bd.png" },
-    { name: "Barbados", flag: "🇧🇧", flagUrl: "https://flagcdn.com/w40/bb.png" },
-    { name: "Belarus", flag: "🇧🇾", flagUrl: "https://flagcdn.com/w40/by.png" },
-    { name: "Belgium", flag: "🇧🇪", flagUrl: "https://flagcdn.com/w40/be.png" },
-    { name: "Belize", flag: "🇧🇿", flagUrl: "https://flagcdn.com/w40/bz.png" },
-    { name: "Benin", flag: "🇧🇯", flagUrl: "https://flagcdn.com/w40/bj.png" },
-    { name: "Bhutan", flag: "🇧🇹", flagUrl: "https://flagcdn.com/w40/bt.png" },
-    { name: "Bolivia", flag: "🇧🇴", flagUrl: "https://flagcdn.com/w40/bo.png" },
-    { name: "Bosnia and Herzegovina", flag: "🇧🇦", flagUrl: "https://flagcdn.com/w40/ba.png" },
-    { name: "Botswana", flag: "🇧🇼", flagUrl: "https://flagcdn.com/w40/bw.png" },
-    { name: "Brazil", flag: "🇧🇷", flagUrl: "https://flagcdn.com/w40/br.png" },
-    { name: "Brunei", flag: "🇧🇳", flagUrl: "https://flagcdn.com/w40/bn.png" },
-    { name: "Bulgaria", flag: "🇧🇬", flagUrl: "https://flagcdn.com/w40/bg.png" },
-    { name: "Burkina Faso", flag: "🇧🇫", flagUrl: "https://flagcdn.com/w40/bf.png" },
-    { name: "Burundi", flag: "🇧🇮", flagUrl: "https://flagcdn.com/w40/bi.png" },
-    { name: "Cabo Verde", flag: "🇨🇻", flagUrl: "https://flagcdn.com/w40/cv.png" },
-    { name: "Cambodia", flag: "🇰🇭", flagUrl: "https://flagcdn.com/w40/kh.png" },
-    { name: "Cameroon", flag: "🇨🇲", flagUrl: "https://flagcdn.com/w40/cm.png" },
-    { name: "Canada", flag: "🇨🇦", flagUrl: "https://flagcdn.com/w40/ca.png" },
-    { name: "Central African Republic", flag: "🇨🇫", flagUrl: "https://flagcdn.com/w40/cf.png" },
-    { name: "Chad", flag: "🇹🇩", flagUrl: "https://flagcdn.com/w40/td.png" },
-    { name: "Chile", flag: "🇨🇱", flagUrl: "https://flagcdn.com/w40/cl.png" },
-    { name: "China", flag: "🇨🇳", flagUrl: "https://flagcdn.com/w40/cn.png" },
-    { name: "Colombia", flag: "🇨🇴", flagUrl: "https://flagcdn.com/w40/co.png" },
-    { name: "Comoros", flag: "🇰🇲", flagUrl: "https://flagcdn.com/w40/km.png" },
-    { name: "Congo (Congo-Brazzaville)", flag: "🇨🇬", flagUrl: "https://flagcdn.com/w40/cg.png" },
-    { name: "Costa Rica", flag: "🇨🇷", flagUrl: "https://flagcdn.com/w40/cr.png" },
-    { name: "Croatia", flag: "🇭🇷", flagUrl: "https://flagcdn.com/w40/hr.png" },
-    { name: "Cuba", flag: "🇨🇺", flagUrl: "https://flagcdn.com/w40/cu.png" },
-    { name: "Cyprus", flag: "🇨🇾", flagUrl: "https://flagcdn.com/w40/cy.png" },
-    { name: "Czech Republic", flag: "🇨🇿", flagUrl: "https://flagcdn.com/w40/cz.png" },
-    { name: "Democratic Republic of the Congo (Congo-Kinshasa)", flag: "🇨🇩", flagUrl: "https://flagcdn.com/w40/cd.png" },
-    { name: "Denmark", flag: "🇩🇰", flagUrl: "https://flagcdn.com/w40/dk.png" },
-    { name: "Djibouti", flag: "🇩🇯", flagUrl: "https://flagcdn.com/w40/dj.png" },
-    { name: "Dominica", flag: "🇩🇲", flagUrl: "https://flagcdn.com/w40/dm.png" },
-    { name: "Dominican Republic", flag: "🇩🇴", flagUrl: "https://flagcdn.com/w40/do.png" },
-    { name: "Ecuador", flag: "🇪🇨", flagUrl: "https://flagcdn.com/w40/ec.png" },
-    { name: "Egypt", flag: "🇪🇬", flagUrl: "https://flagcdn.com/w40/eg.png" },
-    { name: "El Salvador", flag: "🇸🇻", flagUrl: "https://flagcdn.com/w40/sv.png" },
-    { name: "Equatorial Guinea", flag: "🇬🇶", flagUrl: "https://flagcdn.com/w40/gq.png" },
-    { name: "Eritrea", flag: "🇪🇷", flagUrl: "https://flagcdn.com/w40/er.png" },
-    { name: "Estonia", flag: "🇪🇪", flagUrl: "https://flagcdn.com/w40/ee.png" },
-    { name: "Eswatini (formerly Swaziland)", flag: "🇸🇿", flagUrl: "https://flagcdn.com/w40/sz.png" },
-    { name: "Ethiopia", flag: "🇪🇹", flagUrl: "https://flagcdn.com/w40/et.png" },
-    { name: "Fiji", flag: "🇫🇯", flagUrl: "https://flagcdn.com/w40/fj.png" },
-    { name: "Finland", flag: "🇫🇮", flagUrl: "https://flagcdn.com/w40/fi.png" },
-    { name: "France", flag: "🇫🇷", flagUrl: "https://flagcdn.com/w40/fr.png" },
-    { name: "Gabon", flag: "🇬🇦", flagUrl: "https://flagcdn.com/w40/ga.png" },
-    { name: "Gambia", flag: "🇬🇲", flagUrl: "https://flagcdn.com/w40/gm.png" },
-    { name: "Georgia", flag: "🇬🇪", flagUrl: "https://flagcdn.com/w40/ge.png" },
-    { name: "Germany", flag: "🇩🇪", flagUrl: "https://flagcdn.com/w40/de.png" },
-    { name: "Ghana", flag: "🇬🇭", flagUrl: "https://flagcdn.com/w40/gh.png" },
-    { name: "Greece", flag: "🇬🇷", flagUrl: "https://flagcdn.com/w40/gr.png" },
-    { name: "Grenada", flag: "🇬🇩", flagUrl: "https://flagcdn.com/w40/gd.png" },
-    { name: "Guatemala", flag: "🇬🇹", flagUrl: "https://flagcdn.com/w40/gt.png" },
-    { name: "Guinea", flag: "🇬🇳", flagUrl: "https://flagcdn.com/w40/gn.png" },
-    { name: "Guinea-Bissau", flag: "🇬🇼", flagUrl: "https://flagcdn.com/w40/gw.png" },
-    { name: "Guyana", flag: "🇬🇾", flagUrl: "https://flagcdn.com/w40/gy.png" },
-    { name: "Haiti", flag: "🇭🇹", flagUrl: "https://flagcdn.com/w40/ht.png" },
-    { name: "Holy See (Vatican City State)", flag: "🇻🇦", flagUrl: "https://flagcdn.com/w40/va.png" },
-    { name: "Honduras", flag: "🇭🇳", flagUrl: "https://flagcdn.com/w40/hn.png" },
-    { name: "Hungary", flag: "🇭🇺", flagUrl: "https://flagcdn.com/w40/hu.png" },
-    { name: "Iceland", flag: "🇮🇸", flagUrl: "https://flagcdn.com/w40/is.png" },
-    { name: "India", flag: "🇮🇳", flagUrl: "https://flagcdn.com/w40/in.png" },
-    { name: "Indonesia", flag: "🇮🇩", flagUrl: "https://flagcdn.com/w40/id.png" },
-    { name: "Iran", flag: "🇮🇷", flagUrl: "https://flagcdn.com/w40/ir.png" },
-    { name: "Iraq", flag: "🇮🇶", flagUrl: "https://flagcdn.com/w40/iq.png" },
-    { name: "Ireland", flag: "🇮🇪", flagUrl: "https://flagcdn.com/w40/ie.png" },
-    { name: "Israel", flag: "🇮🇱", flagUrl: "https://flagcdn.com/w40/il.png" },
-    { name: "Italy", flag: "🇮🇹", flagUrl: "https://flagcdn.com/w40/it.png" },
-    { name: "Jamaica", flag: "🇯🇲", flagUrl: "https://flagcdn.com/w40/jm.png" },
-    { name: "Japan", flag: "🇯🇵", flagUrl: "https://flagcdn.com/w40/jp.png" },
-    { name: "Jordan", flag: "🇯🇴", flagUrl: "https://flagcdn.com/w40/jo.png" },
-    { name: "Kazakhstan", flag: "🇰🇿", flagUrl: "https://flagcdn.com/w40/kz.png" },
-    { name: "Kenya", flag: "🇰🇪", flagUrl: "https://flagcdn.com/w40/ke.png" },
-    { name: "Kiribati", flag: "🇰🇮", flagUrl: "https://flagcdn.com/w40/ki.png" },
-    { name: "Kuwait", flag: "🇰🇼", flagUrl: "https://flagcdn.com/w40/kw.png" },
-    { name: "Kyrgyzstan", flag: "🇰🇬", flagUrl: "https://flagcdn.com/w40/kg.png" },
-    { name: "Laos", flag: "🇱🇦", flagUrl: "https://flagcdn.com/w40/la.png" },
-    { name: "Latvia", flag: "🇱🇻", flagUrl: "https://flagcdn.com/w40/lv.png" },
-    { name: "Lebanon", flag: "🇱🇧", flagUrl: "https://flagcdn.com/w40/lb.png" },
-    { name: "Lesotho", flag: "🇱🇸", flagUrl: "https://flagcdn.com/w40/ls.png" },
-    { name: "Liberia", flag: "🇱🇷", flagUrl: "https://flagcdn.com/w40/lr.png" },
-    { name: "Libya", flag: "🇱🇾", flagUrl: "https://flagcdn.com/w40/ly.png" },
-    { name: "Liechtenstein", flag: "🇱🇮", flagUrl: "https://flagcdn.com/w40/li.png" },
-    { name: "Lithuania", flag: "🇱🇹", flagUrl: "https://flagcdn.com/w40/lt.png" },
-    { name: "Luxembourg", flag: "🇱🇺", flagUrl: "https://flagcdn.com/w40/lu.png" },
-    { name: "Madagascar", flag: "🇲🇬", flagUrl: "https://flagcdn.com/w40/mg.png" },
-    { name: "Malawi", flag: "🇲🇼", flagUrl: "https://flagcdn.com/w40/mw.png" },
-    { name: "Malaysia", flag: "🇲🇾", flagUrl: "https://flagcdn.com/w40/my.png" },
-    { name: "Maldives", flag: "🇲🇻", flagUrl: "https://flagcdn.com/w40/mv.png" },
-    { name: "Mali", flag: "🇲🇱", flagUrl: "https://flagcdn.com/w40/ml.png" },
-    { name: "Malta", flag: "🇲🇹", flagUrl: "https://flagcdn.com/w40/mt.png" },
-    { name: "Marshall Islands", flag: "🇲🇭", flagUrl: "https://flagcdn.com/w40/mh.png" },
-    { name: "Mauritania", flag: "🇲🇷", flagUrl: "https://flagcdn.com/w40/mr.png" },
-    { name: "Mauritius", flag: "🇲🇺", flagUrl: "https://flagcdn.com/w40/mu.png" },
-    { name: "Mexico", flag: "🇲🇽", flagUrl: "https://flagcdn.com/w40/mx.png" },
-    { name: "Micronesia", flag: "🇫🇲", flagUrl: "https://flagcdn.com/w40/fm.png" },
-    { name: "Moldova", flag: "🇲🇩", flagUrl: "https://flagcdn.com/w40/md.png" },
-    { name: "Monaco", flag: "🇲🇨", flagUrl: "https://flagcdn.com/w40/mc.png" },
-    { name: "Mongolia", flag: "🇲🇳", flagUrl: "https://flagcdn.com/w40/mn.png" },
-    { name: "Montenegro", flag: "🇲🇪", flagUrl: "https://flagcdn.com/w40/me.png" },
-    { name: "Morocco", flag: "🇲🇦", flagUrl: "https://flagcdn.com/w40/ma.png" },
-    { name: "Mozambique", flag: "🇲🇿", flagUrl: "https://flagcdn.com/w40/mz.png" },
-    { name: "Myanmar", flag: "🇲🇲", flagUrl: "https://flagcdn.com/w40/mm.png" },
-    { name: "Namibia", flag: "🇳🇦", flagUrl: "https://flagcdn.com/w40/na.png" },
-    { name: "Nauru", flag: "🇳🇷", flagUrl: "https://flagcdn.com/w40/nr.png" },
-    { name: "Nepal", flag: "🇳🇵", flagUrl: "https://flagcdn.com/w40/np.png" },
-    { name: "Netherlands", flag: "🇳🇱", flagUrl: "https://flagcdn.com/w40/nl.png" },
-    { name: "New Zealand", flag: "🇳🇿", flagUrl: "https://flagcdn.com/w40/nz.png" },
-    { name: "Nicaragua", flag: "🇳🇮", flagUrl: "https://flagcdn.com/w40/ni.png" },
-    { name: "Niger", flag: "🇳🇪", flagUrl: "https://flagcdn.com/w40/ne.png" },
-    { name: "Nigeria", flag: "🇳🇬", flagUrl: "https://flagcdn.com/w40/ng.png" },
-    { name: "North Korea", flag: "🇰🇵", flagUrl: "https://flagcdn.com/w40/kp.png" },
-    { name: "North Macedonia", flag: "🇲🇰", flagUrl: "https://flagcdn.com/w40/mk.png" },
-    { name: "Norway", flag: "🇳🇴", flagUrl: "https://flagcdn.com/w40/no.png" },
-    { name: "Oman", flag: "🇴🇲", flagUrl: "https://flagcdn.com/w40/om.png" },
-    { name: "Pakistan", flag: "🇵🇰", flagUrl: "https://flagcdn.com/w40/pk.png" },
-    { name: "Palau", flag: "🇵🇼", flagUrl: "https://flagcdn.com/w40/pw.png" },
-    { name: "Panama", flag: "🇵🇦", flagUrl: "https://flagcdn.com/w40/pa.png" },
-    { name: "Papua New Guinea", flag: "🇵🇬", flagUrl: "https://flagcdn.com/w40/pg.png" },
-    { name: "Paraguay", flag: "🇵🇾", flagUrl: "https://flagcdn.com/w40/py.png" },
-    { name: "Peru", flag: "🇵🇪", flagUrl: "https://flagcdn.com/w40/pe.png" },
-    { name: "Philippines", flag: "🇵🇭", flagUrl: "https://flagcdn.com/w40/ph.png" },
-    { name: "Poland", flag: "🇵🇱", flagUrl: "https://flagcdn.com/w40/pl.png" },
-    { name: "Portugal", flag: "🇵🇹", flagUrl: "https://flagcdn.com/w40/pt.png" },
-    { name: "Qatar", flag: "🇶🇦", flagUrl: "https://flagcdn.com/w40/qa.png" },
-    { name: "Romania", flag: "🇷🇴", flagUrl: "https://flagcdn.com/w40/ro.png" },
-    { name: "Russia", flag: "🇷🇺", flagUrl: "https://flagcdn.com/w40/ru.png" },
-    { name: "Rwanda", flag: "🇷🇼", flagUrl: "https://flagcdn.com/w40/rw.png" },
-    { name: "Saint Kitts and Nevis", flag: "🇰🇳", flagUrl: "https://flagcdn.com/w40/kn.png" },
-    { name: "Saint Lucia", flag: "🇱🇨", flagUrl: "https://flagcdn.com/w40/lc.png" },
-    { name: "Saint Vincent and the Grenadines", flag: "🇻🇨", flagUrl: "https://flagcdn.com/w40/vc.png" },
-    { name: "Samoa", flag: "🇼🇸", flagUrl: "https://flagcdn.com/w40/ws.png" },
-    { name: "San Marino", flag: "🇸🇲", flagUrl: "https://flagcdn.com/w40/sm.png" },
-    { name: "Sao Tome and Principe", flag: "🇸🇹", flagUrl: "https://flagcdn.com/w40/st.png" },
-    { name: "Saudi Arabia", flag: "🇸🇦", flagUrl: "https://flagcdn.com/w40/sa.png" },
-    { name: "Senegal", flag: "🇸🇳", flagUrl: "https://flagcdn.com/w40/sn.png" },
-    { name: "Serbia", flag: "🇷🇸", flagUrl: "https://flagcdn.com/w40/rs.png" },
-    { name: "Seychelles", flag: "🇸🇨", flagUrl: "https://flagcdn.com/w40/sc.png" },
-    { name: "Sierra Leone", flag: "🇸🇱", flagUrl: "https://flagcdn.com/w40/sl.png" },
-    { name: "Singapore", flag: "🇸🇬", flagUrl: "https://flagcdn.com/w40/sg.png" },
-    { name: "Slovakia", flag: "🇸🇰", flagUrl: "https://flagcdn.com/w40/sk.png" },
-    { name: "Slovenia", flag: "🇸🇮", flagUrl: "https://flagcdn.com/w40/si.png" },
-    { name: "Solomon Islands", flag: "🇸🇧", flagUrl: "https://flagcdn.com/w40/sb.png" },
-    { name: "Somalia", flag: "🇸🇴", flagUrl: "https://flagcdn.com/w40/so.png" },
-    { name: "South Africa", flag: "🇿🇦", flagUrl: "https://flagcdn.com/w40/za.png" },
-    { name: "South Korea", flag: "🇰🇷", flagUrl: "https://flagcdn.com/w40/kr.png" },
-    { name: "South Sudan", flag: "🇸🇸", flagUrl: "https://flagcdn.com/w40/ss.png" },
-    { name: "Spain", flag: "🇪🇸", flagUrl: "https://flagcdn.com/w40/es.png" },
-    { name: "Sri Lanka", flag: "🇱🇰", flagUrl: "https://flagcdn.com/w40/lk.png" },
-    { name: "Sudan", flag: "🇸🇩", flagUrl: "https://flagcdn.com/w40/sd.png" },
-    { name: "Suriname", flag: "🇸🇷", flagUrl: "https://flagcdn.com/w40/sr.png" },
-    { name: "Sweden", flag: "🇸🇪", flagUrl: "https://flagcdn.com/w40/se.png" },
-    { name: "Switzerland", flag: "🇨🇭", flagUrl: "https://flagcdn.com/w40/ch.png" },
-    { name: "Syria", flag: "🇸🇾", flagUrl: "https://flagcdn.com/w40/sy.png" },
-    { name: "Tajikistan", flag: "🇹🇯", flagUrl: "https://flagcdn.com/w40/tj.png" },
-    { name: "Tanzania", flag: "🇹🇿", flagUrl: "https://flagcdn.com/w40/tz.png" },
-    { name: "Thailand", flag: "🇹🇭", flagUrl: "https://flagcdn.com/w40/th.png" },
-    { name: "Timor-Leste", flag: "🇹🇱", flagUrl: "https://flagcdn.com/w40/tl.png" },
-    { name: "Togo", flag: "🇹🇬", flagUrl: "https://flagcdn.com/w40/tg.png" },
-    { name: "Tonga", flag: "🇹🇴", flagUrl: "https://flagcdn.com/w40/to.png" },
-    { name: "Trinidad and Tobago", flag: "🇹🇹", flagUrl: "https://flagcdn.com/w40/tt.png" },
-    { name: "Tunisia", flag: "🇹🇳", flagUrl: "https://flagcdn.com/w40/tn.png" },
-    { name: "Turkey", flag: "🇹🇷", flagUrl: "https://flagcdn.com/w40/tr.png" },
-    { name: "Turkmenistan", flag: "🇹🇲", flagUrl: "https://flagcdn.com/w40/tm.png" },
-    { name: "Tuvalu", flag: "🇹🇻", flagUrl: "https://flagcdn.com/w40/tv.png" },
-    { name: "Uganda", flag: "🇺🇬", flagUrl: "https://flagcdn.com/w40/ug.png" },
-    { name: "Ukraine", flag: "🇺🇦", flagUrl: "https://flagcdn.com/w40/ua.png" },
-    { name: "United Arab Emirates", flag: "🇦🇪", flagUrl: "https://flagcdn.com/w40/ae.png" },
-    { name: "United Kingdom", flag: "🇬🇧", flagUrl: "https://flagcdn.com/w40/gb.png" },
-    { name: "United States", flag: "🇺🇸", flagUrl: "https://flagcdn.com/w40/us.png" },
-    { name: "Uruguay", flag: "🇺🇾", flagUrl: "https://flagcdn.com/w40/uy.png" },
-    { name: "Uzbekistan", flag: "🇺🇿", flagUrl: "https://flagcdn.com/w40/uz.png" },
-    { name: "Vanuatu", flag: "🇻🇺", flagUrl: "https://flagcdn.com/w40/vu.png" },
-    { name: "Venezuela", flag: "🇻🇪", flagUrl: "https://flagcdn.com/w40/ve.png" },
-    { name: "Vietnam", flag: "🇻🇳", flagUrl: "https://flagcdn.com/w40/vn.png" },
-    { name: "Yemen", flag: "🇾🇪", flagUrl: "https://flagcdn.com/w40/ye.png" },
-    { name: "Zambia", flag: "🇿🇲", flagUrl: "https://flagcdn.com/w40/zm.png" },
-    { name: "Zimbabwe", flag: "🇿🇼", flagUrl: "https://flagcdn.com/w40/zw.png" }
-];
+            { name: "Afghanistan", flag: "🇦🇫", flagUrl: "https://flagcdn.com/af.svg" },
+            { name: "Albania", flag: "🇦🇱", flagUrl: "https://flagcdn.com/al.svg" },
+            { name: "Algeria", flag: "🇩🇿", flagUrl: "https://flagcdn.com/dz.svg" },
+            { name: "Andorra", flag: "🇦🇩", flagUrl: "https://flagcdn.com/ad.svg" },
+            { name: "Angola", flag: "🇦🇴", flagUrl: "https://flagcdn.com/ao.svg" },
+            { name: "Antigua and Barbuda", flag: "🇦🇬", flagUrl: "https://flagcdn.com/ag.svg" },
+            { name: "Argentina", flag: "🇦🇷", flagUrl: "https://flagcdn.com/ar.svg" },
+            { name: "Armenia", flag: "🇦🇲", flagUrl: "https://flagcdn.com/am.svg" },
+            { name: "Australia", flag: "🇦🇺", flagUrl: "https://flagcdn.com/au.svg" },
+            { name: "Austria", flag: "🇦🇹", flagUrl: "https://flagcdn.com/at.svg" },
+            { name: "Azerbaijan", flag: "🇦🇿", flagUrl: "https://flagcdn.com/az.svg" },
+            { name: "Bahamas", flag: "🇧🇸", flagUrl: "https://flagcdn.com/bs.svg" },
+            { name: "Bahrain", flag: "🇧🇭", flagUrl: "https://flagcdn.com/bh.svg" },
+            { name: "Bangladesh", flag: "🇧🇩", flagUrl: "https://flagcdn.com/bd.svg" },
+            { name: "Barbados", flag: "🇧🇧", flagUrl: "https://flagcdn.com/bb.svg" },
+            { name: "Belarus", flag: "🇧🇾", flagUrl: "https://flagcdn.com/by.svg" },
+            { name: "Belgium", flag: "🇧🇪", flagUrl: "https://flagcdn.com/be.svg" },
+            { name: "Belize", flag: "🇧🇿", flagUrl: "https://flagcdn.com/bz.svg" },
+            { name: "Benin", flag: "🇧🇯", flagUrl: "https://flagcdn.com/bj.svg" },
+            { name: "Bhutan", flag: "🇧🇹", flagUrl: "https://flagcdn.com/bt.svg" },
+            { name: "Bolivia", flag: "🇧🇴", flagUrl: "https://flagcdn.com/bo.svg" },
+            { name: "Bosnia and Herzegovina", flag: "🇧🇦", flagUrl: "https://flagcdn.com/ba.svg" },
+            { name: "Botswana", flag: "🇧🇼", flagUrl: "https://flagcdn.com/bw.svg" },
+            { name: "Brazil", flag: "🇧🇷", flagUrl: "https://flagcdn.com/br.svg" },
+            { name: "Brunei", flag: "🇧🇳", flagUrl: "https://flagcdn.com/bn.svg" },
+            { name: "Bulgaria", flag: "🇧🇬", flagUrl: "https://flagcdn.com/bg.svg" },
+            { name: "Burkina Faso", flag: "🇧🇫", flagUrl: "https://flagcdn.com/bf.svg" },
+            { name: "Burundi", flag: "🇧🇮", flagUrl: "https://flagcdn.com/bi.svg" },
+            { name: "Cabo Verde", flag: "🇨🇻", flagUrl: "https://flagcdn.com/cv.svg" },
+            { name: "Cambodia", flag: "🇰🇭", flagUrl: "https://flagcdn.com/kh.svg" },
+            { name: "Cameroon", flag: "🇨🇲", flagUrl: "https://flagcdn.com/cm.svg" },
+            { name: "Canada", flag: "🇨🇦", flagUrl: "https://flagcdn.com/ca.svg" },
+            { name: "Central African Republic", flag: "🇨🇫", flagUrl: "https://flagcdn.com/cf.svg" },
+            { name: "Chad", flag: "🇹🇩", flagUrl: "https://flagcdn.com/td.svg" },
+            { name: "Chile", flag: "🇨🇱", flagUrl: "https://flagcdn.com/cl.svg" },
+            { name: "China", flag: "🇨🇳", flagUrl: "https://flagcdn.com/cn.svg" },
+            { name: "Colombia", flag: "🇨🇴", flagUrl: "https://flagcdn.com/co.svg" },
+            { name: "Comoros", flag: "🇰🇲", flagUrl: "https://flagcdn.com/km.svg" },
+            { name: "Congo", flag: "🇨🇬", flagUrl: "https://flagcdn.com/cg.svg" },
+            { name: "Costa Rica", flag: "🇨🇷", flagUrl: "https://flagcdn.com/cr.svg" },
+            { name: "Côte d'Ivoire", flag: "🇨🇮", flagUrl: "https://flagcdn.com/ci.svg" },
+            { name: "Croatia", flag: "🇭🇷", flagUrl: "https://flagcdn.com/hr.svg" },
+            { name: "Cuba", flag: "🇨🇺", flagUrl: "https://flagcdn.com/cu.svg" },
+            { name: "Cyprus", flag: "🇨🇾", flagUrl: "https://flagcdn.com/cy.svg" },
+            { name: "Czech Republic", flag: "🇨🇿", flagUrl: "https://flagcdn.com/cz.svg" },
+            { name: "Democratic Republic of the Congo", flag: "🇨🇩", flagUrl: "https://flagcdn.com/cd.svg" },
+            { name: "Denmark", flag: "🇩🇰", flagUrl: "https://flagcdn.com/dk.svg" },
+            { name: "Djibouti", flag: "🇩🇯", flagUrl: "https://flagcdn.com/dj.svg" },
+            { name: "Dominica", flag: "🇩🇲", flagUrl: "https://flagcdn.com/dm.svg" },
+            { name: "Dominican Republic", flag: "🇩🇴", flagUrl: "https://flagcdn.com/do.svg" },
+            { name: "Ecuador", flag: "🇪🇨", flagUrl: "https://flagcdn.com/ec.svg" },
+            { name: "Egypt", flag: "🇪🇬", flagUrl: "https://flagcdn.com/eg.svg" },
+            { name: "El Salvador", flag: "🇸🇻", flagUrl: "https://flagcdn.com/sv.svg" },
+            { name: "Equatorial Guinea", flag: "🇬🇶", flagUrl: "https://flagcdn.com/gq.svg" },
+            { name: "Eritrea", flag: "🇪🇷", flagUrl: "https://flagcdn.com/er.svg" },
+            { name: "Estonia", flag: "🇪🇪", flagUrl: "https://flagcdn.com/ee.svg" },
+            { name: "Eswatini", flag: "🇸🇿", flagUrl: "https://flagcdn.com/sz.svg" },
+            { name: "Ethiopia", flag: "🇪🇹", flagUrl: "https://flagcdn.com/et.svg" },
+            { name: "Fiji", flag: "🇫🇯", flagUrl: "https://flagcdn.com/fj.svg" },
+            { name: "Finland", flag: "🇫🇮", flagUrl: "https://flagcdn.com/fi.svg" },
+            { name: "France", flag: "🇫🇷", flagUrl: "https://flagcdn.com/fr.svg" },
+            { name: "Gabon", flag: "🇬🇦", flagUrl: "https://flagcdn.com/ga.svg" },
+            { name: "Gambia", flag: "🇬🇲", flagUrl: "https://flagcdn.com/gm.svg" },
+            { name: "Georgia", flag: "🇬🇪", flagUrl: "https://flagcdn.com/ge.svg" },
+            { name: "Germany", flag: "🇩🇪", flagUrl: "https://flagcdn.com/de.svg" },
+            { name: "Ghana", flag: "🇬🇭", flagUrl: "https://flagcdn.com/gh.svg" },
+            { name: "Greece", flag: "🇬🇷", flagUrl: "https://flagcdn.com/gr.svg" },
+            { name: "Grenada", flag: "🇬🇩", flagUrl: "https://flagcdn.com/gd.svg" },
+            { name: "Guatemala", flag: "🇬🇹", flagUrl: "https://flagcdn.com/gt.svg" },
+            { name: "Guinea", flag: "🇬🇳", flagUrl: "https://flagcdn.com/gn.svg" },
+            { name: "Guinea-Bissau", flag: "🇬🇼", flagUrl: "https://flagcdn.com/gw.svg" },
+            { name: "Guyana", flag: "🇬🇾", flagUrl: "https://flagcdn.com/gy.svg" },
+            { name: "Haiti", flag: "🇭🇹", flagUrl: "https://flagcdn.com/ht.svg" },
+            { name: "Honduras", flag: "🇭🇳", flagUrl: "https://flagcdn.com/hn.svg" },
+            { name: "Hungary", flag: "🇭🇺", flagUrl: "https://flagcdn.com/hu.svg" },
+            { name: "Iceland", flag: "🇮🇸", flagUrl: "https://flagcdn.com/is.svg" },
+            { name: "India", flag: "🇮🇳", flagUrl: "https://flagcdn.com/in.svg" },
+            { name: "Indonesia", flag: "🇮🇩", flagUrl: "https://flagcdn.com/id.svg" },
+            { name: "Iran", flag: "🇮🇷", flagUrl: "https://flagcdn.com/ir.svg" },
+            { name: "Iraq", flag: "🇮🇶", flagUrl: "https://flagcdn.com/iq.svg" },
+            { name: "Ireland", flag: "🇮🇪", flagUrl: "https://flagcdn.com/ie.svg" },
+            { name: "Israel", flag: "🇮🇱", flagUrl: "https://flagcdn.com/il.svg" },
+            { name: "Italy", flag: "🇮🇹", flagUrl: "https://flagcdn.com/it.svg" },
+            { name: "Jamaica", flag: "🇯🇲", flagUrl: "https://flagcdn.com/jm.svg" },
+            { name: "Japan", flag: "🇯🇵", flagUrl: "https://flagcdn.com/jp.svg" },
+            { name: "Jordan", flag: "🇯🇴", flagUrl: "https://flagcdn.com/jo.svg" },
+            { name: "Kazakhstan", flag: "🇰🇿", flagUrl: "https://flagcdn.com/kz.svg" },
+            { name: "Kenya", flag: "🇰🇪", flagUrl: "https://flagcdn.com/ke.svg" },
+            { name: "Kiribati", flag: "🇰🇮", flagUrl: "https://flagcdn.com/ki.svg" },
+            { name: "Kuwait", flag: "🇰🇼", flagUrl: "https://flagcdn.com/kw.svg" },
+            { name: "Kyrgyzstan", flag: "🇰🇬", flagUrl: "https://flagcdn.com/kg.svg" },
+            { name: "Laos", flag: "🇱🇦", flagUrl: "https://flagcdn.com/la.svg" },
+            { name: "Latvia", flag: "🇱🇻", flagUrl: "https://flagcdn.com/lv.svg" },
+            { name: "Lebanon", flag: "🇱🇧", flagUrl: "https://flagcdn.com/lb.svg" },
+            { name: "Lesotho", flag: "🇱🇸", flagUrl: "https://flagcdn.com/ls.svg" },
+            { name: "Liberia", flag: "🇱🇷", flagUrl: "https://flagcdn.com/lr.svg" },
+            { name: "Libya", flag: "🇱🇾", flagUrl: "https://flagcdn.com/ly.svg" },
+            { name: "Liechtenstein", flag: "🇱🇮", flagUrl: "https://flagcdn.com/li.svg" },
+            { name: "Lithuania", flag: "🇱🇹", flagUrl: "https://flagcdn.com/lt.svg" },
+            { name: "Luxembourg", flag: "🇱🇺", flagUrl: "https://flagcdn.com/lu.svg" },
+            { name: "Madagascar", flag: "🇲🇬", flagUrl: "https://flagcdn.com/mg.svg" },
+            { name: "Malawi", flag: "🇲🇼", flagUrl: "https://flagcdn.com/mw.svg" },
+            { name: "Malaysia", flag: "🇲🇾", flagUrl: "https://flagcdn.com/my.svg" },
+            { name: "Maldives", flag: "🇲🇻", flagUrl: "https://flagcdn.com/mv.svg" },
+            { name: "Mali", flag: "🇲🇱", flagUrl: "https://flagcdn.com/ml.svg" },
+            { name: "Malta", flag: "🇲🇹", flagUrl: "https://flagcdn.com/mt.svg" },
+            { name: "Marshall Islands", flag: "🇲🇭", flagUrl: "https://flagcdn.com/mh.svg" },
+            { name: "Mauritania", flag: "🇲🇷", flagUrl: "https://flagcdn.com/mr.svg" },
+            { name: "Mauritius", flag: "🇲🇺", flagUrl: "https://flagcdn.com/mu.svg" },
+            { name: "Mexico", flag: "🇲🇽", flagUrl: "https://flagcdn.com/mx.svg" },
+            { name: "Micronesia", flag: "🇫🇲", flagUrl: "https://flagcdn.com/fm.svg" },
+            { name: "Moldova", flag: "🇲🇩", flagUrl: "https://flagcdn.com/md.svg" },
+            { name: "Monaco", flag: "🇲🇨", flagUrl: "https://flagcdn.com/mc.svg" },
+            { name: "Mongolia", flag: "🇲🇳", flagUrl: "https://flagcdn.com/mn.svg" },
+            { name: "Montenegro", flag: "🇲🇪", flagUrl: "https://flagcdn.com/me.svg" },
+            { name: "Morocco", flag: "🇲🇦", flagUrl: "https://flagcdn.com/ma.svg" },
+            { name: "Mozambique", flag: "🇲🇿", flagUrl: "https://flagcdn.com/mz.svg" },
+            { name: "Myanmar", flag: "🇲🇲", flagUrl: "https://flagcdn.com/mm.svg" },
+            { name: "Namibia", flag: "🇳🇦", flagUrl: "https://flagcdn.com/na.svg" },
+            { name: "Nauru", flag: "🇳🇷", flagUrl: "https://flagcdn.com/nr.svg" },
+            { name: "Nepal", flag: "🇳🇵", flagUrl: "https://flagcdn.com/np.svg" },
+            { name: "Netherlands", flag: "🇳🇱", flagUrl: "https://flagcdn.com/nl.svg" },
+            { name: "New Zealand", flag: "🇳🇿", flagUrl: "https://flagcdn.com/nz.svg" },
+            { name: "Nicaragua", flag: "🇳🇮", flagUrl: "https://flagcdn.com/ni.svg" },
+            { name: "Niger", flag: "🇳🇪", flagUrl: "https://flagcdn.com/ne.svg" },
+            { name: "Nigeria", flag: "🇳🇬", flagUrl: "https://flagcdn.com/ng.svg" },
+            { name: "North Korea", flag: "🇰🇵", flagUrl: "https://flagcdn.com/kp.svg" },
+            { name: "North Macedonia", flag: "🇲🇰", flagUrl: "https://flagcdn.com/mk.svg" },
+            { name: "Norway", flag: "🇳🇴", flagUrl: "https://flagcdn.com/no.svg" },
+            { name: "Oman", flag: "🇴🇲", flagUrl: "https://flagcdn.com/om.svg" },
+            { name: "Pakistan", flag: "🇵🇰", flagUrl: "https://flagcdn.com/pk.svg" },
+            { name: "Palau", flag: "🇵🇼", flagUrl: "https://flagcdn.com/pw.svg" },
+            { name: "Panama", flag: "🇵🇦", flagUrl: "https://flagcdn.com/pa.svg" },
+            { name: "Papua New Guinea", flag: "🇵🇬", flagUrl: "https://flagcdn.com/pg.svg" },
+            { name: "Paraguay", flag: "🇵🇾", flagUrl: "https://flagcdn.com/py.svg" },
+            { name: "Peru", flag: "🇵🇪", flagUrl: "https://flagcdn.com/pe.svg" },
+            { name: "Philippines", flag: "🇵🇭", flagUrl: "https://flagcdn.com/ph.svg" },
+            { name: "Poland", flag: "🇵🇱", flagUrl: "https://flagcdn.com/pl.svg" },
+            { name: "Portugal", flag: "🇵🇹", flagUrl: "https://flagcdn.com/pt.svg" },
+            { name: "Qatar", flag: "🇶🇦", flagUrl: "https://flagcdn.com/qa.svg" },
+            { name: "Romania", flag: "🇷🇴", flagUrl: "https://flagcdn.com/ro.svg" },
+            { name: "Russia", flag: "🇷🇺", flagUrl: "https://flagcdn.com/ru.svg" },
+            { name: "Rwanda", flag: "🇷🇼", flagUrl: "https://flagcdn.com/rw.svg" },
+            { name: "Saint Kitts and Nevis", flag: "🇰🇳", flagUrl: "https://flagcdn.com/kn.svg" },
+            { name: "Saint Lucia", flag: "🇱🇨", flagUrl: "https://flagcdn.com/lc.svg" },
+            { name: "Saint Vincent and the Grenadines", flag: "🇻🇨", flagUrl: "https://flagcdn.com/vc.svg" },
+            { name: "Samoa", flag: "🇼🇸", flagUrl: "https://flagcdn.com/ws.svg" },
+            { name: "San Marino", flag: "🇸🇲", flagUrl: "https://flagcdn.com/sm.svg" },
+            { name: "São Tomé and Príncipe", flag: "🇸🇹", flagUrl: "https://flagcdn.com/st.svg" },
+            { name: "Saudi Arabia", flag: "🇸🇦", flagUrl: "https://flagcdn.com/sa.svg" },
+            { name: "Senegal", flag: "🇸🇳", flagUrl: "https://flagcdn.com/sn.svg" },
+            { name: "Serbia", flag: "🇷🇸", flagUrl: "https://flagcdn.com/rs.svg" },
+            { name: "Seychelles", flag: "🇸🇨", flagUrl: "https://flagcdn.com/sc.svg" },
+            { name: "Sierra Leone", flag: "🇸🇱", flagUrl: "https://flagcdn.com/sl.svg" },
+            { name: "Singapore", flag: "🇸🇬", flagUrl: "https://flagcdn.com/sg.svg" },
+            { name: "Slovakia", flag: "🇸🇰", flagUrl: "https://flagcdn.com/sk.svg" },
+            { name: "Slovenia", flag: "🇸🇮", flagUrl: "https://flagcdn.com/si.svg" },
+            { name: "Solomon Islands", flag: "🇸🇧", flagUrl: "https://flagcdn.com/sb.svg" },
+            { name: "Somalia", flag: "🇸🇴", flagUrl: "https://flagcdn.com/so.svg" },
+            { name: "South Africa", flag: "🇿🇦", flagUrl: "https://flagcdn.com/za.svg" },
+            { name: "South Korea", flag: "🇰🇷", flagUrl: "https://flagcdn.com/kr.svg" },
+            { name: "South Sudan", flag: "🇸🇸", flagUrl: "https://flagcdn.com/ss.svg" },
+            { name: "Spain", flag: "🇪🇸", flagUrl: "https://flagcdn.com/es.svg" },
+            { name: "Sri Lanka", flag: "🇱🇰", flagUrl: "https://flagcdn.com/lk.svg" },
+            { name: "Sudan", flag: "🇸🇩", flagUrl: "https://flagcdn.com/sd.svg" },
+            { name: "Suriname", flag: "🇸🇷", flagUrl: "https://flagcdn.com/sr.svg" },
+            { name: "Sweden", flag: "🇸🇪", flagUrl: "https://flagcdn.com/se.svg" },
+            { name: "Switzerland", flag: "🇨🇭", flagUrl: "https://flagcdn.com/ch.svg" },
+            { name: "Syria", flag: "🇸🇾", flagUrl: "https://flagcdn.com/sy.svg" },
+            { name: "Tajikistan", flag: "🇹🇯", flagUrl: "https://flagcdn.com/tj.svg" },
+            { name: "Tanzania", flag: "🇹🇿", flagUrl: "https://flagcdn.com/tz.svg" },
+            { name: "Thailand", flag: "🇹🇭", flagUrl: "https://flagcdn.com/th.svg" },
+            { name: "Timor-Leste", flag: "🇹🇱", flagUrl: "https://flagcdn.com/tl.svg" },
+            { name: "Togo", flag: "🇹🇬", flagUrl: "https://flagcdn.com/tg.svg" },
+            { name: "Tonga", flag: "🇹🇴", flagUrl: "https://flagcdn.com/to.svg" },
+            { name: "Trinidad and Tobago", flag: "🇹🇹", flagUrl: "https://flagcdn.com/tt.svg" },
+            { name: "Tunisia", flag: "🇹🇳", flagUrl: "https://flagcdn.com/tn.svg" },
+            { name: "Turkey", flag: "🇹🇷", flagUrl: "https://flagcdn.com/tr.svg" },
+            { name: "Turkmenistan", flag: "🇹🇲", flagUrl: "https://flagcdn.com/tm.svg" },
+            { name: "Tuvalu", flag: "🇹🇻", flagUrl: "https://flagcdn.com/tv.svg" },
+            { name: "Uganda", flag: "🇺🇬", flagUrl: "https://flagcdn.com/ug.svg" },
+            { name: "Ukraine", flag: "🇺🇦", flagUrl: "https://flagcdn.com/ua.svg" },
+            { name: "United Arab Emirates", flag: "🇦🇪", flagUrl: "https://flagcdn.com/ae.svg" },
+            { name: "United Kingdom", flag: "🇬🇧", flagUrl: "https://flagcdn.com/gb.svg" },
+            { name: "United States", flag: "🇺🇸", flagUrl: "https://flagcdn.com/us.svg" },
+            { name: "Uruguay", flag: "🇺🇾", flagUrl: "https://flagcdn.com/uy.svg" },
+            { name: "Uzbekistan", flag: "🇺🇿", flagUrl: "https://flagcdn.com/uz.svg" },
+            { name: "Vanuatu", flag: "🇻🇺", flagUrl: "https://flagcdn.com/vu.svg" },
+            { name: "Venezuela", flag: "🇻🇪", flagUrl: "https://flagcdn.com/ve.svg" },
+            { name: "Vietnam", flag: "🇻🇳", flagUrl: "https://flagcdn.com/vn.svg" },
+            { name: "Yemen", flag: "🇾🇪", flagUrl: "https://flagcdn.com/ye.svg" },
+            { name: "Zambia", flag: "🇿🇲", flagUrl: "https://flagcdn.com/zm.svg" },
+            { name: "Zimbabwe", flag: "🇿🇼", flagUrl: "https://flagcdn.com/zw.svg" },
+            { name: "Holy See", flag: "🇻🇦", flagUrl: "https://flagcdn.com/va.svg" },
+            { name: "State of Palestine", flag: "🇵🇸", flagUrl: "https://flagcdn.com/ps.svg" }
+        ];
 
+// ==========================================
+// SMART FLAG LOOKUP FUNCTIONS (UPDATED)
+// ==========================================
 function getVisaFlagUrl(countryName) {
-    const country = visaCountries.find(c => c.name === countryName);
-    return country ? country.flagUrl : null;
+    if (!countryName) return null;
+    
+    // 1. Check for exact match
+    let country = visaCountries.find(c => c.name === countryName);
+    if (country) return country.flagUrl;
+    
+    // 2. Check if the country name contains the base name (e.g., "Spain (seasonal)" contains "Spain")
+    country = visaCountries.find(c => countryName.toLowerCase().includes(c.name.toLowerCase()));
+    if (country) return country.flagUrl;
+    
+    // 3. Check if the base name is contained within the country name (e.g., "Côte d'Ivoire" is inside "Côte d'Ivoire (eVisa)")
+    country = visaCountries.find(c => c.name.toLowerCase().includes(countryName.toLowerCase()));
+    if (country) return country.flagUrl;
+    
+    // 4. Fallback to null if no match found
+    return null;
 }
 
 function getVisaFlagEmoji(countryName) {
-    const country = visaCountries.find(c => c.name === countryName);
-    return country ? country.flag : '🌍';
+    if (!countryName) return '🌍';
+    
+    // 1. Check for exact match
+    let country = visaCountries.find(c => c.name === countryName);
+    if (country) return country.flag;
+    
+    // 2. Check if the country name contains the base name
+    country = visaCountries.find(c => countryName.toLowerCase().includes(c.name.toLowerCase()));
+    if (country) return country.flag;
+    
+    // 3. Check if the base name is contained within the country name
+    country = visaCountries.find(c => c.name.toLowerCase().includes(countryName.toLowerCase()));
+    if (country) return country.flag;
+    
+    // 4. Fallback to globe emoji
+    return '🌍';
 }
 
 let visaCards = [];
@@ -732,12 +765,13 @@ function renderVisaCards(data) {
     startVisaAutoSlide();
 }
 
+// UPDATED: createVisaDots() now limits to exactly 4 dots
 function createVisaDots() {
     const dotsContainer = document.getElementById('visa-slider-dots');
     if (!dotsContainer) return;
     dotsContainer.innerHTML = '';
     const visible = getVisaVisibleCount();
-    const totalSlides = Math.max(1, visaCards.length - visible + 1);
+    const totalSlides = Math.min(4, Math.max(1, visaCards.length - visible + 1));
 
     for (let i = 0; i < totalSlides; i++) {
         const dot = document.createElement('div');
@@ -753,7 +787,7 @@ function goToVisaSlide(index) {
     if (!track || !track.children.length) return;
 
     const visible = getVisaVisibleCount();
-    const totalSlides = Math.max(1, visaCards.length - visible + 1);
+    const totalSlides = Math.min(4, Math.max(1, visaCards.length - visible + 1));
     currentVisaIndex = Math.max(0, Math.min(index, totalSlides - 1));
 
     const offset = currentVisaIndex * getVisaCardWidth();
@@ -766,14 +800,14 @@ function goToVisaSlide(index) {
 
 function nextVisaSlide() {
     const visible = getVisaVisibleCount();
-    const totalSlides = Math.max(1, visaCards.length - visible + 1);
+    const totalSlides = Math.min(4, Math.max(1, visaCards.length - visible + 1));
     const next = (currentVisaIndex + 1) % totalSlides;
     goToVisaSlide(next);
 }
 
 function prevVisaSlide() {
     const visible = getVisaVisibleCount();
-    const totalSlides = Math.max(1, visaCards.length - visible + 1);
+    const totalSlides = Math.min(4, Math.max(1, visaCards.length - visible + 1));
     const prev = (currentVisaIndex - 1 + totalSlides) % totalSlides;
     goToVisaSlide(prev);
 }
