@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- ===== FAVICON ===== -->
-    <link class="icon" type="image/png" href="under45.png" />
+    <link class="icon" type="image/png" href="/under45.png" />
     <link rel="apple-touch-icon" href="/assets/logo.png" />
     <link rel="shortcut icon" href="/assets/logo.png" />
     
@@ -58,6 +58,10 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
 
         /* ===== NAVBAR ===== */
@@ -77,9 +81,10 @@
             border-bottom:1px solid rgba(255,255,255,0.06);
         }
         .navbar .logo img{ height:40px; width:auto; display:block; }
-        .nav-links{ display:flex; gap:2rem; list-style:none; align-items:center; }
+        .nav-links{ display:flex; gap:2rem; list-style:none; align-items:center; margin-left:auto; margin-right:1.5rem; }
         .nav-links a{ color:#fff; text-decoration:none; font-weight:500; font-size:.95rem; transition:.3s; }
         .nav-links a:hover{ color:#22c55e; }
+        .nav-links a.active{ color:#22c55e; }
         .has-dropdown{ position:relative; }
         .dropdown-trigger{ display:flex; align-items:center; gap:4px; cursor:pointer; }
         .arrow-down{ font-size:.75rem; transition:transform .3s ease; }
@@ -101,59 +106,6 @@
             font-weight:600; font-size:.9rem; transition:.3s;
         }
         .nav-btn:hover{ transform:translateY(-2px); background:#22c55e; }
-        
-        /* ===== AUTH SECTION IN NAVBAR (ADDED) ===== */
-        .nav-auth { display: flex; align-items: center; gap: 12px; }
-        .nav-auth .btn-signin {
-            color: rgba(255,255,255,0.7);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.85rem;
-            padding: 8px 16px;
-            border-radius: 999px;
-            border: 1px solid rgba(255,255,255,0.15);
-            transition: all 0.3s ease;
-        }
-        .nav-auth .btn-signin:hover {
-            background: rgba(255,255,255,0.08);
-            color: #fff;
-            border-color: rgba(255,255,255,0.3);
-        }
-        .nav-auth .user-avatar {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            text-decoration: none;
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        .nav-auth .user-avatar:hover {
-            border-color: #22c55e;
-        }
-        .nav-auth .user-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-        .nav-auth .user-avatar .avatar-initial {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            background: #16a34a;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 0.9rem;
-        }
-        .nav-btn.hidden { display: none; }
 
         .menu-toggle{ display:none; background:none; border:none; cursor:pointer; padding:4px; }
         .menu-toggle span{ display:block; width:26px; height:2.5px; background:#fff; margin:5px 0; border-radius:5px; transition:.3s; }
@@ -189,22 +141,6 @@
         .mobile-services-dropdown a:hover{ color:#22c55e; }
         .mobile-btn{ margin-top:10px; background:#16a34a; padding:14px 40px; text-align:center; border-radius:999px; color:#fff !important; font-weight:700 !important; border:none !important; font-size:1rem !important; width:auto; min-width:200px; }
         .mobile-btn:hover{ background:#22c55e; }
-        
-        /* ===== MOBILE AUTH SECTION (ADDED) ===== */
-        .mobile-auth-section { margin-top: 10px; width: 100%; text-align: center; }
-        .mobile-auth-section .mobile-signin {
-            color: rgba(255,255,255,0.7);
-            text-decoration: none;
-            font-size: 1rem;
-            padding: 12px 0;
-            display: block;
-            font-weight: 500;
-        }
-        .mobile-auth-section .mobile-signin:hover { color: #22c55e; }
-        .mobile-auth-section .mobile-avatar { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 12px 0; }
-        .mobile-auth-section .mobile-avatar img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; }
-        .mobile-auth-section .mobile-avatar .avatar-initial { width: 48px; height: 48px; border-radius: 50%; background: #16a34a; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.2rem; }
-        .mobile-auth-section .mobile-avatar .mobile-user-name { color: #fff; font-weight: 600; }
 
         /* ===== PAGE CONTAINER ===== */
         .container { max-width: 1280px; margin: 0 auto; padding: 120px 20px 40px; width: 100%; }
@@ -359,6 +295,10 @@
         .form-group input, .form-group select, .form-group textarea {
             width: 100%; padding: 12px 14px; border: 1px solid #cbd5e1; border-radius: 8px;
             font-size: 0.95rem; background: #f8fafc; transition: 0.2s; font-family: 'Inter', sans-serif;
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
         }
         .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
             outline: none; border-color: #16a34a; box-shadow: 0 0 0 3px rgba(22,163,74,0.1);
@@ -440,7 +380,7 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 992px) {
-            .nav-links, .nav-btn, .nav-auth { display: none; }
+            .nav-links, .nav-btn { display: none; }
             .menu-toggle { display: block; }
             .loan-layout { grid-template-columns: 1fr; min-height: auto; }
             .details-area { position: static; height: auto; }
@@ -456,61 +396,59 @@
 </head>
 <body>
 
-    <!-- ===== NAVBAR ===== -->
+    <!-- ========================================================== -->
+    <!-- =================== NAVIGATION (STANDARD) ================= -->
+    <!-- ========================================================== -->
     <nav class="navbar" id="navbar">
-        <a href="/" class="logo"><img src="/assets/logo.png" alt="GeepChris Bridge"></a>
+        <a href="/" class="logo" data-no-hover-preview>
+            <img src="/assets/logo.png" alt="GeepChris Bridge">
+        </a>
+
         <ul class="nav-links">
-            <li><a href="/index.html">Home</a></li>
+            <li><a href="/" data-no-hover-preview>Home</a></li>
             <li class="has-dropdown">
-                <a href="/services/travel" class="dropdown-trigger">Services <span class="arrow-down">▾</span></a>
+                <a href="#services" class="dropdown-trigger" data-no-hover-preview>Services <span class="arrow-down">▾</span></a>
                 <div class="dropdown-menu">
-                    <a href="/services/moniepoint.html">Moniepoint Financial Services</a>
-                    <a href="/services/travel.html">Travel & Global Mobility</a>
-                    <a href="/services/business-registration.html">Business Registration</a>
-                    <a href="/services/web-development.html">Web Development</a>
-                    <a href="/services/nin.html">NIN Services</a>
-                    <a href="/services/bvn.html">BVN Services</a>
+                    <a href="/services/moniepoint.html" data-no-hover-preview>Moniepoint Financial Services</a>
+                    <a href="/services/travel.html" data-no-hover-preview>Travel & Global Mobility</a>
+                    <a href="/services/business-registration.html" data-no-hover-preview>Business Registration</a>
+                    <a href="/services/web-development.html" data-no-hover-preview>Web Development</a>
                 </div>
             </li>
-           <li><a href="/about-us.html">About</a></li>
-            <li><a href="/faq.html">FAQs</a></li>
-            <li><a href="/contact.html">Contact</a></li>
-        </ul>
-        <a href="/contact.html" class="nav-btn" id="navBtn">Get Started</a>
-        
-        <!-- ===== AUTH SECTION (ADDED) ===== -->
-        <div class="nav-auth" id="navAuth">
-            <!-- Dynamically populated by auth script -->
-        </div>
-        
-        <button class="menu-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+            <li><a href="/about-us.html" data-no-hover-preview>About</a></li>
+            <li><a href="/faq.html" data-no-hover-preview>FAQs</a></li>
+            <li><a href="/contact.html" data-no-hover-preview>Contact</a></li>
+          <li><a href="/blog.html">Blog</a></li>
+</ul>
+
+        <a href="/contact.html" class="nav-btn" data-no-hover-preview>Get Started</a>
+
+        <button class="menu-toggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
     </nav>
 
-    <!-- ===== MOBILE MENU ===== -->
+    <!-- ========================================================== -->
+    <!-- =================== MOBILE MENU ========================== -->
+    <!-- ========================================================== -->
     <div class="mobile-menu">
-        <button class="mobile-menu-close" aria-label="Close menu"><span></span><span></span></button>
-        <a href="/">Home</a>
+        <button class="mobile-menu-close" aria-label="Close menu">
+            <span></span><span></span>
+        </button>
+        <a href="/" data-no-hover-preview>Home</a>
         <div class="mobile-services-group">
             <button class="mobile-services-toggle">Services <span>▾</span></button>
             <div class="mobile-services-dropdown">
-                <a href="/services/moniepoint.html">Moniepoint Financial Services</a>
-                <a href="/services/travel.html">Travel & Global Mobility</a>
-                <a href="/services/business-registration.html">Business Registration</a>
-                <a href="/services/web-development.html">Web Development</a>
-                <a href="/services/nin.html">NIN Services</a>
-                <a href="/services/bvn.html">BVN Services</a>
+                <a href="/services/moniepoint.html" data-no-hover-preview>Moniepoint Financial Services</a>
+                <a href="/services/travel.html" data-no-hover-preview>Travel & Global Mobility</a>
+                <a href="/services/business-registration.html" data-no-hover-preview>Business Registration</a>
+                <a href="/services/web-development.html" data-no-hover-preview>Web Development</a>
             </div>
         </div>
-        <a href="/about-us.html">About</a>
-        <a href="/faq.html">FAQs</a>
-        <a href="/contact.html">Contact</a>
-        <a href="/contact.html" class="mobile-btn">Get Started</a>
-        
-        
-        <!-- ===== MOBILE AUTH SECTION (ADDED) ===== -->
-        <div class="mobile-auth-section" id="mobileAuth">
-            <!-- Dynamically populated by auth script -->
-        </div>
+        <a href="/about-us.html" data-no-hover-preview>About</a>
+        <a href="/faq.html" data-no-hover-preview>FAQs</a>
+        <a href="/contact.html" data-no-hover-preview>Contact</a>
+        <a href="/contact.html" class="mobile-btn" data-no-hover-preview>Get Started</a>
     </div>
 
     <!-- ===== LOAN PAGE CONTENT ===== -->
@@ -553,9 +491,9 @@
                         <input type="checkbox" id="acceptTerms" required>
                         <label for="acceptTerms" class="acceptance-text">
                             I have read and agree to the 
-                            <a href="/privacy.html" target="_blank">Privacy Policy</a> 
+                            <a href="/privacy.html" target="_blank" data-no-hover-preview>Privacy Policy</a> 
                             and 
-                            <a href="/terms.html" target="_blank">Terms of Service</a>
+                            <a href="/terms.html" target="_blank" data-no-hover-preview>Terms of Service</a>
                             <span class="required">*</span>
                         </label>
                     </div>
@@ -566,46 +504,151 @@
         </div>
     </div>
 
-    <!-- ===== FOOTER ===== -->
+    <!-- ========================================================== -->
+    <!-- =================== FOOTER (STANDARD) ==================== -->
+    <!-- ========================================================== -->
     <footer class="footer" style="background:#020617; padding:50px 0 20px; border-top:1px solid rgba(255,255,255,0.08);">
         <div class="container" style="max-width:1280px; margin:0 auto; padding:0 20px;">
             <div class="footer-grid" style="display:grid; grid-template-columns:1.8fr 1fr 1fr 1.3fr; gap:40px; padding-bottom:40px;">
                 <div class="footer-col footer-brand">
-                    <div class="footer-logo" style="margin-bottom:18px;"><img src="/assets/logo.png" alt="GeepChris Bridge" style="height:45px; width:auto; display:block;"></div>
+                    <div class="footer-logo" style="margin-bottom:18px;">
+                        <img src="/assets/logo.png" alt="GeepChris Bridge" style="height:45px; width:auto; display:block;">
+                    </div>
                     <p style="font-size:.88rem; line-height:1.7; color:rgba(255,255,255,.6); margin-bottom:24px; max-width:300px;">GeepChris Bridge Enterprise simplifies essential business, financial, identity, and travel processes.</p>
+                    <div class="footer-socials" style="display:flex; gap:12px;">
+                        <a href="#" aria-label="Facebook" data-no-hover-preview><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+                        <a href="#" aria-label="Instagram" data-no-hover-preview><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+                        <a href="#" aria-label="Twitter / X" data-no-hover-preview><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                        <a href="#" aria-label="WhatsApp" data-no-hover-preview><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></a>
+                    </div>
                 </div>
-                <div class="footer-col"><h4 style="font-size:.85rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#fff; margin-bottom:20px;">Quick Links</h4>
+                <div class="footer-col">
+                    <h4 style="font-size:.85rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#fff; margin-bottom:20px;">Quick Links</h4>
                     <ul style="list-style:none; display:flex; flex-direction:column; gap:10px;">
-                        <li><a href="/index.html" style="font-size:.85rem; color:rgba(255,255,255,.6); text-decoration:none;">Home</a></li>
-                        <li><a href="/services/travel.html" style="font-size:.85rem; color:rgba(255,255,255,.6); text-decoration:none;">Services</a></li>
-                        <li><a href="/about-us.html" style="font-size:.85rem; color:rgba(255,255,255,.6); text-decoration:none;">About Us</a></li>
-                        <li><a href="/faq.html" style="font-size:.85rem; color:rgba(255,255,255,.6); text-decoration:none;">FAQs</a></li>
-                        <li><a href="/contact.html" style="font-size:.85rem; color:rgba(255,255,255,.6); text-decoration:none;">Contact</a></li>
+                        <li><a href="/" style="font-size:.85rem; color:rgba(255,255,255,.6); text-decoration:none;" data-no-hover-preview>Home</a></li>
+                        <li><a href="/services.html" style="font-size:.85rem; color:rgba(255,255,255,.6); text-decoration:none;" data-no-hover-preview>Services</a></li>
+                        <li><a href="/about-us.html" style="font-size:.85rem; color:rgba(255,255,255,.6); text-decoration:none;" data-no-hover-preview>About Us</a></li>
+                        <li><a href="/faq.html" style="font-size:.85rem; color:rgba(255,255,255,.6); text-decoration:none;" data-no-hover-preview>FAQs</a></li>
+                        <li><a href="/contact.html" style="font-size:.85rem; color:rgba(255,255,255,.6); text-decoration:none;" data-no-hover-preview>Contact</a></li>
                     </ul>
                 </div>
-                <div class="footer-col"><h4 style="font-size:.85rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#fff; margin-bottom:20px;">Our Services</h4>
+                <div class="footer-col">
+                    <h4 style="font-size:.85rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#fff; margin-bottom:20px;">Our Services</h4>
                     <ul style="list-style:none; display:flex; flex-direction:column; gap:10px;">
-                        <li><a href="/services/moniepoint.html" style="font-size:.85rem; color:rgba(255,255,255,.6); text-decoration:none;">Moniepoint</a></li>
-                        <li><a href="/services/travel.html" style="font-size:.85rem; color:rgba(255,255,255,.6); text-decoration:none;">Travel & Mobility</a></li>
-                        <li><a href="/services/business-registration.html" style="font-size:.85rem; color:rgba(255,255,255,.6); text-decoration:none;">Business Registration</a></li>
+                        <li><a href="/services/moniepoint.html" style="font-size:.85rem; color:rgba(255,255,255,.6); text-decoration:none;" data-no-hover-preview>Moniepoint</a></li>
+                        <li><a href="/services/travel.html" style="font-size:.85rem; color:rgba(255,255,255,.6); text-decoration:none;" data-no-hover-preview>Travel & Mobility</a></li>
+                        <li><a href="/services/business-registration.html" style="font-size:.85rem; color:rgba(255,255,255,.6); text-decoration:none;" data-no-hover-preview>Business Registration</a></li>
                     </ul>
                 </div>
-                <div class="footer-col"><h4 style="font-size:.85rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#fff; margin-bottom:20px;">Contact Us</h4>
+                <div class="footer-col">
+                    <h4 style="font-size:.85rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#fff; margin-bottom:20px;">Contact Us</h4>
                     <ul class="footer-contact" style="display:flex; flex-direction:column; gap:12px !important; list-style:none;">
-                        <li style="display:flex; align-items:flex-start; gap:10px;"><span>+2347061507103, +2347051299684</span></li>
-                        <li style="display:flex; align-items:flex-start; gap:10px;"><span>geepchrisb@gmail.com</span></li>
-                        <li style="display:flex; align-items:flex-start; gap:10px;"><span>15 college road opposite 2nd Gate college of Education Abata Nsugbe</span></li>
-                        <li style="display:flex; align-items:flex-start; gap:10px;"><span>Mon – Sat: 8am – 6pm</span></li>
+                        <li style="display:flex; align-items:flex-start; gap:10px;"><span style="color:rgba(255,255,255,0.6); font-size:.85rem;">+2347061507103, +2347051299684</span></li>
+                        <li style="display:flex; align-items:flex-start; gap:10px;"><span style="color:rgba(255,255,255,0.6); font-size:.85rem;">geepchrisb@gmail.com</span></li>
+                        <li style="display:flex; align-items:flex-start; gap:10px;"><span style="color:rgba(255,255,255,0.6); font-size:.85rem;">15 college road opposite 2nd Gate college of Education Abata Nsugbe</span></li>
+                        <li style="display:flex; align-items:flex-start; gap:10px;"><span style="color:rgba(255,255,255,0.6); font-size:.85rem;">Mon – Sat: 8am – 6pm</span></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom" style="border-top:1px solid rgba(255,255,255,0.08); padding:20px 0; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;">
                 <p style="font-size:.8rem; color:rgba(255,255,255,.4);">© 2026 GeepChris Bridge Enterprise. All Rights Reserved.</p>
+                <div class="footer-bottom-links" style="display:flex; gap:24px;">
+                    <a href="/privacy.html" style="font-size:.8rem; color:rgba(255,255,255,.4); text-decoration:none;" data-no-hover-preview>Privacy Policy</a>
+                    <a href="/terms.html" style="font-size:.8rem; color:rgba(255,255,255,.4); text-decoration:none;" data-no-hover-preview>Terms of Service</a>
+                </div>
             </div>
         </div>
     </footer>
 
+    <!-- ============================================ -->
+    <!-- SECURITY: BLOCK RIGHT-CLICK & KEYBOARD SHORTCUTS -->
+    <!-- ============================================ -->
     <script>
+        // ============================================
+        // BLOCK RIGHT-CLICK CONTEXT MENU
+        // ============================================
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        // ============================================
+        // BLOCK KEYBOARD SHORTCUTS (F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U, Ctrl+S)
+        // ============================================
+        document.addEventListener('keydown', function(e) {
+            // Block F12
+            if (e.key === 'F12' || e.keyCode === 123) {
+                e.preventDefault();
+                return false;
+            }
+
+            // Block Ctrl+Shift+I (Inspect)
+            if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.keyCode === 73)) {
+                e.preventDefault();
+                return false;
+            }
+
+            // Block Ctrl+Shift+J (Console)
+            if (e.ctrlKey && e.shiftKey && (e.key === 'J' || e.key === 'j' || e.keyCode === 74)) {
+                e.preventDefault();
+                return false;
+            }
+
+            // Block Ctrl+U (View Source)
+            if (e.ctrlKey && (e.key === 'U' || e.key === 'u' || e.keyCode === 85)) {
+                e.preventDefault();
+                return false;
+            }
+
+            // Block Ctrl+S (Save Page)
+            if (e.ctrlKey && (e.key === 'S' || e.key === 's' || e.keyCode === 83)) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        // ============================================
+        // DISABLE URL TOOLTIPS ON HOVER (Status Bar)
+        // ============================================
+        // Remove all title attributes from links and buttons
+        document.querySelectorAll('a, button, [role="button"]').forEach(function(el) {
+            if (el.hasAttribute('title')) {
+                el.removeAttribute('title');
+            }
+        });
+
+        // Prevent URL from showing in status bar
+        document.addEventListener('mouseover', function(e) {
+            var target = e.target;
+            while (target && target !== document) {
+                if (target.tagName === 'A' || target.tagName === 'BUTTON') {
+                    window.status = '';
+                    return false;
+                }
+                target = target.parentElement;
+            }
+        }, true);
+
+        // Also handle on mousemove for extra protection
+        document.addEventListener('mousemove', function(e) {
+            window.status = '';
+        });
+
+        // Override the default status bar behavior
+        if (window.status) {
+            window.status = '';
+        }
+
+        // Prevent any default link behavior that might show URL
+        document.querySelectorAll('a').forEach(function(link) {
+            link.addEventListener('mouseenter', function(e) {
+                window.status = '';
+            });
+            link.addEventListener('focus', function(e) {
+                window.status = '';
+            });
+        });
+
         // ==========================================
         // FIREBASE CONFIGURATION
         // ==========================================
@@ -631,86 +674,8 @@
         const CLOUDINARY_UPLOAD_PRESET = 'geepchris';
 
         // ==========================================
-        // AUTH GUARD — THIS PAGE REQUIRES LOGIN
+        // NO AUTH GUARD - PAGE CONTENT VISIBLE TO ALL USERS
         // ==========================================
-        const currentUrl = window.location.pathname + window.location.search;
-
-        auth.onAuthStateChanged(async (user) => {
-            // ===== UPDATE NAVBAR AUTH =====
-            const navAuth = document.getElementById('navAuth');
-            const mobileAuth = document.getElementById('mobileAuth');
-            const navBtn = document.getElementById('navBtn');
-
-            if (user) {
-                // User is logged in - fetch user data
-                try {
-                    const userDoc = await db.collection('users').doc(user.uid).get();
-                    const userData = userDoc.exists ? userDoc.data() : null;
-                    const displayName = userData?.fullName || userData?.firstName || user.email || 'User';
-                    const initial = displayName.charAt(0).toUpperCase();
-                    const photoURL = userData?.photoURL || null;
-
-                    // Desktop navbar
-                    navAuth.innerHTML = `
-                        <a href="/dashboard.html" class="user-avatar" title="${displayName}">
-                            ${photoURL 
-                                ? `<img src="${photoURL}" alt="${displayName}">` 
-                                : `<span class="avatar-initial">${initial}</span>`
-                            }
-                        </a>
-                    `;
-
-                    // Mobile menu
-                    mobileAuth.innerHTML = `
-                        <a href="/dashboard.html" class="mobile-avatar" style="display:flex; align-items:center; gap:12px; text-decoration:none;">
-                            ${photoURL 
-                                ? `<img src="${photoURL}" alt="${displayName}">` 
-                                : `<span class="avatar-initial">${initial}</span>`
-                            }
-                            <span class="mobile-user-name">${displayName}</span>
-                        </a>
-                    `;
-
-                    // Hide Get Started button (since user is logged in)
-                    if (navBtn) navBtn.style.display = 'none';
-
-                } catch (error) {
-                    console.error('Error fetching user data:', error);
-                    // Show default avatar with email initial
-                    const initial = (user.email || 'U').charAt(0).toUpperCase();
-                    navAuth.innerHTML = `
-                        <a href="/dashboard.html" class="user-avatar">
-                            <span class="avatar-initial">${initial}</span>
-                        </a>
-                    `;
-                    mobileAuth.innerHTML = `
-                        <a href="/dashboard.html" class="mobile-avatar" style="display:flex; align-items:center; gap:12px; text-decoration:none;">
-                            <span class="avatar-initial">${initial}</span>
-                            <span class="mobile-user-name">${user.email || 'User'}</span>
-                        </a>
-                    `;
-                    if (navBtn) navBtn.style.display = 'none';
-                }
-
-                // ===== PAGE IS PROTECTED — USER IS LOGGED IN, ALLOW ACCESS =====
-
-            } else {
-                // ===== USER IS NOT LOGGED IN =====
-                // Show sign-in button in navbar
-                navAuth.innerHTML = `
-                    <a href="/auth.html?redirect=${encodeURIComponent(currentUrl)}" class="btn-signin">Sign In</a>
-                `;
-                mobileAuth.innerHTML = `
-                    <a href="/auth.html?redirect=${encodeURIComponent(currentUrl)}" class="mobile-signin">Sign In</a>
-                `;
-
-                // Show Get Started button
-                if (navBtn) navBtn.style.display = 'inline-block';
-
-                // ===== REDIRECT TO AUTH PAGE =====
-                window.location.href = `/auth.html?redirect=${encodeURIComponent(currentUrl)}`;
-            }
-        });
 
         // ==========================================
         // NAVBAR SCRIPTS (original)
@@ -763,6 +728,7 @@
                 renderForm(formData.fields || []);
             } catch (e) {
                 console.error("Error loading form:", e);
+                document.getElementById('formFieldsContainer').innerHTML = '<p>Unable to load form. Please refresh the page or contact support.</p>';
             }
         }
 
@@ -905,7 +871,7 @@
         }
 
         // ==========================================
-        // SUBMIT FORM — WITH CLIENT UID TRACKING
+        // SUBMIT FORM
         // ==========================================
         document.getElementById('applicationForm').addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -958,7 +924,6 @@
             submittedData.termsAccepted = true;
             submittedData.termsAcceptedAt = new Date().toISOString();
 
-            // Upload files
             for (const item of filePromises) {
                 try {
                     const url = await uploadFile(item.file);
@@ -971,25 +936,14 @@
                 }
             }
 
-            // ===== GET CURRENT USER FOR CLIENT TRACKING =====
-            const currentUser = auth.currentUser;
-
-            const applicationData = {
-                service: 'Moniepoint Business Loan',
-                serviceName: 'Moniepoint Business Loan',
-                submittedData: submittedData,
-                status: 'new',
-                createdAt: firebase.firestore.FieldValue.serverTimestamp()
-            };
-
-            // ===== ADD CLIENT UID AND EMAIL FOR TRACKING =====
-            if (currentUser) {
-                applicationData.clientUid = currentUser.uid;
-                applicationData.clientEmail = currentUser.email;
-            }
-
             try {
-                await db.collection('loan-applications').add(applicationData);
+                await db.collection('loan-applications').add({
+                    service: 'Moniepoint Business Loan',
+                    serviceName: 'Moniepoint Business Loan',
+                    submittedData: submittedData,
+                    status: 'new',
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
                 window.location.href = '/thanks.html';
             } catch (e) {
                 alert('There was an error submitting. Please try again.');
