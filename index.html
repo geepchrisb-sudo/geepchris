@@ -104,140 +104,190 @@
 </head>
 <body>
 
-    <!-- =================== HERO =================== -->
-    <section class="hero" id="home">
+    <!-- ========================================================== -->
+    <!-- =================== NAVIGATION (STANDARD) ================= -->
+    <!-- ========================================================== -->
+    <nav class="navbar" id="navbar">
+        <a href="/" class="logo" data-no-hover-preview>
+            <img src="/assets/logo.png" alt="GeepChris Bridge" loading="lazy" decoding="async">
+        </a>
 
-        <div class="hero-slideshow">
-            <!-- ====== PRELOAD FIRST SLIDE (Critical) ====== -->
-            <link rel="preload" as="image" href="/assets/slide1.webp" fetchpriority="high">
+        <ul class="nav-links">
+            <li><a href="/" data-no-hover-preview>Home</a></li>
+            <li><a href="/about-us.html" data-no-hover-preview>About</a></li>
+            <li><a href="/blog.html" data-no-hover-preview>Blog</a></li>
+            <li><a href="/contact.html" data-no-hover-preview>Contact</a></li>
+        </ul>
 
-            <!-- ====== SLIDE 1 ====== -->
-            <picture>
-                <source media="(max-width: 768px)" srcset="/assets/mobile1.webp" type="image/webp">
-                <img src="/assets/slide1.webp" class="hero-slide active" data-index="0" alt="Business and financial services at GeepChris Bridge" loading="eager" fetchpriority="high" decoding="async" width="1920" height="1080">
-            </picture>
+        <a href="/contact.html" class="nav-btn" data-no-hover-preview>Get Started</a>
 
-            <!-- ====== SLIDE 2 ====== -->
-            <picture>
-                <source media="(max-width: 768px)" srcset="/assets/mobile2.webp" type="image/webp">
-                <img src="/assets/slide2.webp" class="hero-slide" data-index="1" alt="Moniepoint financial services for Nigerian businesses" loading="lazy" decoding="async" width="1920" height="1080">
-            </picture>
+        <button class="menu-toggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
 
-            <!-- ====== SLIDE 3 ====== -->
-            <picture>
-                <source media="(max-width: 768px)" srcset="/assets/mobile3.webp" type="image/webp">
-                <img src="/assets/slide3.webp" class="hero-slide" data-index="2" alt="Travel and global mobility services - visa and passport assistance" loading="lazy" decoding="async" width="1920" height="1080">
-            </picture>
+    <!-- ========================================================== -->
+    <!-- =================== MOBILE MENU ========================== -->
+    <!-- ========================================================== -->
+    <div class="mobile-menu">
+        <button class="mobile-menu-close" aria-label="Close menu">
+            <span></span><span></span>
+        </button>
+        <a href="/" data-no-hover-preview>Home</a>
+        <a href="/about-us.html" data-no-hover-preview>About</a>
+        <a href="/blog.html" data-no-hover-preview>Blog</a>
+        <a href="/contact.html" data-no-hover-preview>Contact</a>
+        <a href="/contact.html" class="mobile-btn" data-no-hover-preview>Get Started</a>
+    </div>
 
-            <!-- ====== SLIDE 4 ====== -->
-            <picture>
-                <source media="(max-width: 768px)" srcset="/assets/mobile4.webp" type="image/webp">
-                <img src="/assets/slide4.webp" class="hero-slide" data-index="3" alt="Business registration services - CAC and company incorporation" loading="lazy" decoding="async" width="1920" height="1080">
-            </picture>
+    <!-- =================== NEW HERO SLIDER =================== -->
+    <section class="hero-slider-section">
 
-            <!-- ====== SLIDE 5 ====== -->
-            <picture>
-                <source media="(max-width: 768px)" srcset="/assets/mobile5.webp" type="image/webp">
-                <img src="/assets/slide5.webp" class="hero-slide" data-index="4" alt="Corporate account opening and business banking services" loading="lazy" decoding="async" width="1920" height="1080">
-            </picture>
+        <!-- Slide 1 Container - Visa Processing -->
+        <div class="hero-slide active" data-slide="1">
 
-            <!-- ====== SLIDE 6 ====== -->
-            <picture>
-                <source media="(max-width: 768px)" srcset="/assets/mobile6.webp" type="image/webp">
-                <img src="/assets/slide6.webp" class="hero-slide" data-index="5" alt="Web development and digital solutions for businesses" loading="lazy" decoding="async" width="1920" height="1080">
-            </picture>
+            <!-- Cloud Background Asset Layer -->
+            <div class="cloud-bg-layer" style="background-image: url('/assets/cloud.jpg');"></div>
+            
+            <!-- Slide-specific overlay -->
+            <div class="slide-overlay slide-overlay-1"></div>
+
+            <!-- Center Flight Plane Layer -->
+            <div class="plane-hero-wrapper" id="planeHeroWrapper">
+                <img src="/assets/plane-hero.png" alt="GeepChris Bridge Flight" class="hero-plane-asset">
+            </div>
+
+            <!-- Content Overlay Layer -->
+            <div class="hero-content-container">
+                <h1 class="slide-in-left">
+                    Travel the World<br>Without the Stress.
+                </h1>
+                <p class="slide-in-right">
+                    Professional visa processing for study, work, business, and tourist travel—handled with speed and accuracy.
+                </p>
+                <div class="cta-wrapper">
+                    <a href="/services/travel/visa.html" class="cta-btn">Apply for a Visa</a>
+                    <a href="https://wa.me/2347051299684?text=Hello%20GeepChris%20Bridge%2C%20I%20visited%20your%20website%20and%20I'm%20interested%20in%20your%20Visa%20Processing%20services.%20I%20would%20like%20to%20speak%20with%20an%20advisor%20to%20get%20started." class="cta-btn cta-secondary" target="_blank">Talk to an Advisor</a>
+                </div>
+            </div>
+
         </div>
-        <div class="hero-overlay"></div>
-        <div class="aircraft">✈</div>
 
-        <div class="hero-container">
+        <!-- Slide 2 Container - Flight Booking -->
+        <div class="hero-slide" data-slide="2">
 
-            <!-- ========================================================== -->
-            <!-- =================== NAVIGATION (STANDARD) ================= -->
-            <!-- ========================================================== -->
-            <nav class="navbar" id="navbar">
-                <a href="/" class="logo" data-no-hover-preview>
-                    <img src="/assets/logo.png" alt="GeepChris Bridge" loading="lazy" decoding="async">
-                </a>
+            <!-- Flight Hero Asset Layer -->
+            <div class="flight-hero-wrapper">
+                <img src="/assets/flight-hero.jpg" alt="Flight View" class="flight-hero-asset">
+            </div>
+            
+            <!-- Slide-specific overlay -->
+            <div class="slide-overlay slide-overlay-2"></div>
 
-                <ul class="nav-links">
-                    <li><a href="/" data-no-hover-preview>Home</a></li>
-                    <li class="has-dropdown">
-                        <a href="#services" class="dropdown-trigger" data-no-hover-preview>Services <span class="arrow-down">▾</span></a>
-                        <div class="dropdown-menu">
-                            <a href="/services/moniepoint.html" data-no-hover-preview>Moniepoint Financial Services</a>
-                            <a href="/services/travel.html" data-no-hover-preview>Travel & Global Mobility</a>
-                            <a href="/services/business-registration.html" data-no-hover-preview>Business Registration</a>
-                            <a href="/services/travel/visa.html" data-no-hover-preview>Visa Countries</a>
-                        </div>
-                    </li>
-                    <li><a href="/about-us.html" data-no-hover-preview>About</a></li>
-                    <li><a href="/blog.html" data-no-hover-preview>Blog</a></li>
-                    <li><a href="/faq.html" data-no-hover-preview>FAQs</a></li>
-                    <li><a href="/contact.html" data-no-hover-preview>Contact</a></li>
-                    <li>
-                        <button class="theme-toggle-nav" id="themeToggleNav" aria-label="Toggle dark mode">
-                            <span class="theme-icon sun"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></span>
-                            <span class="theme-icon moon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
-                        </button>
-                    </li>
-                </ul>
+            <!-- Content Overlay Layer -->
+            <div class="hero-content-container">
+                <h1 class="slide-in-left">
+                    Book Flights<br>With Ease.
+                </h1>
+                <p class="slide-in-right">
+                    Find affordable local and international flights with reliable booking support from start to finish.
+                </p>
+                <div class="cta-wrapper">
+                    <a href="https://flights.geepchris.com" class="cta-btn">Book a Flight</a>
+                    <a href="https://wa.me/2347051299684?text=Hello%20GeepChris%20Bridge%2C%20I%20visited%20your%20website%20and%20I'm%20interested%20in%20your%20Flight%20Booking%20services.%20I%20would%20like%20to%20speak%20with%20an%20advisor%20to%20get%20started." class="cta-btn cta-secondary" target="_blank">Talk to an Advisor</a>
+                </div>
+            </div>
 
-                <a href="/contact.html" class="nav-btn" data-no-hover-preview>Get Started</a>
+        </div>
 
-                <button class="menu-toggle" aria-label="Toggle menu">
-                    <span></span><span></span><span></span>
-                </button>
-            </nav>
+        <!-- Slide 3 Container - CAC Registration -->
+        <div class="hero-slide slide-split" data-slide="3">
 
-            <!-- ========================================================== -->
-            <!-- =================== MOBILE MENU ========================== -->
-            <!-- ========================================================== -->
-            <div class="mobile-menu">
-                <button class="mobile-menu-close" aria-label="Close menu">
-                    <span></span><span></span>
-                </button>
-                <a href="/" data-no-hover-preview>Home</a>
-                <div class="mobile-services-group">
-                    <button class="mobile-services-toggle">Services <span>▾</span></button>
-                    <div class="mobile-services-dropdown">
-                        <a href="/services/moniepoint.html" data-no-hover-preview>Moniepoint Financial Services</a>
-                        <a href="/services/travel.html" data-no-hover-preview>Travel & Global Mobility</a>
-                        <a href="/services/business-registration.html" data-no-hover-preview>Business Registration</a>
-                        <a href="/services/travel/visa.html" data-no-hover-preview>Visa Countries</a>
+            <!-- Faint Slide4 Background Layer -->
+            <div class="slide4-bg-layer" style="background-image: url('/assets/slide4.webp');"></div>
+            
+            <!-- Slide-specific overlay -->
+            <div class="slide-overlay slide-overlay-3"></div>
+
+            <!-- Split Grid Overlay Layer -->
+            <div class="hero-split-container">
+                <!-- Left Text Content -->
+                <div class="hero-split-left">
+                    <h1 class="slide-in-left">
+                        Register Your Business<br>The Right Way.
+                    </h1>
+                    <p class="slide-in-right">
+                        Get your business legally registered with CAC quickly, professionally, and without the hassle.
+                    </p>
+                    <div class="cta-wrapper">
+                        <a href="#register" class="cta-btn">Register Now</a>
+                        <a href="https://wa.me/2347051299684?text=Hello%20GeepChris%20Bridge%2C%20I%20visited%20your%20website%20and%20I'm%20interested%20in%20your%20Business%20Registration%20services.%20I%20would%20like%20to%20speak%20with%20an%20advisor%20to%20get%20started." class="cta-btn cta-secondary" target="_blank">Talk to an Advisor</a>
                     </div>
                 </div>
-                <a href="/about-us.html" data-no-hover-preview>About</a>
-                <a href="/blog.html" data-no-hover-preview>Blog</a>
-                <a href="/faq.html" data-no-hover-preview>FAQs</a>
-                <a href="/contact.html" data-no-hover-preview>Contact</a>
-                <div class="mobile-theme-toggle">
-                    <button class="theme-toggle-mobile" id="themeToggleMobile" aria-label="Toggle dark mode">
-                        <span class="theme-icon sun"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></span>
-                        <span class="theme-icon moon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
-                        <span class="theme-label">Dark Mode</span>
-                    </button>
-                </div>
-                <a href="/contact.html" class="mobile-btn" data-no-hover-preview>Get Started</a>
-            </div>
 
-            <!-- =================== HERO CONTENT =================== -->
-            <div class="hero-content">
-                <div class="hero-badge">Nigeria's Trusted Multi-Service Agency</div>
-                <div class="hero-text-wrapper">
-                    <h1 class="hero-main-text">
-                        <span class="line1">We Handle the Process.</span>
-                        <span class="line2">You Enjoy the Outcome.</span>
-                    </h1>
-                    <p class="hero-sub-text">We connect people and businesses to the institutions, systems, and opportunities they need—handling the complexity so they can move forward with confidence.</p>
-                </div>
-                <div class="hero-actions">
-                    <a href="/contact.html" class="primary-btn" data-no-hover-preview>Get Started</a>
-                    <a href="tel:+2347061507103" class="secondary-btn" data-no-hover-preview>Talk to an Advisor</a>
+                <!-- Right CAC Certificate Asset Layer -->
+                <div class="hero-split-right">
+                    <div class="cac-asset-wrapper">
+                        <img src="/assets/business-name.jpg" alt="CAC Certificate" class="cac-certificate-asset">
+                    </div>
                 </div>
             </div>
 
         </div>
+
+        <!-- Slide 4 Container - Flight Deals (Original Slide 2 from homepage) -->
+        <div class="hero-slide" data-slide="4">
+
+            <!-- Slide 4 Background Asset Layer -->
+            <div class="slide4-bg-layer slide4-original" style="background-image: url('/assets/slide2.webp');"></div>
+            
+            <!-- Slide-specific overlay -->
+            <div class="slide-overlay slide-overlay-4"></div>
+
+            <!-- Content Overlay Layer -->
+            <div class="hero-content-container">
+                <h1 class="slide-in-left">
+                    Power your Business<br>With Moniepoint.
+                </h1>
+                <p class="slide-in-right">
+                    Access POS terminals, business accounts, ATM cards, and financial solutions built for growing businesses.
+                </p>
+                <div class="cta-wrapper">
+                    <a href="/services/moniepoint.html" class="cta-btn">Search Flights</a>
+                    <a href="https://wa.me/2347051299684?text=Hello%20GeepChris%20Bridge%2C%20I%20visited%20your%20website%20and%20I'm%20interested%20in%20your%20Moniepoint%20Financial%20Services.%20I%20would%20like%20to%20speak%20with%20an%20advisor%20to%20get%20started." class="cta-btn cta-secondary" target="_blank">Talk to an Advisor</a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Slide 5 Container - Brand Introduction -->
+        <div class="hero-slide" data-slide="5">
+
+            <!-- Slide 5 Background Asset Layer -->
+            <div class="slide5-bg-layer" style="background-image: url('/assets/slide5-bg.jpg');"></div>
+            
+            <!-- Slide-specific overlay -->
+            <div class="slide-overlay slide-overlay-5"></div>
+
+            <!-- Content Overlay Layer -->
+            <div class="hero-content-container">
+                <h1 class="slide-in-left">
+                    Welcome to<br>GeepChris Bridge.
+                </h1>
+                <p class="slide-in-right">
+                    Your trusted partner for travel, business registration, and financial services—all in one place.
+                </p>
+                <div class="cta-wrapper">
+                    <a href="#services" class="cta-btn">Explore Our Services</a>
+                    <a href="https://wa.me/2347051299684?text=Hello%20GeepChris%20Bridge%2C%20I%20visited%20your%20website%20and%20I'm%20interested%20in%20your%20services.%20I%20would%20like%20to%20speak%20with%20an%20advisor%20to%20get%20started." class="cta-btn cta-secondary" target="_blank">Talk to an Advisor</a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Slider Dots -->
+        <div class="slider-dots"></div>
+
     </section>
 
     <!-- =================== SECTION 2: FLIGHT SEARCH (FIXED POSITION) =================== -->
@@ -341,7 +391,7 @@
                 <!-- CARD 2: FLIGHT BOOKING -->
                 <div class="service-card" id="service-flights">
                     <div class="service-image-wrapper">
-                        <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=600&h=400&fit=crop" alt="Flight booking" class="service-image" loading="lazy" decoding="async">
+                        <img src="/assets/flight-hero.jpg" alt="Flight booking" class="service-image" loading="lazy" decoding="async">
                         <div class="service-overlay">
                             <ul class="service-list">
                                 <li>Domestic & International Flights</li>
@@ -354,7 +404,7 @@
                         </div>
                     </div>
                     <div class="service-content">
-                        <div class="service-icon-box"><img src="/assets/flight-icon.png" alt="Flight Icon" loading="lazy" decoding="async"></div>
+                        <div class="service-icon-box"><img src="/assets/tickets-icon.png" alt="Flight Icon" loading="lazy" decoding="async"></div>
                         <h3>FLIGHT BOOKING</h3>
                         <p class="service-description-text">Find the best deals on domestic and international flights. Compare prices, book securely, and travel with confidence.</p>
                         <button class="service-mobile-toggle" aria-label="Toggle service details">Explore Service →</button>
@@ -379,7 +429,7 @@
                 <!-- CARD 3: PASSPORT & IMMIGRATION -->
                 <div class="service-card" id="service-passport">
                     <div class="service-image-wrapper">
-                        <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&h=400&fit=crop" alt="Passport services" class="service-image" loading="lazy" decoding="async">
+                        <img src="/assets/international-passport.jpg" alt="Passport services" class="service-image" loading="lazy" decoding="async">
                         <div class="service-overlay">
                             <ul class="service-list">
                                 <li>International Passport Renewal</li>
@@ -392,7 +442,7 @@
                         <h3>PASSPORT & IMMIGRATION</h3>
                         <p class="service-description-text">Streamlined passport renewal and immigration registration services to keep your travel documents up to date.</p>
                         <button class="service-mobile-toggle" aria-label="Toggle service details">Explore Service →</button>
-                        <a href="/services/travel.html" class="service-cta desktop-cta" data-no-hover-preview>Get Started →</a>
+                        <a href="https://wa.me/2347051299684?text=Hello%20GeepChris%20Bridge%2C%20I%20visited%20your%20website%20and%20I'm%20interested%20in%20your%20Passport%20%26%20Immigration%20services.%20I%20would%20like%20to%20speak%20with%20an%20advisor%20to%20get%20started." target="_blank" class="service-cta desktop-cta" data-no-hover-preview>Get Started →</a>
                     </div>
                     <div class="service-mobile-back">
                         <div class="mobile-back-content">
@@ -401,7 +451,7 @@
                                 <li>✓ International Passport Renewal</li>
                                 <li>✓ Immigration Registration</li>
                             </ul>
-                            <a href="/services/travel.html" class="service-cta" data-no-hover-preview>Get Started</a>
+                            <a href="https://wa.me/2347051299684?text=Hello%20GeepChris%20Bridge%2C%20I%20visited%20your%20website%20and%20I'm%20interested%20in%20your%20Passport%20%26%20Immigration%20services.%20I%20would%20like%20to%20speak%20with%20an%20advisor%20to%20get%20started." target="_blank" class="service-cta" data-no-hover-preview>Get Started</a>
                         </div>
                     </div>
                 </div>
@@ -441,7 +491,7 @@
                 <!-- CARD 5: TAX & BUSINESS COMPLIANCE -->
                 <div class="service-card" id="service-tax">
                     <div class="service-image-wrapper">
-                        <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&h=400&fit=crop" alt="Tax compliance" class="service-image" loading="lazy" decoding="async">
+                        <img src="/assets/tax.jpg" alt="Tax compliance" class="service-image" loading="lazy" decoding="async">
                         <div class="service-overlay">
                             <ul class="service-list">
                                 <li>Tax Identification Number (TIN)</li>
@@ -456,7 +506,7 @@
                         <h3>TAX & BUSINESS COMPLIANCE</h3>
                         <p class="service-description-text">Stay compliant with federal and state tax requirements. We handle TIN registration, annual returns, and trademark filing.</p>
                         <button class="service-mobile-toggle" aria-label="Toggle service details">Explore Service →</button>
-                        <a href="/services/business-registration.html" class="service-cta desktop-cta" data-no-hover-preview>Get Started →</a>
+                        <a href="https://wa.me/2347051299684?text=Hello%20GeepChris%20Bridge%2C%20I%20visited%20your%20website%20and%20I'm%20interested%20in%20your%20Tax%20%26%20Business%20Compliance%20services.%20I%20would%20like%20to%20speak%20with%20an%20advisor%20to%20get%20started." target="_blank" class="service-cta desktop-cta" data-no-hover-preview>Get Started →</a>
                     </div>
                     <div class="service-mobile-back">
                         <div class="mobile-back-content">
@@ -467,7 +517,7 @@
                                 <li>✓ Trademark Registration</li>
                                 <li>✓ SCUML Registration</li>
                             </ul>
-                            <a href="/services/business-registration.html" class="service-cta" data-no-hover-preview>Get Started</a>
+                            <a href="https://wa.me/2347051299684?text=Hello%20GeepChris%20Bridge%2C%20I%20visited%20your%20website%20and%20I'm%20interested%20in%20your%20Tax%20%26%20Business%20Compliance%20services.%20I%20would%20like%20to%20speak%20with%20an%20advisor%20to%20get%20started." target="_blank" class="service-cta" data-no-hover-preview>Get Started</a>
                         </div>
                     </div>
                 </div>

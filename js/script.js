@@ -5,38 +5,6 @@
 console.log("JavaScript file loaded successfully");
 
 // ==================================================
-// SECTION 0: DARK / LIGHT MODE TOGGLE (Navbar & Mobile)
-// ==================================================
-const themeToggleNav = document.getElementById('themeToggleNav');
-const themeToggleMobile = document.getElementById('themeToggleMobile');
-let currentTheme = localStorage.getItem('theme') || 'light';
-
-// Apply saved theme on load
-if (currentTheme === 'dark') {
-    document.documentElement.setAttribute('data-theme', 'dark');
-}
-
-function toggleTheme() {
-    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-    
-    if (isDark) {
-        document.documentElement.removeAttribute('data-theme');
-        localStorage.setItem('theme', 'light');
-    } else {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        localStorage.setItem('theme', 'dark');
-    }
-}
-
-if (themeToggleNav) {
-    themeToggleNav.addEventListener('click', toggleTheme);
-}
-
-if (themeToggleMobile) {
-    themeToggleMobile.addEventListener('click', toggleTheme);
-}
-
-// ==================================================
 // SECTION 0: GLOBAL SECTION ANIMATIONS
 // ==================================================
 const sectionObserver = new IntersectionObserver((entries) => {
@@ -52,16 +20,182 @@ document.querySelectorAll('.section-animate').forEach(section => {
 });
 
 // ==================================================
+// SECTION 1: HERO SLIDER
+// ==================================================
+document.addEventListener('DOMContentLoaded', function() {
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.hero-slide');
+    const totalSlides = slides.length;
+    let slideInterval;
+    let isTransitioning = false;
+
+    // Triggers smooth flight entry animation for the initial slide
+    requestAnimationFrame(() => {
+        document.body.classList.add('loaded');
+    });
+
+    // Function to go to a specific slide
+    function goToSlide(index) {
+        if (isTransitioning || index === currentSlide) return;
+        isTransitioning = true;
+
+        // Remove active class from current slide
+        slides[currentSlide].classList.remove('active');
+        
+        // Remove loaded class to reset animations
+        document.body.classList.remove('loaded');
+
+        // Update current slide
+        currentSlide = index;
+        
+        // Add active class to new slide
+        slides[currentSlide].classList.add('active');
+
+        // Small delay then trigger animations on the new slide
+        setTimeout(() => {
+            document.body.classList.add('loaded');
+            isTransitioning = false;
+        }, 50);
+    }
+
+    // Function to go to next slide
+    function nextSlide() {
+        const nextIndex = (currentSlide + 1) % totalSlides;
+        goToSlide(nextIndex);
+    }
+
+    // Function to go to previous slide
+    function prevSlide() {
+        const prevIndex = (currentSlide - 1 + totalSlides) % totalSlides;
+        goToSlide(prevIndex);
+    }
+
+    // Start auto-sliding
+    function startAutoSlide() {
+        if (slideInterval) clearInterval(slideInterval);
+        slideInterval = setInterval(nextSlide, 5000);
+    }
+
+    // Stop auto-sliding
+    function stopAutoSlide() {
+        if (slideInterval) {
+            clearInterval(slideInterval);
+            slideInterval = null;
+        }
+    }
+
+    // Start the slider
+    startAutoSlide();
+
+    // Add keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+            e.preventDefault();
+            stopAutoSlide();
+            nextSlide();
+            startAutoSlide();
+        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+            e.preventDefault();
+            stopAutoSlide();
+            prevSlide();
+            startAutoSlide();
+        }
+    });
+
+    // Pause on hover
+    const heroSection = document.querySelector('.hero-slider-section');
+    if (heroSection) {
+        heroSection.addEventListener('mouseenter', stopAutoSlide);
+        heroSection.addEventListener('mouseleave', startAutoSlide);
+    }
+
+    // Touch support for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    if (heroSection) {
+        heroSection.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+            stopAutoSlide();
+        }, { passive: true });
+
+        heroSection.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            const swipeDistance = touchEndX - touchStartX;
+            
+            if (Math.abs(swipeDistance) > 50) {
+                if (swipeDistance > 0) {
+                    prevSlide();
+                } else {
+                    nextSlide();
+                }
+                startAutoSlide();
+            } else {
+                startAutoSlide();
+            }
+        }, { passive: true });
+    }
+
+    // Dot navigation
+    function createDots() {
+        const dotsContainer = document.querySelector('.slider-dots');
+        if (!dotsContainer) return;
+
+        slides.forEach((_, index) => {
+            const dot = document.createElement('button');
+            dot.className = 'slider-dot';
+            if (index === currentSlide) {
+                dot.classList.add('active');
+            }
+            dot.setAttribute('aria-label', `Go to slide ${index + 1}`);
+            
+            dot.addEventListener('click', () => {
+                stopAutoSlide();
+                goToSlide(index);
+                startAutoSlide();
+            });
+
+            dotsContainer.appendChild(dot);
+        });
+
+        return dotsContainer;
+    }
+
+    const dots = createDots();
+
+    // Update dots when slide changes
+    function updateDots() {
+        if (!dots) return;
+        const dotButtons = dots.querySelectorAll('.slider-dot');
+        dotButtons.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentSlide);
+        });
+    }
+
+    // Override goToSlide to update dots
+    const originalGoToSlide = goToSlide;
+    goToSlide = function(index) {
+        originalGoToSlide(index);
+        setTimeout(updateDots, 100);
+    };
+
+    // Initialize dots
+    updateDots();
+});
+
+// ==================================================
 // SECTION 1: HERO - MOBILE MENU (Full Screen)
 // ==================================================
 const menuToggle = document.querySelector(".menu-toggle");
 const mobileMenu = document.querySelector(".mobile-menu");
 const mobileClose = document.querySelector(".mobile-menu-close");
 
-menuToggle.addEventListener("click", () => {
-    mobileMenu.classList.toggle("active");
-    document.body.style.overflow = mobileMenu.classList.contains("active") ? "hidden" : "";
-});
+if (menuToggle) {
+    menuToggle.addEventListener("click", () => {
+        mobileMenu.classList.toggle("active");
+        document.body.style.overflow = mobileMenu.classList.contains("active") ? "hidden" : "";
+    });
+}
 
 if (mobileClose) {
     mobileClose.addEventListener("click", () => {
@@ -90,207 +224,19 @@ document.querySelectorAll(".mobile-menu a").forEach(link => {
 });
 
 // ==================================================
-// SECTION 1: HERO - IMAGE SLIDESHOW WITH TEXT
+// GLOBAL: NAVBAR SCROLL EFFECT
 // ==================================================
-const slides = document.querySelectorAll(".hero-slide");
-const mainTextLine1 = document.querySelector(".hero-main-text .line1");
-const mainTextLine2 = document.querySelector(".hero-main-text .line2");
-const subText = document.querySelector(".hero-sub-text");
+const navbar = document.querySelector(".navbar");
 
-// Hero slide content data
-const heroContentData = [
-    {
-        line1: "We Handle the Process.",
-        line2: "You Enjoy the Outcome.",
-        sub: "We connect people and businesses to the institutions, systems, and opportunities they need—handling the complexity so they can move forward with confidence."
-    },
-    {
-        line1: "Power Your Business with",
-        line2: "Reliable Moniepoint Financial Services",
-        sub: "From POS terminals and business accounts to loans, ATM cards, and more, we provide trusted financial solutions that help your business grow with confidence."
-    },
-    {
-        line1: "Travel the World with",
-        line2: "Confidence and Expert Guidance",
-        sub: "Whether you're applying for a visa, renewing your international passport, or processing proof of funds, we simplify every step of your travel journey."
-    },
-    {
-        line1: "Turn Your Business Idea into",
-        line2: "a Legally Registered Business",
-        sub: "We handle business name registration, company incorporation, and every essential document you need to establish your business professionally."
-    },
-    {
-        line1: "Open Your Corporate",
-        line2: "Business Account with Ease",
-        sub: "We assist registered businesses with the documentation and application process required to open secure and reliable corporate business bank accounts."
-    },
-    {
-        line1: "Build a Professional Website",
-        line2: "That Works for Your Business",
-        sub: "From business websites to custom web applications, we create modern, responsive, and high-performing digital solutions designed to strengthen your online presence and support your growth."
+window.addEventListener("scroll", () => {
+    const scrolled = window.pageYOffset;
+
+    if (scrolled > 100) {
+        navbar.classList.add("scrolled");
+    } else {
+        navbar.classList.remove("scrolled");
     }
-];
-
-let currentSlideIndex = 0;
-let slideTimer = null;
-let isTransitioning = false;
-
-function updateHeroText(index) {
-    const data = heroContentData[index];
-    if (!data) return;
-
-    // Update text content
-    mainTextLine1.textContent = data.line1;
-    mainTextLine2.textContent = data.line2;
-    subText.textContent = data.sub;
-
-    // Reset animations
-    mainTextLine1.classList.remove("active");
-    mainTextLine2.classList.remove("active");
-    subText.classList.remove("active");
-    
-    // Reset button animations
-    document.querySelectorAll('.hero-actions .primary-btn, .hero-actions .secondary-btn').forEach(btn => {
-        btn.classList.remove('visible');
-    });
-
-    // Trigger animations with delays - Line1 from right, Line2 from left
-    setTimeout(() => {
-        mainTextLine1.classList.add("active");
-    }, 0);
-
-    setTimeout(() => {
-        mainTextLine2.classList.add("active");
-    }, 120);
-
-    setTimeout(() => {
-        subText.classList.add("active");
-    }, 320);
-
-    setTimeout(() => {
-        document.querySelectorAll('.hero-actions .primary-btn, .hero-actions .secondary-btn').forEach(btn => {
-            btn.classList.add('visible');
-        });
-    }, 500);
-}
-
-function changeSlide(index) {
-    if (isTransitioning) return;
-    isTransitioning = true;
-
-    // Update image
-    slides.forEach((slide, i) => {
-        slide.classList.toggle("active", i === index);
-    });
-
-    // Update text
-    updateHeroText(index);
-
-    setTimeout(() => {
-        isTransitioning = false;
-    }, 1200);
-}
-
-function nextSlide() {
-    currentSlideIndex = (currentSlideIndex + 1) % slides.length;
-    changeSlide(currentSlideIndex);
-}
-
-function startSlideshow() {
-    if (slideTimer) clearInterval(slideTimer);
-    slideTimer = setInterval(nextSlide, 7000);
-}
-
-function resetSlideshow() {
-    clearInterval(slideTimer);
-    startSlideshow();
-}
-
-// Initialize first slide
-changeSlide(0);
-startSlideshow();
-
-// ==================================================
-// SECTION 1: HERO - AIRCRAFT SYSTEM
-// ==================================================
-const aircraft = document.querySelector(".aircraft");
-
-function flyAircraft() {
-    const startTop = Math.random() * 20 + 10;
-    const duration = Math.random() * 10000 + 15000;
-
-    aircraft.style.transition = "none";
-    aircraft.style.opacity = "0";
-    aircraft.style.top = `${startTop}%`;
-    aircraft.style.left = "-120px";
-    aircraft.style.right = "auto";
-    aircraft.style.transform = "none";
-
-    setTimeout(() => {
-        aircraft.style.transition = `transform ${duration}ms linear, opacity 1000ms ease`;
-        aircraft.style.opacity = "0.85";
-        aircraft.style.transform = "translateX(140vw) translateY(-40px)";
-    }, 100);
-
-    setTimeout(() => {
-        aircraft.style.opacity = "0";
-    }, duration);
-
-    setTimeout(flyAircraft, Math.random() * 15000 + 25000);
-}
-
-setTimeout(flyAircraft, 8000);
-
-// ==================================================
-// SECTION 1: HERO - REVEAL ANIMATION
-// ==================================================
-window.addEventListener("load", () => {
-    const navbar = document.querySelector(".navbar");
-
-    if (navbar) {
-        navbar.style.opacity = "0";
-        navbar.style.transform = "translateY(-20px)";
-    }
-
-    setTimeout(() => {
-        if (navbar) {
-            navbar.style.transition = "all .8s ease";
-            navbar.style.opacity = "1";
-            navbar.style.transform = "translateY(0)";
-        }
-    }, 100);
-
-    // Trigger initial hero text animation - Line1 from right, Line2 from left
-    setTimeout(() => {
-        mainTextLine1.classList.add("active");
-    }, 100);
-
-    setTimeout(() => {
-        mainTextLine2.classList.add("active");
-    }, 220);
-
-    setTimeout(() => {
-        subText.classList.add("active");
-    }, 420);
-
-    setTimeout(() => {
-        document.querySelectorAll('.hero-actions .primary-btn, .hero-actions .secondary-btn').forEach(btn => {
-            btn.classList.add('visible');
-        });
-    }, 600);
-});
-
-// ==================================================
-// SECTION 1: HERO - CTA MICRO INTERACTIONS
-// ==================================================
-document.querySelectorAll(".primary-btn, .nav-btn").forEach(button => {
-    button.addEventListener("mouseenter", () => {
-        button.style.transform = "translateY(-4px) scale(1.02)";
-    });
-    button.addEventListener("mouseleave", () => {
-        button.style.transform = "translateY(0) scale(1)";
-    });
-});
+}, { passive: true });
 
 // ==================================================
 // GLOBAL: SMOOTH SCROLL FOR ANCHOR LINKS
@@ -306,21 +252,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
-
-// ==================================================
-// GLOBAL: NAVBAR SCROLL EFFECT
-// ==================================================
-const navbar = document.querySelector(".navbar");
-
-window.addEventListener("scroll", () => {
-    const scrolled = window.pageYOffset;
-
-    if (scrolled > 80) {
-        navbar.classList.add("scrolled");
-    } else {
-        navbar.classList.remove("scrolled");
-    }
-}, { passive: true });
 
 // ==================================================
 // SECTION 2: TRUST CARDS - COUNTER ANIMATION
@@ -638,43 +569,35 @@ const visaCountries = [
         ];
 
 // ==========================================
-// SMART FLAG LOOKUP FUNCTIONS (UPDATED)
+// SMART FLAG LOOKUP FUNCTIONS
 // ==========================================
 function getVisaFlagUrl(countryName) {
     if (!countryName) return null;
     
-    // 1. Check for exact match
     let country = visaCountries.find(c => c.name === countryName);
     if (country) return country.flagUrl;
     
-    // 2. Check if the country name contains the base name (e.g., "Spain (seasonal)" contains "Spain")
     country = visaCountries.find(c => countryName.toLowerCase().includes(c.name.toLowerCase()));
     if (country) return country.flagUrl;
     
-    // 3. Check if the base name is contained within the country name (e.g., "Côte d'Ivoire" is inside "Côte d'Ivoire (eVisa)")
     country = visaCountries.find(c => c.name.toLowerCase().includes(countryName.toLowerCase()));
     if (country) return country.flagUrl;
     
-    // 4. Fallback to null if no match found
     return null;
 }
 
 function getVisaFlagEmoji(countryName) {
     if (!countryName) return '🌍';
     
-    // 1. Check for exact match
     let country = visaCountries.find(c => c.name === countryName);
     if (country) return country.flag;
     
-    // 2. Check if the country name contains the base name
     country = visaCountries.find(c => countryName.toLowerCase().includes(c.name.toLowerCase()));
     if (country) return country.flag;
     
-    // 3. Check if the base name is contained within the country name
     country = visaCountries.find(c => c.name.toLowerCase().includes(countryName.toLowerCase()));
     if (country) return country.flag;
     
-    // 4. Fallback to globe emoji
     return '🌍';
 }
 
@@ -765,7 +688,6 @@ function renderVisaCards(data) {
     startVisaAutoSlide();
 }
 
-// UPDATED: createVisaDots() now limits to exactly 4 dots
 function createVisaDots() {
     const dotsContainer = document.getElementById('visa-slider-dots');
     if (!dotsContainer) return;
@@ -823,7 +745,6 @@ function resetVisaAutoSlide() {
     startVisaAutoSlide();
 }
 
-// Visa slider button listeners
 const visaPrevBtn = document.getElementById('visa-prev-btn');
 const visaNextBtn = document.getElementById('visa-next-btn');
 
@@ -841,7 +762,6 @@ if (visaNextBtn) {
     });
 }
 
-// Window resize handler for visa slider
 let visaResizeTimeout;
 window.addEventListener('resize', () => {
     clearTimeout(visaResizeTimeout);
@@ -852,7 +772,6 @@ window.addEventListener('resize', () => {
     }, 250);
 });
 
-// Load visa countries from Firestore
 async function loadVisaCountries() {
     const track = document.getElementById('visa-track');
     if (!track) return;
@@ -910,7 +829,6 @@ async function loadVisaCountries() {
     }
 }
 
-// Initialize visa slider when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     setTimeout(loadVisaCountries, 500);
 });
@@ -1127,4 +1045,228 @@ document.querySelectorAll(".stat-item").forEach(item => {
     statCardObserver.observe(item);
 });
 
+
+
+// ==================================================
+// PLANE ANIMATION SCROLL LOGIC
+// ==================================================
+
+document.addEventListener('DOMContentLoaded', function() {
+    const skyBg = document.getElementById('skyBg');
+    const cloudLeftWrapper = document.getElementById('cloudLeftWrapper');
+    const cloudRightWrapper = document.getElementById('cloudRightWrapper');
+    const planeContainerLayer = document.getElementById('planeContainerLayer');
+    const planeRevealGap = document.getElementById('planeRevealGap');
+    const planeWrapper = document.getElementById('planeWrapper');
+    const planeShadowWrapper = document.getElementById('planeShadowWrapper');
+    const mobilePlayBtn = document.getElementById('mobilePlayBtn');
+    const heroSection = document.querySelector('.hero-slider-section');
+
+    function updateScrollAnimations() {
+        if (!planeRevealGap) return;
+        
+        const gapRect = planeRevealGap.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+        const viewportWidth = window.innerWidth;
+        const isDesktop = viewportWidth >= 992;
+
+        if (!isDesktop) {
+            /* ========================================================
+               MOBILE CHOREOGRAPHY
+               1. Hero section slides UP & fades opacity OUT on scroll.
+               2. Clouds slide in.
+               3. Play button appears AFTER cloud is in position.
+               4. Plane slides in from bottom.
+               5. Flight search section starts under wings.
+               ======================================================== */
+
+            // 1. Hero Exit Phase
+            const scrollY = window.scrollY || window.pageYOffset;
+            const heroExitProgress = Math.min(Math.max(scrollY / (viewportHeight * 0.5), 0), 1);
+            const heroTranslateY = -heroExitProgress * (viewportHeight * 0.4);
+            const heroOpacity = 1 - heroExitProgress;
+
+            if (heroSection) {
+                heroSection.style.transform = `translate3d(0px, ${heroTranslateY}px, 0px)`;
+                heroSection.style.opacity = `${heroOpacity}`;
+            }
+
+            const isGapVisible = (gapRect.top < viewportHeight) && (gapRect.bottom > 0);
+
+            if (isGapVisible) {
+                skyBg.classList.add('active');
+                cloudLeftWrapper.classList.add('active');
+                cloudRightWrapper.classList.add('active');
+
+                const totalDistance = gapRect.height + viewportHeight;
+                const gapProgress = Math.min(Math.max((viewportHeight - gapRect.top) / totalDistance, 0), 1);
+
+                // 2. Cloud Animation Phase
+                const cloudProgress = Math.min(gapProgress / 0.3, 1);
+                const cloudLeftX = (-35 + (cloudProgress * 35));
+                const cloudRightX = (35 - (cloudProgress * 35));
+
+                cloudLeftWrapper.style.transform = `translate3d(${cloudLeftX}%, 0px, 0px)`;
+                cloudRightWrapper.style.transform = `translate3d(${cloudRightX}%, 0px, 0px)`;
+
+                // 3. Play Button Trigger Phase
+                if (cloudProgress >= 0.85 && heroOpacity <= 0.15 && gapProgress < 0.75) {
+                    mobilePlayBtn.classList.add('active');
+                } else {
+                    mobilePlayBtn.classList.remove('active');
+                }
+
+                // 4 & 5. Mobile Plane Animation
+                if (gapProgress > 0.15) {
+                    planeContainerLayer.classList.add('active');
+                    
+                    const planeProgress = Math.min(Math.max((gapProgress - 0.15) / 0.85, 0), 1);
+
+                    let currentY;
+                    const startY = viewportHeight * 1.1;
+                    const midY = viewportHeight * 0.1; 
+                    const endY = -viewportHeight * 1.2;
+
+                    if (planeProgress <= 0.5) {
+                        const phase1 = planeProgress / 0.5;
+                        currentY = startY + (midY - startY) * phase1;
+                    } else {
+                        const phase2 = (planeProgress - 0.5) / 0.5;
+                        currentY = midY + (endY - midY) * (phase2 * 1.2); 
+                    }
+
+                    const shadowOffsetX = 12;
+                    const shadowOffsetY = 24 + (planeProgress * 12);
+
+                    planeWrapper.style.transform = `translate3d(0px, ${currentY}px, 0px) rotate(0deg)`;
+                    planeShadowWrapper.style.transform = `translate3d(${shadowOffsetX}px, ${currentY + shadowOffsetY}px, 0px) rotate(0deg)`;
+
+                    // Clouds clear out as section reaches mid-top view
+                    if (planeProgress > 0.55) {
+                        const exitCloudProgress = (planeProgress - 0.55) / 0.45;
+                        cloudLeftWrapper.style.transform = `translate3d(${-35 * exitCloudProgress}%, 0px, 0px)`;
+                        cloudRightWrapper.style.transform = `translate3d(${35 * exitCloudProgress}%, 0px, 0px)`;
+                    }
+
+                } else {
+                    planeContainerLayer.classList.remove('active');
+                }
+
+            } else {
+                skyBg.classList.remove('active');
+                cloudLeftWrapper.classList.remove('active');
+                cloudRightWrapper.classList.remove('active');
+                planeContainerLayer.classList.remove('active');
+                mobilePlayBtn.classList.remove('active');
+            }
+
+        } else {
+            /* ==========================================================
+               DESKTOP CHOREOGRAPHY
+               1. Clouds appear first.
+               2. Plane enters LEFT -> RIGHT.
+               3. Flight search section slides in when plane reaches threshold.
+               4. Plane and clouds accelerate exit to clear viewport.
+               ========================================================== */
+
+            if (heroSection) {
+                heroSection.style.transform = `none`;
+                heroSection.style.opacity = `1`;
+            }
+            mobilePlayBtn.classList.remove('active');
+
+            const isGapVisible = (gapRect.top < viewportHeight) && (gapRect.bottom > 0);
+
+            if (isGapVisible) {
+                skyBg.classList.add('active');
+                cloudLeftWrapper.classList.add('active');
+                cloudRightWrapper.classList.add('active');
+
+                const totalDistance = gapRect.height + viewportHeight;
+                const progress = Math.min(Math.max((viewportHeight - gapRect.top) / totalDistance, 0), 1);
+
+                // Phase 1: Clouds enter first
+                const cloudProgress = Math.min(progress / 0.25, 1);
+                let cloudLeftX = (-45 + (cloudProgress * 45));
+                let cloudRightX = (45 - (cloudProgress * 45));
+
+                // Phase 2: Plane Flight Path
+                if (progress > 0.25) {
+                    planeContainerLayer.classList.add('active');
+
+                    const planeProgress = (progress - 0.25) / 0.75;
+                    const planeWidth = planeWrapper.offsetWidth || 1150;
+                    
+                    const startX = -((viewportWidth / 2) + (planeWidth / 2) + 100);
+                    const endX = (viewportWidth / 2) + (planeWidth / 2) + 300;
+                    
+                    const currentX = startX + (endX - startX) * planeProgress;
+
+                    const shadowOffsetX = -20;
+                    const shadowOffsetY = 30;
+
+                    planeWrapper.style.transform = `translate3d(${currentX}px, 0px, 0px) rotate(90deg)`;
+                    planeShadowWrapper.style.transform = `translate3d(${currentX + shadowOffsetX}px, ${shadowOffsetY}px, 0px) rotate(90deg)`;
+
+                    // Phase 3: Flight Search Section Trigger
+                    if (planeProgress >= 0.35) {
+                        const servicesProgress = Math.min((planeProgress - 0.35) / 0.4, 1);
+                        const flightSearch = document.getElementById('flight-search');
+                        if (flightSearch) {
+                            const slideInX = -100 + (servicesProgress * 100);
+                            const opacityVal = Math.min(servicesProgress * 1.8, 1);
+                            flightSearch.style.transform = `translate3d(${slideInX}vw, 0px, 0px)`;
+                            flightSearch.style.opacity = `${opacityVal}`;
+                        }
+                    } else {
+                        const flightSearch = document.getElementById('flight-search');
+                        if (flightSearch) {
+                            flightSearch.style.transform = `translate3d(-100vw, 0px, 0px)`;
+                            flightSearch.style.opacity = `0`;
+                        }
+                    }
+
+                    // Accelerated Cloud Exit Phase
+                    if (planeProgress > 0.5) {
+                        const cloudExitProgress = (planeProgress - 0.5) / 0.5;
+                        cloudLeftX -= cloudExitProgress * 50;
+                        cloudRightX += cloudExitProgress * 50;
+                    }
+
+                    cloudLeftWrapper.style.transform = `translate3d(${cloudLeftX}%, 0px, 0px)`;
+                    cloudRightWrapper.style.transform = `translate3d(${cloudRightX}%, 0px, 0px)`;
+
+                } else {
+                    planeContainerLayer.classList.remove('active');
+                    const flightSearch = document.getElementById('flight-search');
+                    if (flightSearch) {
+                        flightSearch.style.transform = `translate3d(-100vw, 0px, 0px)`;
+                        flightSearch.style.opacity = `0`;
+                    }
+
+                    cloudLeftWrapper.style.transform = `translate3d(${cloudLeftX}%, 0px, 0px)`;
+                    cloudRightWrapper.style.transform = `translate3d(${cloudRightX}%, 0px, 0px)`;
+                }
+
+            } else {
+                skyBg.classList.remove('active');
+                cloudLeftWrapper.classList.remove('active');
+                cloudRightWrapper.classList.remove('active');
+                planeContainerLayer.classList.remove('active');
+                const flightSearch = document.getElementById('flight-search');
+                if (flightSearch) {
+                    flightSearch.style.transform = `translate3d(-100vw, 0px, 0px)`;
+                    flightSearch.style.opacity = `0`;
+                }
+            }
+        }
+    }
+
+    // Attach high-performance scroll listeners
+    window.addEventListener('scroll', updateScrollAnimations, { passive: true });
+    window.addEventListener('resize', updateScrollAnimations);
+
+    // Initial setup
+    updateScrollAnimations();
+});
 console.log("All animations initialized");
