@@ -71,7 +71,7 @@ body{
 }
 
 .slide-overlay-1 {
-    background-color: rgba(0, 31, 63, 0.85);
+    background-color: rgba(0, 31, 63, 0.75);
 }
 
 .slide-overlay-2 {
@@ -275,8 +275,8 @@ body.loaded .hero-slide.active .flight-hero-wrapper {
 }
 
 .cac-certificate-asset {
-    width: 100%;
-    height: auto;
+    width: 70%;
+    height: 70%;
     border-radius: 12px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
     display: block;
