@@ -43,6 +43,12 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- ===== FIREBASE SDK ===== -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -52,6 +58,7 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
         /* ===== NAVBAR ===== */
@@ -71,7 +78,7 @@
             border-bottom:1px solid rgba(255,255,255,0.06);
         }
         .navbar .logo img{ height:40px; width:auto; display:block; }
-        .nav-links{ display:flex; gap:2rem; list-style:none; align-items:center; }
+        .nav-links{ display:flex; gap:2rem; list-style:none; align-items:center; margin-left:auto; margin-right:1.5rem; }
         .nav-links a{ color:#fff; text-decoration:none; font-weight:500; font-size:.95rem; transition:.3s; }
         .nav-links a:hover{ color:#22c55e; }
         .has-dropdown{ position:relative; }
@@ -96,59 +103,6 @@
         }
         .nav-btn:hover{ transform:translateY(-2px); background:#22c55e; }
         
-        /* ===== AUTH SECTION IN NAVBAR (ADDED) ===== */
-        .nav-auth { display: flex; align-items: center; gap: 12px; }
-        .nav-auth .btn-signin {
-            color: rgba(255,255,255,0.7);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9rem;
-            padding: 8px 16px;
-            border-radius: 999px;
-            border: 1px solid rgba(255,255,255,0.15);
-            transition: all 0.3s ease;
-        }
-        .nav-auth .btn-signin:hover {
-            background: rgba(255,255,255,0.08);
-            color: #fff;
-            border-color: rgba(255,255,255,0.3);
-        }
-        .nav-auth .user-avatar {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            text-decoration: none;
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        .nav-auth .user-avatar:hover {
-            border-color: #22c55e;
-        }
-        .nav-auth .user-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-        .nav-auth .user-avatar .avatar-initial {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            background: #16a34a;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 0.9rem;
-        }
-        .nav-btn.hidden { display: none; }
-
         .menu-toggle{ display:none; background:none; border:none; cursor:pointer; padding:4px; }
         .menu-toggle span{ display:block; width:26px; height:2.5px; background:#fff; margin:5px 0; border-radius:5px; transition:.3s; }
 
@@ -183,22 +137,6 @@
         .mobile-services-dropdown a:hover{ color:#22c55e; }
         .mobile-btn{ margin-top:10px; background:#16a34a; padding:14px 40px; text-align:center; border-radius:999px; color:#fff !important; font-weight:700 !important; border:none !important; font-size:1rem !important; width:auto; min-width:200px; }
         .mobile-btn:hover{ background:#22c55e; }
-        
-        /* ===== MOBILE AUTH SECTION (ADDED) ===== */
-        .mobile-auth-section { margin-top: 10px; width: 100%; text-align: center; }
-        .mobile-auth-section .mobile-signin {
-            color: rgba(255,255,255,0.7);
-            text-decoration: none;
-            font-size: 1rem;
-            padding: 12px 0;
-            display: block;
-            font-weight: 500;
-        }
-        .mobile-auth-section .mobile-signin:hover { color: #22c55e; }
-        .mobile-auth-section .mobile-avatar { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 12px 0; }
-        .mobile-auth-section .mobile-avatar img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; }
-        .mobile-auth-section .mobile-avatar .avatar-initial { width: 48px; height: 48px; border-radius: 50%; background: #16a34a; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.2rem; }
-        .mobile-auth-section .mobile-avatar .mobile-user-name { color: #fff; font-weight: 600; }
 
         /* ===== HERO (FULL WIDTH FIXED) ===== */
         .hero {
@@ -240,7 +178,7 @@
         .hero-image img { max-width: 100%; height: auto; object-fit: contain; border-radius: 12px; }
 
         /* ===== CONTAINER ===== */
-        .container { max-width: 1280px; margin: 0 auto; padding: 0 20px 60px; width: 100%; }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 20px 60px; width: 100%; overflow-x: hidden; }
 
         /* ===== SECTION STYLES ===== */
         section { padding: 60px 0; }
@@ -327,7 +265,7 @@
         }
         .need-help-btn:hover { background: #22c55e; transform: translateY(-2px); }
 
-        /* ===== FORM (RESTORED) ===== */
+        /* ===== FORM ===== */
         .form-wrapper {
             max-width: 880px;
             margin: 0 auto;
@@ -340,12 +278,40 @@
         .form-group input, .form-group select, .form-group textarea {
             width: 100%; padding: 12px 14px; border: 1px solid #cbd5e1; border-radius: 8px;
             font-size: 0.95rem; background: #f8fafc; transition: 0.2s; font-family: 'Inter', sans-serif;
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
         }
         .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
             outline: none; border-color: #16a34a; box-shadow: 0 0 0 3px rgba(22,163,74,0.1);
         }
         .form-group textarea { resize: vertical; min-height: 80px; }
         .form-group input[type="file"] { padding: 8px; background: #ffffff; cursor: pointer; }
+
+        /* ===== CHECKBOX STYLING ===== */
+        .checkbox-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            cursor: pointer;
+        }
+        .checkbox-wrapper input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            accent-color: #16a34a;
+            cursor: pointer;
+            margin: 0;
+            flex-shrink: 0;
+        }
+        .checkbox-wrapper label {
+            font-size: 0.95rem;
+            font-weight: 400;
+            color: #0f172a;
+            cursor: pointer;
+            margin: 0;
+        }
 
         /* ===== PRIVACY & TERMS ACCEPTANCE ===== */
         .acceptance-group {
@@ -361,6 +327,7 @@
             align-items: flex-start;
             gap: 10px;
             cursor: pointer;
+            padding: 0;
         }
         .acceptance-group .checkbox-wrapper input[type="checkbox"] {
             width: 18px;
@@ -394,6 +361,48 @@
         .btn-submit:hover { background: #22c55e; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(34,197,94,0.3); }
         .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
+        /* ===== SUCCESS STATE ===== */
+        .success-state { display: none; text-align: center; padding: 32px 16px; }
+        .success-state.active { display: block; }
+        .success-state i { font-size: 3.5rem; color: #16a34a; display: block; margin-bottom: 10px; }
+        .success-state h2 { font-size: 1.3rem; margin-bottom: 6px; }
+        .success-state p { color: #64748b; }
+
+        /* ===== SPEAK WITH AGENT BUTTON ===== */
+        .agent-btn-wrapper {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #e2e8f0;
+        }
+        .agent-btn-wrapper p {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-bottom: 10px;
+        }
+        .btn-agent {
+            display: inline-block;
+            width: 100%;
+            padding: 14px;
+            background: #25D366;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+            text-align: center;
+        }
+        .btn-agent:hover {
+            background: #1da851;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+        .btn-agent i {
+            margin-right: 8px;
+        }
+
         /* ===== FOOTER ===== */
         .footer { background: #020617; padding: 50px 0 20px; border-top: 1px solid rgba(255,255,255,0.08); }
         .footer-grid { display: grid; grid-template-columns: 1.8fr 1fr 1fr 1.3fr; gap: 40px; padding-bottom: 40px; }
@@ -411,6 +420,7 @@
         .footer-contact { display: flex; flex-direction: column; gap: 12px !important; }
         .footer-contact li { display: flex; align-items: flex-start; gap: 10px; }
         .footer-contact li svg { width: 16px; height: 16px; min-width: 16px; stroke: #22c55e; margin-top: 1px; }
+        .footer-contact li span { color: rgba(255,255,255,0.6); font-size: .85rem; line-height: 1.5; }
         .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding: 20px 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
         .footer-bottom p { font-size: .8rem; color: rgba(255,255,255,.4); }
         .footer-bottom-links { display: flex; gap: 24px; }
@@ -419,7 +429,7 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 992px) {
-            .nav-links, .nav-btn, .nav-auth { display: none; }
+            .nav-links, .nav-btn { display: none; }
             .menu-toggle { display: block; }
             .footer-grid { grid-template-columns: 1fr 1fr; }
             .hero-inner { flex-direction: column; text-align: center; }
@@ -441,6 +451,26 @@
             .pricing-table thead th, .pricing-table tbody td { padding: 12px 10px; }
             .pricing-table .pkg-name i { display: none; }
             .pricing-table .pkg-desc { display: none; }
+            .container { padding: 0 16px 40px; }
+            /* ===== MOBILE FOOTER FIX ===== */
+            .footer-grid {
+                grid-template-columns: 1fr !important;
+                gap: 30px !important;
+                text-align: left;
+            }
+            .footer-brand p { max-width: 100% !important; }
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 16px !important;
+            }
+            .footer-bottom-links {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 16px !important;
+            }
+            .footer-socials { justify-content: flex-start; }
+            .footer-contact li { word-break: break-word; }
         }
 
         /* ===== ANIMATIONS ===== */
@@ -492,58 +522,46 @@
 
     <!-- ===== NAVBAR ===== -->
     <nav class="navbar" id="navbar">
-        <a href="/" class="logo"><img src="/assets/logo.png" alt="GeepChris Bridge"></a>
+        <a href="/" class="logo" data-no-hover-preview>
+            <img src="/assets/logo.png" alt="GeepChris Bridge">
+        </a>
         <ul class="nav-links">
-            <li><a href="/">Home</a></li>
+            <li><a href="/" data-no-hover-preview>Home</a></li>
             <li class="has-dropdown">
-                <a href="/services/travel" class="dropdown-trigger">Services <span class="arrow-down">▾</span></a>
+                <a href="/services.html" class="dropdown-trigger" data-no-hover-preview>Services <span class="arrow-down">▾</span></a>
                 <div class="dropdown-menu">
-                    <a href="/services/moniepoint.html">Moniepoint Financial Services</a>
-                    <a href="/services/travel.html">Travel & Global Mobility</a>
-                    <a href="/services/business-registration.html">Business Registration</a>
-                    <a href="/services/nin.html">NIN Services</a>
-                    <a href="/services/bvn.html">BVN Services</a>
+                    <a href="/services/moniepoint.html" data-no-hover-preview>Moniepoint Financial Services</a>
+                    <a href="/services/travel.html" data-no-hover-preview>Travel & Global Mobility</a>
+                    <a href="/services/business-registration.html" data-no-hover-preview>Business Registration</a>
+                    <a href="/services/web-development.html" data-no-hover-preview>Web Development</a>
                 </div>
             </li>
-           <li><a href="/about-us.html">About</a></li>
-            <li><a href="/faq.html">FAQs</a></li>
-            <li><a href="/contact.html">Contact</a></li>
-          <li><a href="/blog.html">Blog</a></li>
-</ul>
-        <a href="/contact.html" class="nav-btn" id="navBtn">Get Started</a>
-        
-        <!-- ===== AUTH SECTION (ADDED) ===== -->
-        <div class="nav-auth" id="navAuth">
-            <!-- Dynamically populated by auth script -->
-        </div>
-        
+            <li><a href="/about-us.html" data-no-hover-preview>About</a></li>
+            <li><a href="/faq.html" data-no-hover-preview>FAQs</a></li>
+            <li><a href="/contact.html" data-no-hover-preview>Contact</a></li>
+            <li><a href="/blog.html">Blog</a></li>
+        </ul>
+        <a href="/contact.html" class="nav-btn" data-no-hover-preview>Get Started</a>
         <button class="menu-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
     </nav>
 
     <!-- ===== MOBILE MENU ===== -->
     <div class="mobile-menu">
         <button class="mobile-menu-close" aria-label="Close menu"><span></span><span></span></button>
-        <a href="/">Home</a>
+        <a href="/" data-no-hover-preview>Home</a>
         <div class="mobile-services-group">
             <button class="mobile-services-toggle">Services <span>▾</span></button>
             <div class="mobile-services-dropdown">
-                <a href="/services/moniepoint.html">Moniepoint Financial Services</a>
-                <a href="/services/travel.html">Travel & Global Mobility</a>
-                <a href="/services/business-registration.html">Business Registration</a>
-                <a href="/services/nin.html">NIN Services</a>
-                <a href="/services/bvn.html">BVN Services</a>
+                <a href="/services/moniepoint.html" data-no-hover-preview>Moniepoint Financial Services</a>
+                <a href="/services/travel.html" data-no-hover-preview>Travel & Global Mobility</a>
+                <a href="/services/business-registration.html" data-no-hover-preview>Business Registration</a>
+                <a href="/services/web-development.html" data-no-hover-preview>Web Development</a>
             </div>
         </div>
-        <a href="/about-us.html">About</a>
-        <a href="/faq.html">FAQs</a>
-        <a href="/contact.html">Contact</a>
-        <a href="/contact.html" class="mobile-btn">Get Started</a>
-        
-        
-        <!-- ===== MOBILE AUTH SECTION (ADDED) ===== -->
-        <div class="mobile-auth-section" id="mobileAuth">
-            <!-- Dynamically populated by auth script -->
-        </div>
+        <a href="/about-us.html" data-no-hover-preview>About</a>
+        <a href="/faq.html" data-no-hover-preview>FAQs</a>
+        <a href="/contact.html" data-no-hover-preview>Contact</a>
+        <a href="/contact.html" class="mobile-btn" data-no-hover-preview>Get Started</a>
     </div>
 
     <!-- ===== HERO (FULL WIDTH FIXED) ===== -->
@@ -563,7 +581,6 @@
                 </div>
             </div>
             <div class="hero-image">
-                <!-- PLACEHOLDER FOR HERO IMAGE -->
                 <img src="/assets/hero-certificate-placeholder.png" alt="CAC Certificate" style="max-width: 450px;">
             </div>
         </div>
@@ -719,13 +736,13 @@
                     <p>Our experts are here to guide you to the best option for your business.</p>
                 </div>
             </div>
-            <a href="https://wa.me/23407061507103?text=Hello%20GeepChris%20Bridge%2C%20I%20need%20help%20choosing%20the%20right%20company%20registration%20package." target="_blank" class="need-help-btn">
+            <a href="https://wa.me/2347051299684?text=Hello%20GeepChris%20Bridge%2C%20I%20need%20help%20choosing%20the%20right%20company%20registration%20package." target="_blank" class="need-help-btn">
                 <i class="fab fa-whatsapp"></i> Talk to an Expert
             </a>
         </div>
     </section>
 
-    <!-- ===== FORM SECTION (RESTORED) ===== -->
+    <!-- ===== FORM SECTION ===== -->
     <div id="formSection" class="container">
         <div class="form-wrapper anim-slide-right">
             <h2>Apply for Company Registration</h2>
@@ -738,9 +755,9 @@
                         <input type="checkbox" id="acceptTerms" required>
                         <label for="acceptTerms" class="acceptance-text">
                             I have read and agree to the 
-                            <a href="/privacy.html" target="_blank">Privacy Policy</a> 
+                            <a href="/privacy.html" target="_blank" data-no-hover-preview>Privacy Policy</a> 
                             and 
-                            <a href="/terms.html" target="_blank">Terms of Service</a>
+                            <a href="/terms.html" target="_blank" data-no-hover-preview>Terms of Service</a>
                             <span class="required">*</span>
                         </label>
                     </div>
@@ -748,53 +765,74 @@
 
                 <button type="submit" class="btn-submit" id="submitBtn">Submit Application</button>
             </form>
+
+            <!-- ===== SUCCESS STATE ===== -->
+            <div id="successState" class="success-state">
+                <i class="fas fa-check-circle"></i>
+                <h2>Application Submitted!</h2>
+                <p>Our team will contact you shortly regarding your company registration.</p>
+                
+                <!-- ===== SPEAK WITH ACTIVE AGENT BUTTON ===== -->
+                <div class="agent-btn-wrapper">
+                    <p><i class="fas fa-headset"></i> Need faster processing? Speak with our active agent now.</p>
+                    <a href="#" id="agentWhatsAppBtn" class="btn-agent" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Speak with an Active Agent
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 
- <!-- ===== FOOTER ===== -->
+    <!-- ===== FOOTER ===== -->
     <footer class="footer">
         <div class="container" style="max-width:1280px; margin:0 auto; padding:0 20px;">
             <div class="footer-grid" style="display:grid; grid-template-columns:1.8fr 1fr 1fr 1.3fr; gap:40px; padding-bottom:40px;">
                 <div class="footer-col footer-brand">
                     <div class="footer-logo" style="margin-bottom:18px;"><img src="/assets/logo.png" alt="GeepChris Bridge" style="height:45px; width:auto; display:block;"></div>
                     <p style="font-size:.88rem; line-height:1.7; color:rgba(255,255,255,.6); margin-bottom:24px; max-width:300px;">GeepChris Bridge Enterprise simplifies essential business, financial, identity, and travel processes.</p>
+                    <div class="footer-socials" style="display:flex; gap:12px;">
+                        <a href="#" aria-label="Facebook" data-no-hover-preview><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+                        <a href="#" aria-label="Instagram" data-no-hover-preview><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+                        <a href="#" aria-label="Twitter / X" data-no-hover-preview><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                        <a href="#" aria-label="WhatsApp" data-no-hover-preview><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></a>
+                    </div>
                 </div>
                 <div class="footer-col"><h4 style="font-size:.85rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#fff; margin-bottom:20px;">Quick Links</h4>
                     <ul style="list-style:none; display:flex; flex-direction:column; gap:10px;">
-                        <li><a href="/index.html" style="font-size:.85rem; color:rgba(255,255,255,.6); text-decoration:none;">Home</a></li>
-                        <li><a href="/services/travel.html" style="font-size:.85rem; color:rgba(255,255,255,.6); text-decoration:none;">Services</a></li>
-                        <li><a href="/about-us.html" style="font-size:.85rem; color:rgba(255,255,255,.6); text-decoration:none;">About Us</a></li>
-                        <li><a href="/faq.html" style="font-size:.85rem; color:rgba(255,255,255,.6); text-decoration:none;">FAQs</a></li>
-                        <li><a href="/contact.html" style="font-size:.85rem; color:rgba(255,255,255,.6); text-decoration:none;">Contact</a></li>
+                        <li><a href="/index.html" style="font-size:.85rem; color:rgba(255,255,255,.6); text-decoration:none;" data-no-hover-preview>Home</a></li>
+                        <li><a href="/services/travel.html" style="font-size:.85rem; color:rgba(255,255,255,.6); text-decoration:none;" data-no-hover-preview>Services</a></li>
+                        <li><a href="/about-us.html" style="font-size:.85rem; color:rgba(255,255,255,.6); text-decoration:none;" data-no-hover-preview>About Us</a></li>
+                        <li><a href="/faq.html" style="font-size:.85rem; color:rgba(255,255,255,.6); text-decoration:none;" data-no-hover-preview>FAQs</a></li>
+                        <li><a href="/contact.html" style="font-size:.85rem; color:rgba(255,255,255,.6); text-decoration:none;" data-no-hover-preview>Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-col"><h4 style="font-size:.85rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#fff; margin-bottom:20px;">Our Services</h4>
                     <ul style="list-style:none; display:flex; flex-direction:column; gap:10px;">
-                        <li><a href="/services/moniepoint.html" style="font-size:.85rem; color:rgba(255,255,255,.6); text-decoration:none;">Moniepoint</a></li>
-                        <li><a href="/services/travel.html" style="font-size:.85rem; color:rgba(255,255,255,.6); text-decoration:none;">Travel & Mobility</a></li>
-                        <li><a href="/services/business-registration.html" style="font-size:.85rem; color:rgba(255,255,255,.6); text-decoration:none;">Business Registration</a></li>
-                       
+                        <li><a href="/services/moniepoint.html" style="font-size:.85rem; color:rgba(255,255,255,.6); text-decoration:none;" data-no-hover-preview>Moniepoint</a></li>
+                        <li><a href="/services/travel.html" style="font-size:.85rem; color:rgba(255,255,255,.6); text-decoration:none;" data-no-hover-preview>Travel & Mobility</a></li>
+                        <li><a href="/services/business-registration.html" style="font-size:.85rem; color:rgba(255,255,255,.6); text-decoration:none;" data-no-hover-preview>Business Registration</a></li>
+                    </ul>
                 </div>
                 <div class="footer-col"><h4 style="font-size:.85rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#fff; margin-bottom:20px;">Contact Us</h4>
                     <ul class="footer-contact" style="display:flex; flex-direction:column; gap:12px !important; list-style:none;">
-                        <li style="display:flex; align-items:flex-start; gap:10px;"><span>+2347061507103, +2347051299684</span></li>
-                        <li style="display:flex; align-items:flex-start; gap:10px;"><span>geepchrisb@gmail.com</span></li>
-                        <li style="display:flex; align-items:flex-start; gap:10px;"><span>15 college road opposite 2nd Gate college of Education Abata Nsugbe</span></li>
-                        <li style="display:flex; align-items:flex-start; gap:10px;"><span>Mon – Sat: 8am – 6pm</span></li>
+                        <li style="display:flex; align-items:flex-start; gap:10px;"><span style="color:rgba(255,255,255,0.6); font-size:.85rem;">+2347061507103, +2347051299684</span></li>
+                        <li style="display:flex; align-items:flex-start; gap:10px;"><span style="color:rgba(255,255,255,0.6); font-size:.85rem;">geepchrisb@gmail.com</span></li>
+                        <li style="display:flex; align-items:flex-start; gap:10px;"><span style="color:rgba(255,255,255,0.6); font-size:.85rem;">15 college road opposite 2nd Gate college of Education Abata Nsugbe</span></li>
+                        <li style="display:flex; align-items:flex-start; gap:10px;"><span style="color:rgba(255,255,255,0.6); font-size:.85rem;">Mon – Sat: 8am – 6pm</span></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom" style="border-top:1px solid rgba(255,255,255,0.08); padding:20px 0; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;">
-                <p style="font-size:.8rem; color:rgba(255,255,255,.4);">© 2025 GeepChris Bridge Enterprise. All Rights Reserved.</p>
+                <p style="font-size:.8rem; color:rgba(255,255,255,.4);">© 2026 GeepChris Bridge Enterprise. All Rights Reserved.</p>
+                <div class="footer-bottom-links" style="display:flex; gap:24px;">
+                    <a href="/privacy.html" style="font-size:.8rem; color:rgba(255,255,255,.4); text-decoration:none;" data-no-hover-preview>Privacy Policy</a>
+                    <a href="/terms.html" style="font-size:.8rem; color:rgba(255,255,255,.4); text-decoration:none;" data-no-hover-preview>Terms of Service</a>
+                </div>
             </div>
         </div>
     </footer>
 
     <!-- ===== SCRIPTS ===== -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-
     <script>
         // ==========================================
         // FIREBASE CONFIGURATION
@@ -821,89 +859,7 @@
         const CLOUDINARY_UPLOAD_PRESET = 'geepchris';
 
         // ==========================================
-        // AUTH GUARD — THIS PAGE REQUIRES LOGIN
-        // ==========================================
-        const currentUrl = window.location.pathname + window.location.search;
-
-        auth.onAuthStateChanged(async (user) => {
-            // ===== UPDATE NAVBAR AUTH =====
-            const navAuth = document.getElementById('navAuth');
-            const mobileAuth = document.getElementById('mobileAuth');
-            const navBtn = document.getElementById('navBtn');
-
-            if (user) {
-                // User is logged in - fetch user data
-                try {
-                    const userDoc = await db.collection('users').doc(user.uid).get();
-                    const userData = userDoc.exists ? userDoc.data() : null;
-                    const displayName = userData?.fullName || userData?.firstName || user.email || 'User';
-                    const initial = displayName.charAt(0).toUpperCase();
-                    const photoURL = userData?.photoURL || null;
-
-                    // Desktop navbar
-                    navAuth.innerHTML = `
-                        <a href="/dashboard.html" class="user-avatar" title="${displayName}">
-                            ${photoURL 
-                                ? `<img src="${photoURL}" alt="${displayName}">` 
-                                : `<span class="avatar-initial">${initial}</span>`
-                            }
-                        </a>
-                    `;
-
-                    // Mobile menu
-                    mobileAuth.innerHTML = `
-                        <a href="/dashboard.html" class="mobile-avatar" style="display:flex; align-items:center; gap:12px; text-decoration:none;">
-                            ${photoURL 
-                                ? `<img src="${photoURL}" alt="${displayName}">` 
-                                : `<span class="avatar-initial">${initial}</span>`
-                            }
-                            <span class="mobile-user-name">${displayName}</span>
-                        </a>
-                    `;
-
-                    // Hide Get Started button (since user is logged in)
-                    if (navBtn) navBtn.style.display = 'none';
-
-                } catch (error) {
-                    console.error('Error fetching user data:', error);
-                    // Show default avatar with email initial
-                    const initial = (user.email || 'U').charAt(0).toUpperCase();
-                    navAuth.innerHTML = `
-                        <a href="/dashboard.html" class="user-avatar">
-                            <span class="avatar-initial">${initial}</span>
-                        </a>
-                    `;
-                    mobileAuth.innerHTML = `
-                        <a href="/dashboard.html" class="mobile-avatar" style="display:flex; align-items:center; gap:12px; text-decoration:none;">
-                            <span class="avatar-initial">${initial}</span>
-                            <span class="mobile-user-name">${user.email || 'User'}</span>
-                        </a>
-                    `;
-                    if (navBtn) navBtn.style.display = 'none';
-                }
-
-                // ===== PAGE IS PROTECTED — USER IS LOGGED IN, ALLOW ACCESS =====
-
-            } else {
-                // ===== USER IS NOT LOGGED IN =====
-                // Show sign-in button in navbar
-                navAuth.innerHTML = `
-                    <a href="/auth.html?redirect=${encodeURIComponent(currentUrl)}" class="btn-signin">Sign In</a>
-                `;
-                mobileAuth.innerHTML = `
-                    <a href="/auth.html?redirect=${encodeURIComponent(currentUrl)}" class="mobile-signin">Sign In</a>
-                `;
-
-                // Show Get Started button
-                if (navBtn) navBtn.style.display = 'inline-block';
-
-                // ===== REDIRECT TO AUTH PAGE =====
-                window.location.href = `/auth.html?redirect=${encodeURIComponent(currentUrl)}`;
-            }
-        });
-
-        // ==========================================
-        // NAVBAR SCRIPTS (original)
+        // NAVBAR SCRIPTS
         // ==========================================
         const navbar = document.getElementById('navbar');
         const menuToggle = document.querySelector(".menu-toggle");
@@ -940,7 +896,7 @@
         });
 
         // ==========================================
-        // LOAD FORM FROM FIRESTORE - FIXED
+        // LOAD FORM FROM FIRESTORE
         // ==========================================
         async function loadForm() {
             try {
@@ -953,11 +909,12 @@
                 renderForm(formData.fields || []);
             } catch (e) {
                 console.error("Error loading form:", e);
+                document.getElementById('formFieldsContainer').innerHTML = '<p>Unable to load form. Please refresh the page or contact support.</p>';
             }
         }
 
         // ==========================================
-        // FIX: Generate readable field ID from label
+        // GENERATE READABLE FIELD ID FROM LABEL
         // ==========================================
         function generateFieldId(label) {
             if (!label) return 'field_' + Date.now();
@@ -981,7 +938,7 @@
         }
 
         // ==========================================
-        // FIX: renderForm - always use generated IDs from labels
+        // RENDER FORM
         // ==========================================
         function renderForm(fields) {
             const container = document.getElementById('formFieldsContainer');
@@ -997,7 +954,6 @@
                 label.innerHTML = `${field.label} ${field.required ? '<span class="required">*</span>' : ''}`;
                 group.appendChild(label);
 
-                // ✅ Generate readable ID from label (ignores stored custom_xxx ID)
                 const fieldId = generateFieldId(field.label);
 
                 let input;
@@ -1056,18 +1012,15 @@
                     case 'checkbox':
                         const wrapper = document.createElement('div');
                         wrapper.className = 'checkbox-wrapper';
-                        
                         input = document.createElement('input');
                         input.type = 'checkbox';
                         input.id = fieldId;
                         input.name = fieldId;
                         input.dataset.label = field.label;
                         if (field.required) input.required = true;
-
                         const checkLabel = document.createElement('label');
                         checkLabel.htmlFor = fieldId;
                         checkLabel.textContent = 'Yes';
-
                         wrapper.appendChild(input);
                         wrapper.appendChild(checkLabel);
                         group.appendChild(wrapper);
@@ -1085,7 +1038,9 @@
             });
         }
 
-        // 5. SUBMIT TO 'company-reg-applications' - FIXED
+        // ==========================================
+        // UPLOAD FILE TO CLOUDINARY
+        // ==========================================
         async function uploadFile(file) {
             const fd = new FormData();
             fd.append('file', file);
@@ -1096,6 +1051,9 @@
             return d.secure_url;
         }
 
+        // ==========================================
+        // SUBMIT FORM — WITH WHATSAPP AGENT & SUCCESS STATE
+        // ==========================================
         document.getElementById('applicationForm').addEventListener('submit', async function(e) {
             e.preventDefault();
 
@@ -1107,14 +1065,15 @@
                 return;
             }
 
-            const btn = document.getElementById('submitBtn');
-            btn.disabled = true;
-            btn.textContent = 'Submitting...';
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
 
             const submittedData = {};
+            const formDataForWhatsApp = {};
             const filePromises = [];
 
-            // ✅ Collect all form data using the generated field names
+            // Collect all form data
             document.querySelectorAll('#formFieldsContainer .form-group input, #formFieldsContainer .form-group select, #formFieldsContainer .form-group textarea').forEach(input => {
                 if (!input) return;
                 const name = input.name;
@@ -1136,10 +1095,14 @@
                     submittedData[name] = input.checked;
                     submittedData['_labels'] = submittedData['_labels'] || {};
                     submittedData['_labels'][name] = label;
+                    formDataForWhatsApp[label] = input.checked ? 'Yes' : 'No';
                 } else {
                     submittedData[name] = input.value;
                     submittedData['_labels'] = submittedData['_labels'] || {};
                     submittedData['_labels'][name] = label;
+                    if (input.value) {
+                        formDataForWhatsApp[label] = input.value;
+                    }
                 }
             });
 
@@ -1147,19 +1110,24 @@
             submittedData.termsAccepted = true;
             submittedData.termsAcceptedAt = new Date().toISOString();
 
+            // Upload files
             for (const item of filePromises) {
                 try {
                     const url = await uploadFile(item.file);
                     submittedData[item.id] = url;
+                    formDataForWhatsApp[item.label + ' (File)'] = url;
                 } catch (e) {
                     alert(`Upload failed for ${item.id}. Please try again.`);
-                    btn.disabled = false;
-                    btn.textContent = 'Submit Application';
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Submit Application';
                     return;
                 }
             }
 
+            submitBtn.textContent = 'Saving application...';
+
             try {
+                // 1. Save to Firestore
                 await db.collection('company-reg-applications').add({
                     service: 'Company Registration',
                     serviceName: 'Company Registration',
@@ -1167,15 +1135,84 @@
                     status: 'new',
                     createdAt: firebase.firestore.FieldValue.serverTimestamp()
                 });
-                window.location.href = '/thanks.html';
-            } catch (e) {
-                alert('There was an error submitting. Please try again.');
-                btn.disabled = false;
-                btn.textContent = 'Submit Application';
+
+                // 2. Send email notification via Cloudflare Worker
+                try {
+                    const fullName = submittedData.fullName || formDataForWhatsApp['Full Name'] || 'New Applicant';
+                    const email = submittedData.email || formDataForWhatsApp['Email Address'] || 'Not provided';
+                    const phone = submittedData.phone || formDataForWhatsApp['Phone Number'] || 'Not provided';
+                    
+                    await fetch('https://geepchris-notifications.summer-water-61c8.workers.dev', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            subject: `📩 New Company Registration Application — ${fullName}`,
+                            fields: {
+                                'Name': fullName,
+                                'Email': email,
+                                'Phone': phone,
+                                'Service': 'Company Registration',
+                                'View Applications': 'https://control.geepchris.com/applications'
+                            }
+                        })
+                    });
+                } catch (emailError) {
+                    console.error('Email notification failed:', emailError);
+                    // Don't stop the flow — just log the error
+                }
+
+                // 3. Show success state (no redirect)
+                document.getElementById('applicationForm').style.display = 'none';
+                document.getElementById('successState').classList.add('active');
+
+                // 4. Scroll back to success message so user can see it
+                document.getElementById('successState').scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                // 5. Setup WhatsApp Agent Button
+                setupAgentWhatsAppButton(formDataForWhatsApp);
+
+            } catch (error) {
+                console.error('Submission error:', error);
+                alert('There was an error submitting your application. Please try again.');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit Application';
             }
         });
 
-        // 6. SCROLL ANIMATION OBSERVER
+        // ==========================================
+        // SETUP AGENT WHATSAPP BUTTON
+        // ==========================================
+        function setupAgentWhatsAppButton(formData) {
+            const agentBtn = document.getElementById('agentWhatsAppBtn');
+            if (!agentBtn) return;
+
+            // Build the WhatsApp message with all submitted details
+            let message = `Hello GeepChris Bridge,\n\n`;
+            message += `I just submitted a Company Registration application.\n\n`;
+            message += `Here are the details I submitted for faster processing:\n\n`;
+
+            // Add all form fields
+            for (const [label, value] of Object.entries(formData)) {
+                if (value && value !== '') {
+                    message += `*${label}:* ${value}\n`;
+                }
+            }
+
+            // Add terms acceptance
+            message += `\n*Terms Accepted:* Yes`;
+            message += `\n*Submitted At:* ${new Date().toLocaleString()}`;
+
+            message += `\n\nPlease process my company registration as soon as possible.`;
+
+            const encodedMessage = encodeURIComponent(message);
+            const phoneNumber = '2347051299684';
+            
+            agentBtn.href = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+        }
+
+        // ==========================================
+        // SCROLL ANIMATION OBSERVER
+        // ==========================================
         document.addEventListener("DOMContentLoaded", function() {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -1193,6 +1230,215 @@
             loadForm();
         });
     </script>
+<!-- ===== BACK/FORWARD NAVIGATION ARROWS ===== -->
+<script>
+(function() {
+    // ===== CREATE ARROW HTML =====
+    const arrowHTML = `
+        <div id="navArrowsContainer" style="
+            position: fixed;
+            bottom: 24px;
+            left: 20px;
+            z-index: 999;
+            display: flex;
+            gap: 4px;
+            background: rgba(2,6,23,0.8);
+            backdrop-filter: blur(12px);
+            padding: 6px 10px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+            transition: all 0.3s ease;
+        ">
+            <button id="backBtn" style="
+                width: 28px;
+                height: 28px;
+                border: none;
+                border-radius: 50%;
+                background: rgba(255,255,255,0.06);
+                color: rgba(255,255,255,0.5);
+                font-size: 0.75rem;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            " disabled>
+                <i class="fas fa-chevron-left" style="font-size: 0.7rem;"></i>
+            </button>
+            <div style="
+                width: 1px;
+                background: rgba(255,255,255,0.1);
+                margin: 2px 0;
+            "></div>
+            <button id="forwardBtn" style="
+                width: 28px;
+                height: 28px;
+                border: none;
+                border-radius: 50%;
+                background: rgba(255,255,255,0.06);
+                color: rgba(255,255,255,0.5);
+                font-size: 0.75rem;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            " disabled>
+                <i class="fas fa-chevron-right" style="font-size: 0.7rem;"></i>
+            </button>
+        </div>
+    `;
+
+    // ===== INSERT ARROWS INTO PAGE =====
+    document.body.insertAdjacentHTML('beforeend', arrowHTML);
+
+    // ===== GET REFERENCES =====
+    const container = document.getElementById('navArrowsContainer');
+    const backBtn = document.getElementById('backBtn');
+    const forwardBtn = document.getElementById('forwardBtn');
+
+    // ===== HIDE ARROWS ON MOBILE BELOW 480px =====
+    function checkMobile() {
+        if (window.innerWidth < 480) {
+            container.style.display = 'none';
+        } else {
+            container.style.display = 'flex';
+        }
+    }
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    // ===== UPDATE BUTTON STATES =====
+    function updateButtons() {
+        if (backBtn) {
+            backBtn.disabled = window.history.length <= 1;
+            backBtn.style.opacity = window.history.length <= 1 ? '0.25' : '1';
+            backBtn.style.cursor = window.history.length <= 1 ? 'not-allowed' : 'pointer';
+        }
+        if (forwardBtn) {
+            forwardBtn.disabled = true;
+            forwardBtn.style.opacity = '0.25';
+            forwardBtn.style.cursor = 'not-allowed';
+        }
+    }
+
+    // ===== BACK BUTTON CLICK =====
+    if (backBtn) {
+        backBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (!this.disabled && window.history.length > 1) {
+                window.history.back();
+            }
+        });
+    }
+
+    // ===== FORWARD BUTTON CLICK =====
+    if (forwardBtn) {
+        forwardBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (!this.disabled) {
+                window.history.forward();
+            }
+        });
+    }
+
+    // ===== UPDATE ON HISTORY CHANGE =====
+    window.addEventListener('load', function() {
+        setTimeout(updateButtons, 150);
+    });
+
+    window.addEventListener('popstate', function() {
+        setTimeout(updateButtons, 100);
+    });
+
+    // ===== SCROLL TO HIDE ARROWS AT FOOTER =====
+    function handleScroll() {
+        const footer = document.querySelector('footer');
+        const container = document.getElementById('navArrowsContainer');
+        
+        if (!footer || !container) return;
+
+        const footerRect = footer.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        const containerHeight = container.offsetHeight || 50;
+
+        // If footer is visible and near the bottom of the viewport
+        if (footerRect.top < windowHeight && footerRect.bottom > 0) {
+            // Calculate how much to push the arrows up
+            const overlap = windowHeight - footerRect.top + 20;
+            if (overlap > 0) {
+                const maxPush = footerRect.height + containerHeight + 10;
+                const pushAmount = Math.min(overlap, maxPush);
+                container.style.transform = `translateY(-${pushAmount}px)`;
+                container.style.transition = 'transform 0.3s ease';
+            }
+        } else {
+            container.style.transform = 'translateY(0)';
+            container.style.transition = 'transform 0.3s ease';
+        }
+    }
+
+    // Throttled scroll handler
+    let scrollTimeout;
+    window.addEventListener('scroll', function() {
+        if (scrollTimeout) return;
+        scrollTimeout = setTimeout(function() {
+            handleScroll();
+            scrollTimeout = null;
+        }, 50);
+    }, { passive: true });
+
+    // Also update on resize
+    window.addEventListener('resize', handleScroll);
+
+    // Initial call after a small delay
+    setTimeout(handleScroll, 300);
+
+    // ===== HOVER EFFECTS =====
+    document.querySelectorAll('#backBtn, #forwardBtn').forEach(btn => {
+        btn.addEventListener('mouseenter', function() {
+            if (!this.disabled) {
+                this.style.background = 'rgba(34,197,94,0.15)';
+                this.style.color = '#22c55e';
+                this.style.transform = 'scale(1.05)';
+            }
+        });
+        btn.addEventListener('mouseleave', function() {
+            this.style.background = 'rgba(255,255,255,0.06)';
+            this.style.color = 'rgba(255,255,255,0.5)';
+            this.style.transform = 'scale(1)';
+        });
+    });
+
+    // ===== RESPONSIVE STYLES =====
+    const style = document.createElement('style');
+    style.textContent = `
+        @media (max-width: 768px) {
+            #navArrowsContainer {
+                bottom: 16px !important;
+                left: 12px !important;
+                padding: 5px 8px !important;
+            }
+            #navArrowsContainer button {
+                width: 24px !important;
+                height: 24px !important;
+                font-size: 0.65rem !important;
+            }
+            #navArrowsContainer button i {
+                font-size: 0.6rem !important;
+            }
+        }
+        @media (max-width: 480px) {
+            #navArrowsContainer {
+                display: none !important;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+
+})();
+</script>
 
 </body>
 </html>

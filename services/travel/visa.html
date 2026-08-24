@@ -80,6 +80,61 @@
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
+            overflow-x: hidden;
+        }
+
+        /* ===== BACK/FORWARD NAVIGATION ARROWS - BOTTOM LEFT, SMALLER ===== */
+        .nav-arrows {
+            position: fixed;
+            bottom: 24px;
+            left: 20px;
+            z-index: 999;
+            display: flex;
+            gap: 4px;
+            background: rgba(2,6,23,0.8);
+            backdrop-filter: blur(12px);
+            padding: 6px 10px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+            transition: all 0.3s ease;
+        }
+
+        .nav-arrows .arrow-btn {
+            width: 28px;
+            height: 28px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.06);
+            color: rgba(255,255,255,0.5);
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-arrows .arrow-btn:hover:not(:disabled) {
+            background: rgba(34,197,94,0.15);
+            color: #22c55e;
+            transform: scale(1.05);
+        }
+
+        .nav-arrows .arrow-btn:disabled {
+            opacity: 0.25;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .nav-arrows .arrow-btn i {
+            font-size: 0.7rem;
+        }
+
+        .nav-arrows .arrow-divider {
+            width: 1px;
+            background: rgba(255,255,255,0.1);
+            margin: 2px 0;
         }
 
         /* ===== HEADER / NAVBAR ===== */
@@ -515,12 +570,38 @@
             .nav-links, .nav-btn, .nav-auth { display: none; }
             .menu-toggle { display: block; }
             .footer-grid { grid-template-columns: 1fr 1fr; }
+            .nav-arrows {
+                bottom: 20px;
+                left: 16px;
+                padding: 5px 8px;
+            }
+            .nav-arrows .arrow-btn {
+                width: 24px;
+                height: 24px;
+                font-size: 0.65rem;
+            }
+            .nav-arrows .arrow-btn i {
+                font-size: 0.6rem;
+            }
         }
         @media (max-width: 768px) {
             .footer-grid { grid-template-columns: 1fr; gap: 32px; }
             .footer-bottom { flex-direction: column; text-align: center; }
             .logo img { height: 50px; }
             .visa-grid { grid-template-columns: 1fr; }
+            .nav-arrows {
+                bottom: 16px;
+                left: 12px;
+                padding: 4px 6px;
+            }
+            .nav-arrows .arrow-btn {
+                width: 20px;
+                height: 20px;
+                font-size: 0.55rem;
+            }
+            .nav-arrows .arrow-btn i {
+                font-size: 0.5rem;
+            }
         }
         @media (max-width: 640px) {
             header h1 { font-size: 1.8rem; }
@@ -529,6 +610,23 @@
             .card-flag-wrapper { width: 42px; height: 42px; top: 140px; }
             .card-flag-wrapper .flag-fallback { font-size: 1.8rem; }
             header { min-height: 200px; padding: 64px 20px 32px; }
+            .nav-arrows {
+                bottom: 12px;
+                left: 10px;
+                padding: 3px 5px;
+                gap: 3px;
+            }
+            .nav-arrows .arrow-btn {
+                width: 18px;
+                height: 18px;
+                font-size: 0.5rem;
+            }
+            .nav-arrows .arrow-btn i {
+                font-size: 0.45rem;
+            }
+            .nav-arrows .arrow-divider {
+                margin: 1px 0;
+            }
         }
     </style>
     <script nowprocket data-noptimize="1" data-cfasync="false" data-wpfc-render="false" seraph-accel-crit="1" data-no-defer="1" data-cmp-ab="2">
@@ -542,6 +640,19 @@
 </script>
 </head>
 <body>
+
+    <!-- ========================================================== -->
+    <!-- =================== BACK/FORWARD ARROWS ================== -->
+    <!-- ========================================================== -->
+    <div class="nav-arrows" id="navArrows">
+        <button class="arrow-btn" id="backBtn" title="Go back" disabled>
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <div class="arrow-divider"></div>
+        <button class="arrow-btn" id="forwardBtn" title="Go forward" disabled>
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
 
     <!-- ========================================================== -->
     <!-- =================== NAVIGATION (STANDARD) ================= -->
@@ -700,7 +811,7 @@
 
             <div class="footer-bottom">
                 <p>
-                    © 2025 GeepChris Bridge Enterprise. All Rights Reserved.<br>
+                    © 2026 GeepChris Bridge Enterprise. All Rights Reserved.<br>
                     Website by <a href="https://vintechdigitalservices.com" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.5); text-decoration:none; transition:color 0.3s ease;" data-no-hover-preview>Vintech Digital Services</a>
                 </p>
                 <div class="footer-bottom-links">
@@ -817,6 +928,58 @@
         }
         const db = firebase.firestore();
         const auth = firebase.auth();
+
+        // ==========================================
+        // BACK/FORWARD NAVIGATION
+        // ==========================================
+        (function() {
+            const backBtn = document.getElementById('backBtn');
+            const forwardBtn = document.getElementById('forwardBtn');
+
+            function updateButtons() {
+                if (backBtn) {
+                    backBtn.disabled = window.history.state?.backDisabled !== false && window.history.length <= 1;
+                }
+                if (forwardBtn) {
+                    forwardBtn.disabled = !window.history.state?.forwardAvailable && window.history.length <= 1;
+                }
+            }
+
+            if (backBtn) {
+                backBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (!this.disabled) {
+                        window.history.back();
+                    }
+                });
+            }
+
+            if (forwardBtn) {
+                forwardBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (!this.disabled) {
+                        window.history.forward();
+                    }
+                });
+            }
+
+            // Update on page load and when history changes
+            window.addEventListener('load', function() {
+                setTimeout(updateButtons, 100);
+            });
+
+            window.addEventListener('popstate', function() {
+                setTimeout(updateButtons, 50);
+            });
+
+            // Also update on any click that might change history
+            document.addEventListener('click', function() {
+                setTimeout(updateButtons, 100);
+            });
+
+            // Initial update
+            setTimeout(updateButtons, 200);
+        })();
 
         // ==========================================
         // COUNTRY FLAG DATA - SVG FORMAT

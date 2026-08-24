@@ -1,0 +1,1748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- ===== FAVICON ===== -->
+    <link class="icon" type="image/png" href="/assets/logo.png" />
+    <link rel="apple-touch-icon" href="/assets/logo.png" />
+    <link rel="shortcut icon" href="/assets/logo.png" />
+    
+    <!-- ===== PRIMARY META TAGS ===== -->
+    <title>Page Not Found — GeepChris Bridge Enterprise</title>
+    <meta name="description" content="The page you're looking for doesn't exist or may have been moved. Let us help you get back on track with GeepChris Bridge Enterprise.">
+    <meta name="robots" content="noindex, follow">
+    <meta name="author" content="GeepChris Bridge Enterprise">
+    <link rel="canonical" href="https://geepchris.com/404.html">
+
+    <!-- ===== OPEN GRAPH / SOCIAL MEDIA META TAGS ===== -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://geepchris.com/404.html">
+    <meta property="og:title" content="Page Not Found — GeepChris Bridge Enterprise">
+    <meta property="og:description" content="The page you're looking for doesn't exist or may have been moved. Let us help you get back on track.">
+    <meta property="og:image" content="https://geepchris.com/assets/geepchris.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="GeepChris Bridge Enterprise">
+    <meta property="og:locale" content="en_NG">
+
+    <!-- ===== TWITTER CARD META TAGS ===== -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://geepchris.com/404.html">
+    <meta name="twitter:title" content="Page Not Found — GeepChris Bridge Enterprise">
+    <meta name="twitter:description" content="The page you're looking for doesn't exist or may have been moved. Let us help you get back on track.">
+    <meta name="twitter:image" content="https://geepchris.com/assets/geepchris.jpg">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8fafc;
+            color: #0f172a;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 24px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            width: 100%;
+            background: rgba(2, 6, 23, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .navbar .logo img {
+            height: 40px;
+            width: auto;
+            display: block;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+            margin-left: auto;
+            margin-right: 1.5rem;
+        }
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: .95rem;
+            transition: .3s;
+        }
+        .nav-links a:hover {
+            color: #22c55e;
+        }
+        .has-dropdown {
+            position: relative;
+        }
+        .dropdown-trigger {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+        }
+        .arrow-down {
+            font-size: .75rem;
+            transition: transform .3s ease;
+        }
+        .has-dropdown:hover .arrow-down {
+            transform: rotate(180deg);
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: calc(100% + 12px);
+            left: 50%;
+            transform: translateX(-50%) translateY(8px);
+            background: rgba(2, 6, 23, .98);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            border-radius: 12px;
+            padding: 10px;
+            min-width: 260px;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: all .28s cubic-bezier(.4, 0, .2, 1);
+            z-index: 200;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, .5);
+        }
+        .has-dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: all;
+            transform: translateX(-50%) translateY(0);
+        }
+        .dropdown-menu a {
+            display: block;
+            padding: 11px 16px;
+            border-radius: 8px;
+            color: rgba(255, 255, 255, .85);
+            font-size: .88rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all .2s ease;
+        }
+        .dropdown-menu a:hover {
+            background: rgba(34, 197, 94, .12);
+            color: #22c55e;
+            padding-left: 22px;
+        }
+        .nav-btn {
+            text-decoration: none;
+            padding: 10px 22px;
+            border-radius: 999px;
+            background: #16a34a;
+            color: #fff;
+            font-weight: 600;
+            font-size: .9rem;
+            transition: .3s;
+        }
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            background: #22c55e;
+        }
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+        .menu-toggle span {
+            display: block;
+            width: 26px;
+            height: 2.5px;
+            background: #fff;
+            margin: 5px 0;
+            border-radius: 5px;
+            transition: .3s;
+        }
+
+        /* ===== MOBILE MENU ===== */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1.2rem;
+            background: rgba(2, 6, 23, .98);
+            backdrop-filter: blur(20px);
+            padding: 40px 24px;
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(.96);
+            transition: all .4s cubic-bezier(.4, 0, .2, 1);
+            z-index: 999;
+        }
+        .mobile-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1);
+        }
+        .mobile-menu-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        .mobile-menu-close span {
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 24px;
+            height: 2.5px;
+            background: #fff;
+            border-radius: 5px;
+            transition: transform .3s ease;
+        }
+        .mobile-menu-close span:first-child {
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+        .mobile-menu-close span:last-child {
+            transform: translate(-50%, -50%) rotate(-45deg);
+        }
+        .mobile-menu>a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            width: 100%;
+            text-align: center;
+        }
+        .mobile-menu>a:hover {
+            color: #22c55e;
+        }
+        .mobile-services-group {
+            width: 100%;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 12px;
+            text-align: center;
+        }
+        .mobile-services-toggle {
+            background: none;
+            border: none;
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.2rem;
+            padding: 12px 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+        }
+        .mobile-services-toggle span {
+            transition: transform .3s;
+            font-size: .9rem;
+        }
+        .mobile-services-toggle.active span {
+            display: inline-block;
+            transform: rotate(180deg);
+        }
+        .mobile-services-dropdown {
+            display: none;
+            padding-top: 10px;
+        }
+        .mobile-services-dropdown.active {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            align-items: center;
+        }
+        .mobile-services-dropdown a {
+            color: rgba(255, 255, 255, .8);
+            text-decoration: none;
+            font-size: .95rem;
+            padding: 6px 0;
+            font-weight: 500;
+            transition: color .3s;
+        }
+        .mobile-services-dropdown a:hover {
+            color: #22c55e;
+        }
+        .mobile-btn {
+            margin-top: 10px;
+            background: #16a34a;
+            padding: 14px 40px;
+            text-align: center;
+            border-radius: 999px;
+            color: #fff !important;
+            font-weight: 700 !important;
+            border: none !important;
+            font-size: 1rem !important;
+            width: auto;
+            min-width: 200px;
+        }
+        .mobile-btn:hover {
+            background: #22c55e;
+        }
+
+        /* ===== 404 PAGE CONTAINER - ALL CONTENT FITS VIEWPORT ===== */
+        .error-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 20px 30px;
+            min-height: 100vh;
+            background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* ===== BACKGROUND DECORATIVE ELEMENTS ===== */
+        .error-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(22, 163, 74, 0.04) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .error-container::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(2, 6, 23, 0.03) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        .error-content {
+            max-width: 720px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ===== TRAVEL VISUAL (SVG Illustration) ===== */
+        .travel-visual {
+            position: relative;
+            width: 100%;
+            max-width: 380px;
+            margin: 0 auto 20px;
+            height: 180px;
+        }
+
+        /* ===== AIRPLANE SVG ===== */
+        .airplane-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .airplane-svg {
+            position: absolute;
+            top: 50%;
+            left: 8%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            z-index: 5;
+            opacity: 0;
+        }
+
+        .airplane-svg svg {
+            width: 100%;
+            height: 100%;
+            fill: #16a34a;
+            transform: rotate(-15deg);
+        }
+
+        /* ===== DOTTED FLIGHT PATH WITH BRIDGE CURVE ===== */
+        .flight-path {
+            position: absolute;
+            top: 50%;
+            left: 10%;
+            width: 72%;
+            height: 60px;
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+
+        .flight-path svg {
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+        }
+
+        .flight-path .path-line {
+            stroke: #16a34a;
+            stroke-width: 2.5;
+            stroke-dasharray: 8 8;
+            fill: none;
+            opacity: 0.4;
+            stroke-linecap: round;
+        }
+
+        /* ===== DESTINATION MARKER ===== */
+        .destination-marker {
+            position: absolute;
+            top: 50%;
+            right: 3%;
+            transform: translateY(-50%);
+            z-index: 3;
+            opacity: 0;
+        }
+
+        .destination-marker .marker-icon {
+            width: 42px;
+            height: 42px;
+            position: relative;
+        }
+
+        .destination-marker .marker-icon svg {
+            width: 100%;
+            height: 100%;
+            fill: #16a34a;
+        }
+
+        .destination-marker .marker-pulse {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 2px solid rgba(22, 163, 74, 0.2);
+            animation: pulseRing 2s ease-in-out infinite;
+        }
+
+        .destination-marker .marker-pulse:nth-child(2) {
+            animation-delay: 0.5s;
+            width: 90px;
+            height: 90px;
+            border-color: rgba(22, 163, 74, 0.1);
+        }
+
+        /* ===== MOVING CLOUDS ===== */
+        .cloud {
+            position: absolute;
+            color: rgba(2, 6, 23, 0.05);
+            font-size: 3.5rem;
+            z-index: 0;
+            opacity: 0;
+        }
+
+        .cloud-1 {
+            top: 8%;
+            left: 5%;
+            animation: cloudFloat 25s linear infinite, cloudAppear 1.5s ease 0.3s forwards;
+        }
+
+        .cloud-2 {
+            bottom: 10%;
+            right: 8%;
+            font-size: 2.5rem;
+            animation: cloudFloat 30s linear infinite reverse, cloudAppear 1.5s ease 0.6s forwards;
+        }
+
+        .cloud-3 {
+            top: 15%;
+            right: 15%;
+            font-size: 2rem;
+            animation: cloudFloat 20s linear infinite, cloudAppear 1.5s ease 0.9s forwards;
+        }
+
+        /* ===== 404 NUMBER ===== */
+        .error-number {
+            font-size: 6rem;
+            font-weight: 900;
+            line-height: 1;
+            background: linear-gradient(135deg, #16a34a, #22c55e, #4ade80);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0;
+            transform: scale(0.8);
+            animation: numberAppear 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s forwards;
+            margin-bottom: 4px;
+            letter-spacing: -3px;
+        }
+
+        /* ===== HEADLINE ===== */
+        .error-headline {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 6px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideUp 0.6s ease 0.9s forwards;
+        }
+
+        .error-headline span {
+            color: #16a34a;
+        }
+
+        /* ===== SUPPORTING TEXT ===== */
+        .error-text {
+            font-size: 0.95rem;
+            color: #64748b;
+            line-height: 1.6;
+            max-width: 480px;
+            margin: 0 auto 16px;
+            opacity: 0;
+            transform: translateY(15px);
+            animation: slideUp 0.6s ease 1.1s forwards;
+        }
+
+        /* ===== SEARCH SECTION ===== */
+        .search-section {
+            opacity: 0;
+            transform: translateY(15px);
+            animation: slideUp 0.6s ease 1.3s forwards;
+            margin-bottom: 12px;
+        }
+
+        .search-wrapper {
+            display: flex;
+            max-width: 480px;
+            margin: 0 auto;
+            gap: 8px;
+            background: #ffffff;
+            border-radius: 999px;
+            border: 2px solid #e2e8f0;
+            padding: 4px 4px 4px 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .search-wrapper:focus-within {
+            border-color: #16a34a;
+            box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.08);
+        }
+
+        .search-wrapper input {
+            flex: 1;
+            border: none;
+            outline: none;
+            padding: 10px 0;
+            font-size: 0.95rem;
+            font-family: 'Inter', sans-serif;
+            background: transparent;
+            color: #0f172a;
+            min-width: 0;
+        }
+
+        .search-wrapper input::placeholder {
+            color: #94a3b8;
+        }
+
+        .search-wrapper .search-btn {
+            padding: 10px 24px;
+            border: none;
+            border-radius: 999px;
+            background: #16a34a;
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .search-wrapper .search-btn:hover {
+            background: #22c55e;
+            transform: scale(1.02);
+        }
+
+        .search-wrapper .search-btn i {
+            margin-right: 6px;
+        }
+
+        /* ===== SEARCH RESULTS ===== */
+        .search-results {
+            max-width: 480px;
+            margin: 10px auto 0;
+            text-align: left;
+            display: none;
+            background: #ffffff;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            padding: 8px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .search-results.active {
+            display: block;
+            animation: fadeIn 0.3s ease forwards;
+        }
+
+        .search-results .result-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #0f172a;
+            transition: all 0.2s ease;
+            gap: 12px;
+        }
+
+        .search-results .result-item:hover {
+            background: #f8fafc;
+        }
+
+        .search-results .result-item .result-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .search-results .result-item .result-title {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #0f172a;
+        }
+
+        .search-results .result-item .result-desc {
+            font-size: 0.8rem;
+            color: #64748b;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .search-results .result-item .result-link {
+            font-size: 0.75rem;
+            color: #16a34a;
+            font-weight: 600;
+            white-space: nowrap;
+            padding: 4px 12px;
+            border-radius: 999px;
+            background: rgba(22, 163, 74, 0.08);
+            transition: all 0.2s ease;
+        }
+
+        .search-results .result-item:hover .result-link {
+            background: #16a34a;
+            color: #fff;
+        }
+
+        .search-results .no-results {
+            padding: 16px 14px;
+            text-align: center;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .search-results .no-results i {
+            margin-right: 6px;
+            color: #94a3b8;
+        }
+
+        /* ===== SUGGESTED LINKS ===== */
+        .suggested-links {
+            opacity: 0;
+            animation: fadeIn 0.6s ease 1.6s forwards;
+            margin-top: 6px;
+        }
+
+        .suggested-links .suggested-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 6px;
+        }
+
+        .suggested-links .suggested-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            justify-content: center;
+        }
+
+        .suggested-links .suggested-items a {
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 999px;
+            background: rgba(22, 163, 74, 0.08);
+            color: #16a34a;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .suggested-links .suggested-items a:hover {
+            background: #16a34a;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* ===== BUTTONS ===== */
+        .error-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            transform: translateY(15px);
+            animation: slideUp 0.6s ease 1.5s forwards;
+            margin-top: 4px;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 28px;
+            background: #16a34a;
+            color: #fff;
+            border: none;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background: #22c55e;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(34, 197, 94, 0.3);
+        }
+
+        .btn-primary i {
+            font-size: 0.85rem;
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 28px;
+            background: transparent;
+            color: #0f172a;
+            border: 2px solid #e2e8f0;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-secondary:hover {
+            border-color: #16a34a;
+            color: #16a34a;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary i {
+            font-size: 0.85rem;
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes airplaneAppear {
+            0% {
+                opacity: 0;
+                transform: translateY(-50%) translateX(-60px) scale(0.7);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(-50%) translateX(15px) scale(1.1);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(-50%) translateX(0) scale(1);
+            }
+        }
+
+        @keyframes markerAppear {
+            0% {
+                opacity: 0;
+                transform: translateY(-50%) scale(0.3);
+            }
+            60% {
+                opacity: 1;
+                transform: translateY(-50%) scale(1.15);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(-50%) scale(1);
+            }
+        }
+
+        @keyframes numberAppear {
+            0% {
+                opacity: 0;
+                transform: scale(0.7);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulseRing {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1.6);
+                opacity: 0;
+            }
+        }
+
+        @keyframes cloudFloat {
+            0% {
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(50px);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes cloudAppear {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* ===== AIRPLANE FLIGHT ANIMATION ===== */
+        .airplane-svg.animate-flight {
+            animation: airplaneAppear 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s forwards, airplaneFloat 4s ease-in-out infinite 1.6s;
+        }
+
+        @keyframes airplaneFloat {
+            0% {
+                transform: translateY(-50%) translateX(0) rotate(-15deg);
+            }
+            30% {
+                transform: translateY(-55%) translateX(14px) rotate(-12deg);
+            }
+            70% {
+                transform: translateY(-45%) translateX(-8px) rotate(-18deg);
+            }
+            100% {
+                transform: translateY(-50%) translateX(0) rotate(-15deg);
+            }
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: #020617;
+            padding: 30px 0 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            margin-top: auto;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.8fr 1fr 1fr 1.3fr;
+            gap: 30px;
+            padding-bottom: 24px;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        .footer-logo {
+            margin-bottom: 14px;
+        }
+        .footer-logo img {
+            height: 40px;
+            width: auto;
+            display: block;
+        }
+        .footer-brand p {
+            font-size: .82rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, .6);
+            margin-bottom: 16px;
+            max-width: 280px;
+        }
+        .footer-socials {
+            display: flex;
+            gap: 10px;
+        }
+        .footer-socials a {
+            width: 34px;
+            height: 34px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, .5);
+            transition: all .3s ease;
+        }
+        .footer-socials a svg {
+            width: 14px;
+            height: 14px;
+        }
+        .footer-socials a:hover {
+            background: #16a34a;
+            border-color: #16a34a;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+        .footer-col h4 {
+            font-size: .78rem;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: #fff;
+            margin-bottom: 14px;
+        }
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .footer-col ul li a {
+            font-size: .8rem;
+            color: rgba(255, 255, 255, .6);
+            text-decoration: none;
+            transition: color .3s;
+            line-height: 1.5;
+        }
+        .footer-col ul li a:hover {
+            color: #22c55e;
+        }
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 8px !important;
+        }
+        .footer-contact li {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: .8rem;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.5;
+        }
+        .footer-contact li svg {
+            width: 14px;
+            height: 14px;
+            min-width: 14px;
+            stroke: #22c55e;
+            margin-top: 2px;
+        }
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 14px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        .footer-bottom p {
+            font-size: .75rem;
+            color: rgba(255, 255, 255, .4);
+        }
+        .footer-bottom-links {
+            display: flex;
+            gap: 20px;
+        }
+        .footer-bottom-links a {
+            font-size: .75rem;
+            color: rgba(255, 255, 255, .4);
+            text-decoration: none;
+            transition: color .3s;
+        }
+        .footer-bottom-links a:hover {
+            color: #22c55e;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .nav-links,
+            .nav-btn {
+                display: none;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .error-number {
+                font-size: 5rem;
+            }
+            .error-headline {
+                font-size: 1.5rem;
+            }
+            .travel-visual {
+                max-width: 320px;
+                height: 150px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+            .logo img {
+                height: 45px;
+            }
+            .error-container {
+                padding: 70px 16px 20px;
+                min-height: 100vh;
+            }
+            .error-number {
+                font-size: 4rem;
+                letter-spacing: -2px;
+            }
+            .error-headline {
+                font-size: 1.3rem;
+            }
+            .error-text {
+                font-size: 0.88rem;
+            }
+            .search-wrapper {
+                padding: 3px 3px 3px 16px;
+            }
+            .search-wrapper input {
+                font-size: 0.88rem;
+                padding: 8px 0;
+            }
+            .search-wrapper .search-btn {
+                padding: 8px 16px;
+                font-size: 0.8rem;
+            }
+            .error-buttons {
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+                font-size: 0.85rem;
+                padding: 10px 20px;
+            }
+            .travel-visual {
+                max-width: 260px;
+                height: 130px;
+            }
+            .airplane-svg {
+                width: 40px;
+                height: 40px;
+                left: 5%;
+            }
+            .destination-marker .marker-icon {
+                width: 34px;
+                height: 34px;
+            }
+            .destination-marker .marker-pulse {
+                width: 55px;
+                height: 55px;
+            }
+            .destination-marker .marker-pulse:nth-child(2) {
+                width: 70px;
+                height: 70px;
+            }
+            .flight-path {
+                left: 8%;
+                width: 74%;
+                height: 50px;
+            }
+            .cloud {
+                font-size: 2.5rem;
+            }
+            .cloud-2 {
+                font-size: 2rem;
+            }
+            .cloud-3 {
+                font-size: 1.5rem;
+            }
+            .suggested-links .suggested-items a {
+                font-size: 0.7rem;
+                padding: 3px 10px;
+            }
+            .search-results .result-item {
+                padding: 8px 10px;
+                flex-wrap: wrap;
+            }
+            .search-results .result-item .result-link {
+                font-size: 0.7rem;
+                padding: 2px 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .error-number {
+                font-size: 3.5rem;
+            }
+            .error-headline {
+                font-size: 1.1rem;
+            }
+            .travel-visual {
+                max-width: 200px;
+                height: 100px;
+            }
+            .airplane-svg {
+                width: 32px;
+                height: 32px;
+                left: 3%;
+            }
+            .destination-marker .marker-icon {
+                width: 28px;
+                height: 28px;
+            }
+            .destination-marker .marker-pulse {
+                width: 45px;
+                height: 45px;
+            }
+            .destination-marker .marker-pulse:nth-child(2) {
+                width: 55px;
+                height: 55px;
+            }
+            .flight-path {
+                left: 6%;
+                width: 78%;
+                height: 40px;
+            }
+            .cloud {
+                font-size: 2rem;
+            }
+            .cloud-2 {
+                font-size: 1.5rem;
+            }
+            .cloud-3 {
+                display: none;
+            }
+            .error-container {
+                padding: 60px 12px 16px;
+            }
+            .search-wrapper {
+                padding: 2px 2px 2px 12px;
+                border-radius: 999px;
+            }
+            .search-wrapper input {
+                font-size: 0.82rem;
+                padding: 6px 0;
+            }
+            .search-wrapper .search-btn {
+                padding: 6px 14px;
+                font-size: 0.75rem;
+            }
+            .btn-primary,
+            .btn-secondary {
+                font-size: 0.8rem;
+                padding: 8px 16px;
+                max-width: 240px;
+            }
+            .suggested-links .suggested-items a {
+                font-size: 0.65rem;
+                padding: 2px 8px;
+            }
+        }
+
+        /* ===== SECURITY ===== */
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+    </style>
+
+    <!-- ===== SECURITY SCRIPTS ===== -->
+    <script>
+        // ===== BLOCK RIGHT-CLICK =====
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        // ===== BLOCK KEYBOARD SHORTCUTS =====
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'F12' || e.keyCode === 123) {
+                e.preventDefault();
+                return false;
+            }
+            if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.keyCode === 73)) {
+                e.preventDefault();
+                return false;
+            }
+            if (e.ctrlKey && e.shiftKey && (e.key === 'J' || e.key === 'j' || e.keyCode === 74)) {
+                e.preventDefault();
+                return false;
+            }
+            if (e.ctrlKey && (e.key === 'U' || e.key === 'u' || e.keyCode === 85)) {
+                e.preventDefault();
+                return false;
+            }
+            if (e.ctrlKey && (e.key === 'S' || e.key === 's' || e.keyCode === 83)) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        // ===== DISABLE URL TOOLTIPS =====
+        document.querySelectorAll('a, button, [role="button"]').forEach(function(el) {
+            if (el.hasAttribute('title')) {
+                el.removeAttribute('title');
+            }
+        });
+
+        document.addEventListener('mouseover', function(e) {
+            var target = e.target;
+            while (target && target !== document) {
+                if (target.tagName === 'A' || target.tagName === 'BUTTON') {
+                    window.status = '';
+                    return false;
+                }
+                target = target.parentElement;
+            }
+        }, true);
+
+        document.addEventListener('mousemove', function(e) {
+            window.status = '';
+        });
+
+        if (window.status) {
+            window.status = '';
+        }
+
+        document.querySelectorAll('a').forEach(function(link) {
+            link.addEventListener('mouseenter', function(e) {
+                window.status = '';
+            });
+            link.addEventListener('focus', function(e) {
+                window.status = '';
+            });
+        });
+    </script>
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar" id="navbar">
+        <a href="/" class="logo" data-no-hover-preview>
+            <img src="/assets/logo.png" alt="GeepChris Bridge">
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="/" data-no-hover-preview>Home</a></li>
+            <li class="has-dropdown">
+                <a href="/services" class="dropdown-trigger" data-no-hover-preview>Services <span class="arrow-down">▾</span></a>
+                <div class="dropdown-menu">
+                    <a href="/services/moniepoint" data-no-hover-preview>Moniepoint Financial Services</a>
+                    <a href="/services/travel" data-no-hover-preview>Travel & Global Mobility</a>
+                    <a href="/services/business-registration" data-no-hover-preview>Business Registration</a>
+                    <a href="/services/web-development" data-no-hover-preview>Web Development</a>
+                </div>
+            </li>
+            <li><a href="/about-us" data-no-hover-preview>About</a></li>
+            <li><a href="/faq" data-no-hover-preview>FAQs</a></li>
+            <li><a href="/contact" data-no-hover-preview>Contact</a></li>
+            <li><a href="/blog" data-no-hover-preview>Blog</a></li>
+        </ul>
+
+        <a href="/contact" class="nav-btn" data-no-hover-preview>Get Started</a>
+
+        <button class="menu-toggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- ===== MOBILE MENU ===== -->
+    <div class="mobile-menu">
+        <button class="mobile-menu-close" aria-label="Close menu">
+            <span></span><span></span>
+        </button>
+        <a href="/" data-no-hover-preview>Home</a>
+        <div class="mobile-services-group">
+            <button class="mobile-services-toggle">Services <span>▾</span></button>
+            <div class="mobile-services-dropdown">
+                <a href="/services/moniepoint" data-no-hover-preview>Moniepoint Financial Services</a>
+                <a href="/services/travel" data-no-hover-preview>Travel & Global Mobility</a>
+                <a href="/services/business-registration" data-no-hover-preview>Business Registration</a>
+                <a href="/services/web-development" data-no-hover-preview>Web Development</a>
+            </div>
+        </div>
+        <a href="/about-us" data-no-hover-preview>About</a>
+        <a href="/faq" data-no-hover-preview>FAQs</a>
+        <a href="/contact" data-no-hover-preview>Contact</a>
+        <a href="/contact" class="mobile-btn" data-no-hover-preview>Get Started</a>
+    </div>
+
+    <!-- ===== 404 ERROR CONTENT ===== -->
+    <div class="error-container">
+
+        <!-- ===== DECORATIVE CLOUDS ===== -->
+        <div class="cloud cloud-1">☁️</div>
+        <div class="cloud cloud-2">☁️</div>
+        <div class="cloud cloud-3">☁️</div>
+
+        <div class="error-content">
+
+            <!-- ===== TRAVEL VISUAL ===== -->
+            <div class="travel-visual">
+                <div class="airplane-wrapper">
+
+                    <!-- Dotted Flight Path with Bridge Curve -->
+                    <div class="flight-path">
+                        <svg viewBox="0 0 300 60" preserveAspectRatio="none">
+                            <path class="path-line" d="M 0 30 Q 80 10, 160 30 Q 240 50, 300 30" />
+                        </svg>
+                    </div>
+
+                    <!-- Airplane SVG -->
+                    <div class="airplane-svg animate-flight" id="airplane">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 16v-2l-8-5V3.5A1.5 1.5 0 0 0 11.5 2 1.5 1.5 0 0 0 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
+                        </svg>
+                    </div>
+
+                    <!-- Destination Marker -->
+                    <div class="destination-marker" id="marker">
+                        <div class="marker-icon">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                            </svg>
+                            <div class="marker-pulse"></div>
+                            <div class="marker-pulse"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- ===== 404 NUMBER ===== -->
+            <div class="error-number">404</div>
+
+            <!-- ===== HEADLINE ===== -->
+            <h1 class="error-headline">Oops! You've Taken a <span>Wrong Turn</span></h1>
+
+            <!-- ===== SUPPORTING TEXT ===== -->
+            <p class="error-text">
+                The page you're looking for may have moved, been renamed, or no longer exists.
+            </p>
+
+            <!-- ===== SEARCH SECTION ===== -->
+            <div class="search-section">
+                <div class="search-wrapper">
+                    <input type="text" id="searchInput" placeholder="What are you looking for? (visa, flight, CAC, Moniepoint...)" autocomplete="off">
+                    <button class="search-btn" id="searchBtn">
+                        <i class="fas fa-search"></i> Find It
+                    </button>
+                </div>
+                <div class="search-results" id="searchResults"></div>
+            </div>
+
+           
+
+            <!-- ===== BUTTONS ===== -->
+            <div class="error-buttons">
+                <a href="https://www.geepchris.com" class="btn-primary">
+                    <i class="fas fa-home"></i> Back to Home
+                </a>
+                <a href="/services" class="btn-secondary">
+                    <i class="fas fa-compass"></i> Explore Our Services
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container" style="max-width:1280px; margin:0 auto; padding:0 20px;">
+            <div class="footer-grid">
+                <div class="footer-col footer-brand">
+                    <div class="footer-logo">
+                        <img src="/assets/logo.png" alt="GeepChris Bridge">
+                    </div>
+                    <p>GeepChris Bridge Enterprise simplifies essential business, financial, identity, and travel processes through professional guidance and reliable service delivery.</p>
+                    <div class="footer-socials">
+                        <a href="https://www.facebook.com/share/1F1BS8pK3p/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                        </a>
+                        <a href="https://www.instagram.com/geepchris_bridge_enterprise" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                        </a>
+                        <a href="https://x.com/GeepChris_Bridg" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </a>
+                        <a href="https://www.tiktok.com/@geepchris.bridge" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
+                        </a>
+                        <a href="https://youtube.com/@geepchrisbridge" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/" data-no-hover-preview>Home</a></li>
+                        <li><a href="/services" data-no-hover-preview>Services</a></li>
+                        <li><a href="/about-us" data-no-hover-preview>About Us</a></li>
+                        <li><a href="/faq" data-no-hover-preview>FAQs</a></li>
+                        <li><a href="/contact" data-no-hover-preview>Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Our Services</h4>
+                    <ul>
+                        <li><a href="/services/moniepoint" data-no-hover-preview>Moniepoint</a></li>
+                        <li><a href="/services/travel" data-no-hover-preview>Travel & Mobility</a></li>
+                        <li><a href="/services/business-registration" data-no-hover-preview>Business Registration</a></li>
+                        <li><a href="/services/web-development" data-no-hover-preview>Web Development</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul class="footer-contact">
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.5 2 2 0 0 1 3.6 1.29h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.4a16 16 0 0 0 5.69 5.69l1.19-1.19a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.71 15z"/></svg>
+                            +2347061507103, +2347051299684
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            info@geepchris.com
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            15 college road opposite 2nd Gate college of Education Abata Nsugbe
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                            Mon – Sat: 8am – 6pm
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 GeepChris Bridge Enterprise. All Rights Reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="/privacy" data-no-hover-preview>Privacy Policy</a>
+                    <a href="/terms" data-no-hover-preview>Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script>
+        // ===== NAVBAR SCRIPTS =====
+        const navbar = document.getElementById('navbar');
+        const menuToggle = document.querySelector(".menu-toggle");
+        const mobileMenu = document.querySelector(".mobile-menu");
+        const mobileClose = document.querySelector(".mobile-menu-close");
+
+        menuToggle.addEventListener("click", () => {
+            mobileMenu.classList.toggle("active");
+            document.body.style.overflow = mobileMenu.classList.contains("active") ? "hidden" : "";
+        });
+        if (mobileClose) {
+            mobileClose.addEventListener("click", () => {
+                mobileMenu.classList.remove("active");
+                document.body.style.overflow = "";
+            });
+        }
+        const mobileServicesToggle = document.querySelector(".mobile-services-toggle");
+        const mobileServicesDropdown = document.querySelector(".mobile-services-dropdown");
+        if (mobileServicesToggle) {
+            mobileServicesToggle.addEventListener("click", () => {
+                mobileServicesToggle.classList.toggle("active");
+                mobileServicesDropdown.classList.toggle("active");
+            });
+        }
+        document.querySelectorAll(".mobile-menu a").forEach(link => {
+            link.addEventListener("click", () => {
+                mobileMenu.classList.remove("active");
+                document.body.style.overflow = "";
+            });
+        });
+        window.addEventListener("scroll", () => {
+            if (window.pageYOffset > 80) navbar.classList.add("scrolled");
+            else navbar.classList.remove("scrolled");
+        });
+
+        // ===== PAGE DATA FROM VERCOL.JSON =====
+        const pageData = [
+            { title: "Home", url: "/", description: "Welcome to GeepChris Bridge Enterprise" },
+            { title: "About Us", url: "/about-us", description: "Learn about GeepChris Bridge Enterprise" },
+            { title: "Privacy Policy", url: "/privacy", description: "Read our privacy policy" },
+            { title: "Services", url: "/services", description: "Explore all our services" },
+            { title: "Terms of Service", url: "/terms", description: "Read our terms of service" },
+            { title: "Thank You", url: "/thanks", description: "Thank you for contacting us" },
+            { title: "Blog", url: "/blog", description: "Read our latest articles" },
+            { title: "Business Registration", url: "/services/business-registration", description: "Register your business with CAC" },
+            { title: "Moniepoint Financial Services", url: "/services/moniepoint", description: "Moniepoint account opening, loans, and POS" },
+            { title: "Travel & Global Mobility", url: "/services/travel", description: "Visa processing and travel services" },
+            { title: "Web Development", url: "/services/web-development", description: "Professional web development services" },
+            { title: "Form Preview", url: "/services/form-preview", description: "Preview our service forms" },
+            { title: "Annual Return", url: "/services/business-registration/annual-return", description: "File annual returns" },
+            { title: "Business Name Registration", url: "/services/business-registration/business-name", description: "Register your business name" },
+            { title: "Company Registration", url: "/services/business-registration/company-registration", description: "Register your company" },
+            { title: "NGO Registration", url: "/services/business-registration/ngo", description: "Register your NGO" },
+            { title: "NPO Registration", url: "/services/business-registration/npo", description: "Register your NPO" },
+            { title: "SCUML Registration", url: "/services/business-registration/scuml", description: "SCUML registration" },
+            { title: "TIN Registration", url: "/services/business-registration/tin", description: "Register for Tax Identification Number" },
+            { title: "Trademark Registration", url: "/services/business-registration/trademark", description: "Register your trademark" },
+            { title: "Account Opening", url: "/services/moniepoint/account-opening", description: "Open a Moniepoint business account" },
+            { title: "Business Loans", url: "/services/moniepoint/loans", description: "Apply for a business loan" },
+            { title: "POS Terminal", url: "/services/moniepoint/pos", description: "Apply for a POS terminal" },
+            { title: "Visa Processing", url: "/services/travel/visa", description: "Visa processing services" },
+            { title: "Visa Country Details", url: "/services/travel/visa-country", description: "Country-specific visa information" },
+            { title: "Authentication", url: "/auth", description: "Sign in to your account" },
+            { title: "Dashboard", url: "/dashboard", description: "Your account dashboard" },
+            { title: "Visa Guide", url: "/blog/visa-guide", description: "Complete visa guide" },
+            { title: "Cheap Flights", url: "/blog/cheap-flights", description: "How to find cheap flights" },
+            { title: "CAC Guide", url: "/blog/cac-guide", description: "CAC registration guide" },
+            { title: "Moniepoint Guide", url: "/blog/moniepoint-guide", description: "Moniepoint services guide" },
+            { title: "Business Documents Guide", url: "/blog/business-docs", description: "Business documentation guide" }
+        ];
+
+        // ===== SEARCH KEYWORDS MAPPING =====
+        const keywordMap = {
+            'visa': ['/services/travel/visa', '/services/travel', '/blog/visa-guide', '/services/travel/visa-country'],
+            'flight': ['/services/travel', '/blog/cheap-flights'],
+            'cac': ['/services/business-registration', '/services/business-registration/company-registration', '/blog/cac-guide'],
+            'registration': ['/services/business-registration', '/services/business-registration/business-name', '/services/business-registration/company-registration'],
+            'moniepoint': ['/services/moniepoint', '/blog/moniepoint-guide', '/services/moniepoint/account-opening', '/services/moniepoint/loans', '/services/moniepoint/pos'],
+            'pos': ['/services/moniepoint/pos'],
+            'loan': ['/services/moniepoint/loans'],
+            'account': ['/services/moniepoint/account-opening'],
+            'blog': ['/blog', '/blog/visa-guide', '/blog/cac-guide', '/blog/moniepoint-guide', '/blog/business-docs'],
+            'contact': ['/contact'],
+            'about': ['/about-us'],
+            'tin': ['/services/business-registration/tin'],
+            'trademark': ['/services/business-registration/trademark'],
+            'ngo': ['/services/business-registration/ngo'],
+            'npo': ['/services/business-registration/npo'],
+            'scuml': ['/services/business-registration/scuml'],
+            'annual': ['/services/business-registration/annual-return'],
+            'business': ['/services/business-registration', '/services/business-registration/business-name', '/services/business-registration/company-registration'],
+            'web': ['/services/web-development'],
+            'development': ['/services/web-development'],
+            'thanks': ['/thanks'],
+            'dashboard': ['/dashboard'],
+            'auth': ['/auth'],
+            'faq': ['/faq'],
+            'help': ['/faq', '/contact'],
+            'support': ['/contact', '/faq'],
+            'service': ['/services'],
+            'travel': ['/services/travel', '/services/travel/visa']
+        };
+
+        // ===== SEARCH FUNCTION =====
+        function searchPages(query) {
+            if (!query || query.length < 2) {
+                return [];
+            }
+
+            const lowerQuery = query.toLowerCase();
+            const results = [];
+            const seen = new Set();
+
+            // 1. Check keyword map
+            for (const [keyword, urls] of Object.entries(keywordMap)) {
+                if (lowerQuery.includes(keyword) || keyword.includes(lowerQuery)) {
+                    for (const url of urls) {
+                        const page = pageData.find(p => p.url === url);
+                        if (page && !seen.has(url)) {
+                            seen.add(url);
+                            results.push({ ...page, relevance: 10 });
+                        }
+                    }
+                }
+            }
+
+            // 2. Search in titles and descriptions
+            for (const page of pageData) {
+                if (seen.has(page.url)) continue;
+
+                const titleMatch = page.title.toLowerCase().includes(lowerQuery);
+                const descMatch = page.description.toLowerCase().includes(lowerQuery);
+
+                if (titleMatch || descMatch) {
+                    let relevance = 0;
+                    if (titleMatch) relevance += 5;
+                    if (descMatch) relevance += 2;
+                    if (page.title.toLowerCase().startsWith(lowerQuery)) relevance += 3;
+                    results.push({ ...page, relevance });
+                }
+            }
+
+            // Sort by relevance (highest first)
+            results.sort((a, b) => b.relevance - a.relevance);
+
+            // Return top 5 results
+            return results.slice(0, 6);
+        }
+
+        // ===== RENDER SEARCH RESULTS =====
+        function renderResults(query) {
+            const resultsContainer = document.getElementById('searchResults');
+            const results = searchPages(query);
+
+            if (results.length === 0) {
+                resultsContainer.innerHTML = `
+                    <div class="no-results">
+                        <i class="fas fa-search"></i> No results found. Try a different term.
+                    </div>
+                `;
+                resultsContainer.classList.add('active');
+                return;
+            }
+
+            let html = '';
+            for (const result of results) {
+                html += `
+                    <a href="${result.url}" class="result-item">
+                        <div class="result-info">
+                            <div class="result-title">${result.title}</div>
+                            <div class="result-desc">${result.description}</div>
+                        </div>
+                        <span class="result-link">View Page →</span>
+                    </a>
+                `;
+            }
+            resultsContainer.innerHTML = html;
+            resultsContainer.classList.add('active');
+        }
+
+        // ===== SEARCH EVENT HANDLERS =====
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn = document.getElementById('searchBtn');
+
+        function handleSearch() {
+            const query = searchInput.value.trim();
+            if (query.length >= 2) {
+                renderResults(query);
+            } else {
+                const resultsContainer = document.getElementById('searchResults');
+                resultsContainer.classList.remove('active');
+            }
+        }
+
+        searchInput.addEventListener('input', handleSearch);
+        searchBtn.addEventListener('click', handleSearch);
+
+        searchInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                handleSearch();
+            }
+        });
+
+        // ===== SUGGESTED LINKS CLICK HANDLER =====
+        document.querySelectorAll('.suggested-items a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                // Let the link navigate naturally
+                // But we can pre-fill the search if needed
+            });
+        });
+
+        // ===== MARKER ANIMATION DELAY =====
+        // The marker appears after the airplane
+        setTimeout(function() {
+            const marker = document.getElementById('marker');
+            if (marker) {
+                marker.style.animation = 'markerAppear 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards';
+            }
+        }, 1400);
+    </script>
+
+</body>
+</html>

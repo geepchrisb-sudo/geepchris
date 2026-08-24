@@ -559,7 +559,7 @@
 
             <div class="footer-bottom">
                 <p>
-                    © 2025 GeepChris Bridge Enterprise. All Rights Reserved.<br>
+                    © 2026 GeepChris Bridge Enterprise. All Rights Reserved.<br>
                     Website by <a href="https://vintechdigitalservices.com" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.5); text-decoration:none; transition:color 0.3s ease;" data-no-hover-preview>Vintech Digital Services</a>
                 </p>
                 <div class="footer-bottom-links">
@@ -648,6 +648,215 @@
             }
         });
     </script>
+    <!-- ===== BACK/FORWARD NAVIGATION ARROWS ===== -->
+<script>
+(function() {
+    // ===== CREATE ARROW HTML =====
+    const arrowHTML = `
+        <div id="navArrowsContainer" style="
+            position: fixed;
+            bottom: 24px;
+            left: 20px;
+            z-index: 999;
+            display: flex;
+            gap: 4px;
+            background: rgba(2,6,23,0.8);
+            backdrop-filter: blur(12px);
+            padding: 6px 10px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+            transition: all 0.3s ease;
+        ">
+            <button id="backBtn" style="
+                width: 28px;
+                height: 28px;
+                border: none;
+                border-radius: 50%;
+                background: rgba(255,255,255,0.06);
+                color: rgba(255,255,255,0.5);
+                font-size: 0.75rem;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            " disabled>
+                <i class="fas fa-chevron-left" style="font-size: 0.7rem;"></i>
+            </button>
+            <div style="
+                width: 1px;
+                background: rgba(255,255,255,0.1);
+                margin: 2px 0;
+            "></div>
+            <button id="forwardBtn" style="
+                width: 28px;
+                height: 28px;
+                border: none;
+                border-radius: 50%;
+                background: rgba(255,255,255,0.06);
+                color: rgba(255,255,255,0.5);
+                font-size: 0.75rem;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            " disabled>
+                <i class="fas fa-chevron-right" style="font-size: 0.7rem;"></i>
+            </button>
+        </div>
+    `;
+
+    // ===== INSERT ARROWS INTO PAGE =====
+    document.body.insertAdjacentHTML('beforeend', arrowHTML);
+
+    // ===== GET REFERENCES =====
+    const container = document.getElementById('navArrowsContainer');
+    const backBtn = document.getElementById('backBtn');
+    const forwardBtn = document.getElementById('forwardBtn');
+
+    // ===== HIDE ARROWS ON MOBILE BELOW 480px =====
+    function checkMobile() {
+        if (window.innerWidth < 480) {
+            container.style.display = 'none';
+        } else {
+            container.style.display = 'flex';
+        }
+    }
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    // ===== UPDATE BUTTON STATES =====
+    function updateButtons() {
+        if (backBtn) {
+            backBtn.disabled = window.history.length <= 1;
+            backBtn.style.opacity = window.history.length <= 1 ? '0.25' : '1';
+            backBtn.style.cursor = window.history.length <= 1 ? 'not-allowed' : 'pointer';
+        }
+        if (forwardBtn) {
+            forwardBtn.disabled = true;
+            forwardBtn.style.opacity = '0.25';
+            forwardBtn.style.cursor = 'not-allowed';
+        }
+    }
+
+    // ===== BACK BUTTON CLICK =====
+    if (backBtn) {
+        backBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (!this.disabled && window.history.length > 1) {
+                window.history.back();
+            }
+        });
+    }
+
+    // ===== FORWARD BUTTON CLICK =====
+    if (forwardBtn) {
+        forwardBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (!this.disabled) {
+                window.history.forward();
+            }
+        });
+    }
+
+    // ===== UPDATE ON HISTORY CHANGE =====
+    window.addEventListener('load', function() {
+        setTimeout(updateButtons, 150);
+    });
+
+    window.addEventListener('popstate', function() {
+        setTimeout(updateButtons, 100);
+    });
+
+    // ===== SCROLL TO HIDE ARROWS AT FOOTER =====
+    function handleScroll() {
+        const footer = document.querySelector('footer');
+        const container = document.getElementById('navArrowsContainer');
+        
+        if (!footer || !container) return;
+
+        const footerRect = footer.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        const containerHeight = container.offsetHeight || 50;
+
+        // If footer is visible and near the bottom of the viewport
+        if (footerRect.top < windowHeight && footerRect.bottom > 0) {
+            // Calculate how much to push the arrows up
+            const overlap = windowHeight - footerRect.top + 20;
+            if (overlap > 0) {
+                const maxPush = footerRect.height + containerHeight + 10;
+                const pushAmount = Math.min(overlap, maxPush);
+                container.style.transform = `translateY(-${pushAmount}px)`;
+                container.style.transition = 'transform 0.3s ease';
+            }
+        } else {
+            container.style.transform = 'translateY(0)';
+            container.style.transition = 'transform 0.3s ease';
+        }
+    }
+
+    // Throttled scroll handler
+    let scrollTimeout;
+    window.addEventListener('scroll', function() {
+        if (scrollTimeout) return;
+        scrollTimeout = setTimeout(function() {
+            handleScroll();
+            scrollTimeout = null;
+        }, 50);
+    }, { passive: true });
+
+    // Also update on resize
+    window.addEventListener('resize', handleScroll);
+
+    // Initial call after a small delay
+    setTimeout(handleScroll, 300);
+
+    // ===== HOVER EFFECTS =====
+    document.querySelectorAll('#backBtn, #forwardBtn').forEach(btn => {
+        btn.addEventListener('mouseenter', function() {
+            if (!this.disabled) {
+                this.style.background = 'rgba(34,197,94,0.15)';
+                this.style.color = '#22c55e';
+                this.style.transform = 'scale(1.05)';
+            }
+        });
+        btn.addEventListener('mouseleave', function() {
+            this.style.background = 'rgba(255,255,255,0.06)';
+            this.style.color = 'rgba(255,255,255,0.5)';
+            this.style.transform = 'scale(1)';
+        });
+    });
+
+    // ===== RESPONSIVE STYLES =====
+    const style = document.createElement('style');
+    style.textContent = `
+        @media (max-width: 768px) {
+            #navArrowsContainer {
+                bottom: 16px !important;
+                left: 12px !important;
+                padding: 5px 8px !important;
+            }
+            #navArrowsContainer button {
+                width: 24px !important;
+                height: 24px !important;
+                font-size: 0.65rem !important;
+            }
+            #navArrowsContainer button i {
+                font-size: 0.6rem !important;
+            }
+        }
+        @media (max-width: 480px) {
+            #navArrowsContainer {
+                display: none !important;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+
+})();
+</script>
 
 </body>
 </html>

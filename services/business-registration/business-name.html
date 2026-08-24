@@ -44,6 +44,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
+    <!-- ===== FIREBASE SDK ===== -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -57,6 +62,7 @@
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
+            overflow-x: hidden;
         }
 
         /* ===== NAVBAR ===== */
@@ -137,7 +143,7 @@
         .mobile-btn:hover{ background:#22c55e; }
 
         /* ===== PAGE CONTAINER ===== */
-        .container { max-width: 1280px; margin: 0 auto; padding: 120px 20px 40px; width: 100%; }
+        .container { max-width: 1280px; margin: 0 auto; padding: 120px 20px 40px; width: 100%; overflow-x: hidden; }
 
         /* ===== 2-COLUMN LAYOUT ===== */
         .page-layout {
@@ -264,6 +270,30 @@
         .form-group textarea { resize: vertical; min-height: 80px; }
         .form-group input[type="file"] { padding: 8px; background: #ffffff; cursor: pointer; }
 
+        /* ===== CHECKBOX STYLING ===== */
+        .checkbox-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            cursor: pointer;
+        }
+        .checkbox-wrapper input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            accent-color: #16a34a;
+            cursor: pointer;
+            margin: 0;
+            flex-shrink: 0;
+        }
+        .checkbox-wrapper label {
+            font-size: 0.95rem;
+            font-weight: 400;
+            color: #0f172a;
+            cursor: pointer;
+            margin: 0;
+        }
+
         /* ===== PRIVACY & TERMS ACCEPTANCE ===== */
         .acceptance-group {
             margin: 16px 0 20px;
@@ -278,6 +308,7 @@
             align-items: flex-start;
             gap: 10px;
             cursor: pointer;
+            padding: 0;
         }
         .acceptance-group .checkbox-wrapper input[type="checkbox"] {
             width: 18px;
@@ -311,6 +342,48 @@
         .btn-submit:hover { background: #22c55e; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(34,197,94,0.3); }
         .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
+        /* ===== SUCCESS STATE ===== */
+        .success-state { display: none; text-align: center; padding: 32px 16px; }
+        .success-state.active { display: block; }
+        .success-state i { font-size: 3.5rem; color: #16a34a; display: block; margin-bottom: 10px; }
+        .success-state h2 { font-size: 1.3rem; margin-bottom: 6px; }
+        .success-state p { color: #64748b; }
+
+        /* ===== SPEAK WITH AGENT BUTTON ===== */
+        .agent-btn-wrapper {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #e2e8f0;
+        }
+        .agent-btn-wrapper p {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-bottom: 10px;
+        }
+        .btn-agent {
+            display: inline-block;
+            width: 100%;
+            padding: 14px;
+            background: #25D366;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+            text-align: center;
+        }
+        .btn-agent:hover {
+            background: #1da851;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+        .btn-agent i {
+            margin-right: 8px;
+        }
+
         /* ===== FOOTER ===== */
         .footer { background: #020617; padding: 50px 0 20px; border-top: 1px solid rgba(255,255,255,0.08); }
         .footer-grid { display: grid; grid-template-columns: 1.8fr 1fr 1fr 1.3fr; gap: 40px; padding-bottom: 40px; }
@@ -342,12 +415,35 @@
             .page-layout { grid-template-columns: 1fr; min-height: auto; }
             .details-area { position: static; height: auto; }
             .image-wrapper { height: 300px; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
         }
         @media (max-width: 768px) {
             .features-list { grid-template-columns: 1fr; }
             .details-area h1 { font-size: 1.8rem; }
             .image-wrapper { height: 250px; }
             .container { padding: 100px 16px 40px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+            .logo img { height: 50px; }
+            /* ===== MOBILE FOOTER FIX ===== */
+            .footer-grid {
+                grid-template-columns: 1fr !important;
+                gap: 30px !important;
+                text-align: left;
+            }
+            .footer-brand p { max-width: 100% !important; }
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 16px !important;
+            }
+            .footer-bottom-links {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 16px !important;
+            }
+            .footer-socials { justify-content: flex-start; }
+            .footer-contact li { word-break: break-word; }
         }
 
         /* ===== ANIMATIONS ===== */
@@ -490,6 +586,21 @@
 
                 <button type="submit" class="btn-submit" id="submitBtn">Submit Application</button>
             </form>
+
+            <!-- ===== SUCCESS STATE ===== -->
+            <div id="successState" class="success-state">
+                <i class="fas fa-check-circle"></i>
+                <h2>Application Submitted!</h2>
+                <p>Our team will contact you shortly regarding your business name registration.</p>
+                
+                <!-- ===== SPEAK WITH ACTIVE AGENT BUTTON ===== -->
+                <div class="agent-btn-wrapper">
+                    <p><i class="fas fa-headset"></i> Need faster processing? Speak with our active agent now.</p>
+                    <a href="#" id="agentWhatsAppBtn" class="btn-agent" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Speak with an Active Agent
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -540,7 +651,7 @@
                 </div>
             </div>
             <div class="footer-bottom" style="border-top:1px solid rgba(255,255,255,0.08); padding:20px 0; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;">
-                <p style="font-size:.8rem; color:rgba(255,255,255,.4);">© 2025 GeepChris Bridge Enterprise. All Rights Reserved.</p>
+                <p style="font-size:.8rem; color:rgba(255,255,255,.4);">© 2026 GeepChris Bridge Enterprise. All Rights Reserved.</p>
                 <div class="footer-bottom-links" style="display:flex; gap:24px;">
                     <a href="/privacy.html" style="font-size:.8rem; color:rgba(255,255,255,.4); text-decoration:none;" data-no-hover-preview>Privacy Policy</a>
                     <a href="/terms.html" style="font-size:.8rem; color:rgba(255,255,255,.4); text-decoration:none;" data-no-hover-preview>Terms of Service</a>
@@ -639,6 +750,30 @@
         });
 
         // ==========================================
+        // FIREBASE CONFIGURATION
+        // ==========================================
+        const firebaseConfig = {
+            apiKey: "AIzaSyDHSOM7-GZXQ7tYySYTRiyCAHZOn9SQhhE",
+            authDomain: "geepchris-bridge.firebaseapp.com",
+            projectId: "geepchris-bridge",
+            storageBucket: "geepchris-bridge.firebasestorage.app",
+            messagingSenderId: "61219875988",
+            appId: "1:61219875988:web:a393bb73ce2b85991b9881"
+        };
+
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
+        const db = firebase.firestore();
+        const auth = firebase.auth();
+
+        // ==========================================
+        // CLOUDINARY CONFIG
+        // ==========================================
+        const CLOUDINARY_CLOUD_NAME = 'dgc5nvaof';
+        const CLOUDINARY_UPLOAD_PRESET = 'geepchris';
+
+        // ==========================================
         // NAVBAR SCRIPTS
         // ==========================================
         const navbar = document.getElementById('navbar');
@@ -676,6 +811,321 @@
         });
 
         // ==========================================
+        // LOAD FORM FROM FIRESTORE
+        // ==========================================
+        async function loadForm() {
+            try {
+                const doc = await db.collection('forms').doc('business-name-registration').get();
+                if (!doc.exists) {
+                    document.getElementById('formFieldsContainer').innerHTML = '<p>Form configuration not found. Please run the seeder.</p>';
+                    return;
+                }
+                const formData = doc.data();
+                renderForm(formData.fields || []);
+            } catch (e) {
+                console.error("Error loading form:", e);
+                document.getElementById('formFieldsContainer').innerHTML = '<p>Unable to load form. Please refresh the page or contact support.</p>';
+            }
+        }
+
+        // ==========================================
+        // GENERATE READABLE FIELD ID FROM LABEL
+        // ==========================================
+        function generateFieldId(label) {
+            if (!label) return 'field_' + Date.now();
+            
+            let slug = label
+                .toLowerCase()
+                .replace(/[^a-z0-9\s]/g, '')
+                .trim()
+                .replace(/\s+/g, ' ');
+            
+            const camelCase = slug
+                .split(' ')
+                .map((word, index) => {
+                    if (index === 0) return word;
+                    return word.charAt(0).toUpperCase() + word.slice(1);
+                })
+                .join('');
+            
+            if (!camelCase) return 'field_' + Date.now();
+            return camelCase;
+        }
+
+        // ==========================================
+        // RENDER FORM
+        // ==========================================
+        function renderForm(fields) {
+            const container = document.getElementById('formFieldsContainer');
+            container.innerHTML = '';
+
+            fields.forEach(field => {
+                const isFullWidth = field.type === 'textarea' || field.type === 'file';
+                const group = document.createElement('div');
+                group.className = 'form-group';
+                if (isFullWidth) group.style.gridColumn = '1 / -1';
+
+                const label = document.createElement('label');
+                label.innerHTML = `${field.label} ${field.required ? '<span class="required">*</span>' : ''}`;
+                group.appendChild(label);
+
+                const fieldId = generateFieldId(field.label);
+
+                let input;
+                switch (field.type) {
+                    case 'text': case 'email': case 'tel': case 'date': case 'number':
+                        input = document.createElement('input');
+                        input.type = field.type;
+                        input.id = fieldId;
+                        input.name = fieldId;
+                        input.dataset.label = field.label;
+                        if (field.placeholder) input.placeholder = field.placeholder;
+                        if (field.required) input.required = true;
+                        group.appendChild(input);
+                        break;
+
+                    case 'textarea':
+                        input = document.createElement('textarea');
+                        input.id = fieldId;
+                        input.name = fieldId;
+                        input.dataset.label = field.label;
+                        if (field.placeholder) input.placeholder = field.placeholder;
+                        if (field.required) input.required = true;
+                        group.appendChild(input);
+                        break;
+
+                    case 'select':
+                        input = document.createElement('select');
+                        input.id = fieldId;
+                        input.name = fieldId;
+                        input.dataset.label = field.label;
+                        if (field.required) input.required = true;
+                        const defOpt = document.createElement('option');
+                        defOpt.value = '';
+                        defOpt.textContent = 'Select an option';
+                        input.appendChild(defOpt);
+                        (field.options || []).forEach(opt => {
+                            const o = document.createElement('option');
+                            o.value = opt;
+                            o.textContent = opt;
+                            input.appendChild(o);
+                        });
+                        group.appendChild(input);
+                        break;
+
+                    case 'file':
+                        input = document.createElement('input');
+                        input.type = 'file';
+                        input.id = fieldId;
+                        input.name = fieldId;
+                        input.dataset.label = field.label;
+                        if (field.required) input.required = true;
+                        if (field.accept) input.accept = field.accept.join(',');
+                        group.appendChild(input);
+                        break;
+
+                    case 'checkbox':
+                        const wrapper = document.createElement('div');
+                        wrapper.className = 'checkbox-wrapper';
+                        input = document.createElement('input');
+                        input.type = 'checkbox';
+                        input.id = fieldId;
+                        input.name = fieldId;
+                        input.dataset.label = field.label;
+                        if (field.required) input.required = true;
+                        const checkLabel = document.createElement('label');
+                        checkLabel.htmlFor = fieldId;
+                        checkLabel.textContent = 'Yes';
+                        wrapper.appendChild(input);
+                        wrapper.appendChild(checkLabel);
+                        group.appendChild(wrapper);
+                        break;
+
+                    default:
+                        input = document.createElement('input');
+                        input.type = 'text';
+                        input.id = fieldId;
+                        input.name = fieldId;
+                        input.dataset.label = field.label;
+                        group.appendChild(input);
+                }
+                container.appendChild(group);
+            });
+        }
+
+        // ==========================================
+        // UPLOAD FILE TO CLOUDINARY
+        // ==========================================
+        async function uploadFile(file) {
+            const fd = new FormData();
+            fd.append('file', file);
+            fd.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+            const r = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`, { method: 'POST', body: fd });
+            if (!r.ok) throw new Error('Upload failed');
+            const d = await r.json();
+            return d.secure_url;
+        }
+
+        // ==========================================
+        // SUBMIT FORM — WITH WHATSAPP AGENT & SUCCESS STATE
+        // ==========================================
+        document.getElementById('applicationForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            // Check if terms checkbox is checked
+            const acceptCheckbox = document.getElementById('acceptTerms');
+            if (!acceptCheckbox.checked) {
+                alert('Please read and accept the Privacy Policy and Terms of Service to continue.');
+                acceptCheckbox.focus();
+                return;
+            }
+
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+
+            const submittedData = {};
+            const formDataForWhatsApp = {};
+            const filePromises = [];
+
+            // Collect all form data
+            document.querySelectorAll('#formFieldsContainer .form-group input, #formFieldsContainer .form-group select, #formFieldsContainer .form-group textarea').forEach(input => {
+                if (!input) return;
+                const name = input.name;
+                if (!name) return;
+
+                const label = input.dataset.label || name;
+
+                if (input.type === 'file') {
+                    const file = input.files[0];
+                    if (file) {
+                        submittedData[name] = 'uploading...';
+                        submittedData['_labels'] = submittedData['_labels'] || {};
+                        submittedData['_labels'][name] = label;
+                        filePromises.push({ id: name, file, label });
+                    } else {
+                        submittedData[name] = '';
+                    }
+                } else if (input.type === 'checkbox') {
+                    submittedData[name] = input.checked;
+                    submittedData['_labels'] = submittedData['_labels'] || {};
+                    submittedData['_labels'][name] = label;
+                    formDataForWhatsApp[label] = input.checked ? 'Yes' : 'No';
+                } else {
+                    submittedData[name] = input.value;
+                    submittedData['_labels'] = submittedData['_labels'] || {};
+                    submittedData['_labels'][name] = label;
+                    if (input.value) {
+                        formDataForWhatsApp[label] = input.value;
+                    }
+                }
+            });
+
+            // Add terms acceptance to submitted data
+            submittedData.termsAccepted = true;
+            submittedData.termsAcceptedAt = new Date().toISOString();
+
+            // Upload files
+            for (const item of filePromises) {
+                try {
+                    const url = await uploadFile(item.file);
+                    submittedData[item.id] = url;
+                    formDataForWhatsApp[item.label + ' (File)'] = url;
+                } catch (e) {
+                    alert(`Upload failed for ${item.id}. Please try again.`);
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Submit Application';
+                    return;
+                }
+            }
+
+            submitBtn.textContent = 'Saving application...';
+
+            try {
+                // 1. Save to Firestore
+                await db.collection('business-registration-applications').add({
+                    service: 'Business Name Registration',
+                    serviceName: 'Business Name Registration',
+                    submittedData: submittedData,
+                    status: 'new',
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+
+                // 2. Send email notification via Cloudflare Worker
+                try {
+                    const fullName = submittedData.fullName || formDataForWhatsApp['Full Name'] || 'New Applicant';
+                    const email = submittedData.email || formDataForWhatsApp['Email Address'] || 'Not provided';
+                    const phone = submittedData.phone || formDataForWhatsApp['Phone Number'] || 'Not provided';
+                    
+                    await fetch('https://geepchris-notifications.summer-water-61c8.workers.dev', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            subject: `📩 New Business Registration Application — ${fullName}`,
+                            fields: {
+                                'Name': fullName,
+                                'Email': email,
+                                'Phone': phone,
+                                'Service': 'Business Name Registration',
+                                'View Applications': 'https://control.geepchris.com/applications'
+                            }
+                        })
+                    });
+                } catch (emailError) {
+                    console.error('Email notification failed:', emailError);
+                    // Don't stop the flow — just log the error
+                }
+
+                // 3. Show success state (no redirect)
+                document.getElementById('applicationForm').style.display = 'none';
+                document.getElementById('successState').classList.add('active');
+
+                // 4. Scroll back to success message so user can see it
+                document.getElementById('successState').scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                // 5. Setup WhatsApp Agent Button
+                setupAgentWhatsAppButton(formDataForWhatsApp);
+
+            } catch (error) {
+                console.error('Submission error:', error);
+                alert('There was an error submitting your application. Please try again.');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit Application';
+            }
+        });
+
+        // ==========================================
+        // SETUP AGENT WHATSAPP BUTTON
+        // ==========================================
+        function setupAgentWhatsAppButton(formData) {
+            const agentBtn = document.getElementById('agentWhatsAppBtn');
+            if (!agentBtn) return;
+
+            // Build the WhatsApp message with all submitted details
+            let message = `Hello GeepChris Bridge,\n\n`;
+            message += `I just submitted a Business Name Registration application.\n\n`;
+            message += `Here are the details I submitted for faster processing:\n\n`;
+
+            // Add all form fields
+            for (const [label, value] of Object.entries(formData)) {
+                if (value && value !== '') {
+                    message += `*${label}:* ${value}\n`;
+                }
+            }
+
+            // Add terms acceptance
+            message += `\n*Terms Accepted:* Yes`;
+            message += `\n*Submitted At:* ${new Date().toLocaleString()}`;
+
+            message += `\n\nPlease process my business name registration as soon as possible.`;
+
+            const encodedMessage = encodeURIComponent(message);
+            const phoneNumber = '2347051299684';
+            
+            agentBtn.href = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+        }
+
+        // ==========================================
         // SCROLL ANIMATION OBSERVER
         // ==========================================
         document.addEventListener("DOMContentLoaded", function() {
@@ -691,8 +1141,219 @@
             document.querySelectorAll('.anim-zoom, .anim-fade-up, .anim-slide-right').forEach(el => {
                 observer.observe(el);
             });
+
+            loadForm();
         });
     </script>
+<!-- ===== BACK/FORWARD NAVIGATION ARROWS ===== -->
+<script>
+(function() {
+    // ===== CREATE ARROW HTML =====
+    const arrowHTML = `
+        <div id="navArrowsContainer" style="
+            position: fixed;
+            bottom: 24px;
+            left: 20px;
+            z-index: 999;
+            display: flex;
+            gap: 4px;
+            background: rgba(2,6,23,0.8);
+            backdrop-filter: blur(12px);
+            padding: 6px 10px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+            transition: all 0.3s ease;
+        ">
+            <button id="backBtn" style="
+                width: 28px;
+                height: 28px;
+                border: none;
+                border-radius: 50%;
+                background: rgba(255,255,255,0.06);
+                color: rgba(255,255,255,0.5);
+                font-size: 0.75rem;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            " disabled>
+                <i class="fas fa-chevron-left" style="font-size: 0.7rem;"></i>
+            </button>
+            <div style="
+                width: 1px;
+                background: rgba(255,255,255,0.1);
+                margin: 2px 0;
+            "></div>
+            <button id="forwardBtn" style="
+                width: 28px;
+                height: 28px;
+                border: none;
+                border-radius: 50%;
+                background: rgba(255,255,255,0.06);
+                color: rgba(255,255,255,0.5);
+                font-size: 0.75rem;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            " disabled>
+                <i class="fas fa-chevron-right" style="font-size: 0.7rem;"></i>
+            </button>
+        </div>
+    `;
+
+    // ===== INSERT ARROWS INTO PAGE =====
+    document.body.insertAdjacentHTML('beforeend', arrowHTML);
+
+    // ===== GET REFERENCES =====
+    const container = document.getElementById('navArrowsContainer');
+    const backBtn = document.getElementById('backBtn');
+    const forwardBtn = document.getElementById('forwardBtn');
+
+    // ===== HIDE ARROWS ON MOBILE BELOW 480px =====
+    function checkMobile() {
+        if (window.innerWidth < 480) {
+            container.style.display = 'none';
+        } else {
+            container.style.display = 'flex';
+        }
+    }
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    // ===== UPDATE BUTTON STATES =====
+    function updateButtons() {
+        if (backBtn) {
+            backBtn.disabled = window.history.length <= 1;
+            backBtn.style.opacity = window.history.length <= 1 ? '0.25' : '1';
+            backBtn.style.cursor = window.history.length <= 1 ? 'not-allowed' : 'pointer';
+        }
+        if (forwardBtn) {
+            forwardBtn.disabled = true;
+            forwardBtn.style.opacity = '0.25';
+            forwardBtn.style.cursor = 'not-allowed';
+        }
+    }
+
+    // ===== BACK BUTTON CLICK =====
+    if (backBtn) {
+        backBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (!this.disabled && window.history.length > 1) {
+                window.history.back();
+            }
+        });
+    }
+
+    // ===== FORWARD BUTTON CLICK =====
+    if (forwardBtn) {
+        forwardBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (!this.disabled) {
+                window.history.forward();
+            }
+        });
+    }
+
+    // ===== UPDATE ON HISTORY CHANGE =====
+    window.addEventListener('load', function() {
+        setTimeout(updateButtons, 150);
+    });
+
+    window.addEventListener('popstate', function() {
+        setTimeout(updateButtons, 100);
+    });
+
+    // ===== SCROLL TO HIDE ARROWS AT FOOTER =====
+    function handleScroll() {
+        const footer = document.querySelector('footer');
+        const container = document.getElementById('navArrowsContainer');
+        
+        if (!footer || !container) return;
+
+        const footerRect = footer.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        const containerHeight = container.offsetHeight || 50;
+
+        // If footer is visible and near the bottom of the viewport
+        if (footerRect.top < windowHeight && footerRect.bottom > 0) {
+            // Calculate how much to push the arrows up
+            const overlap = windowHeight - footerRect.top + 20;
+            if (overlap > 0) {
+                const maxPush = footerRect.height + containerHeight + 10;
+                const pushAmount = Math.min(overlap, maxPush);
+                container.style.transform = `translateY(-${pushAmount}px)`;
+                container.style.transition = 'transform 0.3s ease';
+            }
+        } else {
+            container.style.transform = 'translateY(0)';
+            container.style.transition = 'transform 0.3s ease';
+        }
+    }
+
+    // Throttled scroll handler
+    let scrollTimeout;
+    window.addEventListener('scroll', function() {
+        if (scrollTimeout) return;
+        scrollTimeout = setTimeout(function() {
+            handleScroll();
+            scrollTimeout = null;
+        }, 50);
+    }, { passive: true });
+
+    // Also update on resize
+    window.addEventListener('resize', handleScroll);
+
+    // Initial call after a small delay
+    setTimeout(handleScroll, 300);
+
+    // ===== HOVER EFFECTS =====
+    document.querySelectorAll('#backBtn, #forwardBtn').forEach(btn => {
+        btn.addEventListener('mouseenter', function() {
+            if (!this.disabled) {
+                this.style.background = 'rgba(34,197,94,0.15)';
+                this.style.color = '#22c55e';
+                this.style.transform = 'scale(1.05)';
+            }
+        });
+        btn.addEventListener('mouseleave', function() {
+            this.style.background = 'rgba(255,255,255,0.06)';
+            this.style.color = 'rgba(255,255,255,0.5)';
+            this.style.transform = 'scale(1)';
+        });
+    });
+
+    // ===== RESPONSIVE STYLES =====
+    const style = document.createElement('style');
+    style.textContent = `
+        @media (max-width: 768px) {
+            #navArrowsContainer {
+                bottom: 16px !important;
+                left: 12px !important;
+                padding: 5px 8px !important;
+            }
+            #navArrowsContainer button {
+                width: 24px !important;
+                height: 24px !important;
+                font-size: 0.65rem !important;
+            }
+            #navArrowsContainer button i {
+                font-size: 0.6rem !important;
+            }
+        }
+        @media (max-width: 480px) {
+            #navArrowsContainer {
+                display: none !important;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+
+})();
+</script>
 
 </body>
 </html>
