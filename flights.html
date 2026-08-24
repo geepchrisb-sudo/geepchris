@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Flights | GeepChris Bridge – We Connect, You Fly.</title>
+    
+    <!-- Premium Fonts (Using Inter/Poppins as a standard baseline) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CSS Reset & Base Styles (Applying your color palette) --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            /* Your Golden Accent */
+            --primary-accent: #FE7E21; 
+            /* Your Brand Colors */
+            --dark-mahogany: #3E1D13; 
+            --warm-ivory: #FDFBEE;
+            
+            /* UI colors */
+            --text-dark: #1F2937;
+            --text-light: #6B7280;
+            --bg-body: #F9FAFB;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-body);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- LAYOUT WRAPPER (Keeps spacing tight) --- */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- COMPONENT 1: The Branding Header --- */
+        .site-header {
+            width: 100%;
+            background-color: #FFFFFF;
+            padding: 20px 0;
+            border-bottom: 1px solid #E5E7EB;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+            position: sticky; /* Keep it visible if needed */
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--dark-mahogany);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--primary-accent);
+        }
+
+        /* --- COMPONENT 2: The Intro Section (CRUCIAL FOR TRUST) --- */
+        .booking-hero {
+            text-align: center;
+            padding: 80px 0;
+            background: linear-gradient(135deg, rgba(253, 251, 238, 0.9) 0%, rgba(254, 126, 33, 0.05) 100%);
+        }
+
+        .booking-hero h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 42px;
+            color: var(--dark-mahogany);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .booking-hero p {
+            font-size: 18px;
+            color: var(--text-light);
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        /* --- COMPONENT 3: The Search Widget Container --- */
+        .search-engine-wrapper {
+            margin-top: -60px; /* Overlap with hero slightly (Apple style) */
+            margin-bottom: 80px;
+            padding: 40px;
+            background-color: #FFFFFF;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+            
+            /* Smooth loading and spacing */
+            min-height: 200px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Ensure Travelpayouts widget displays cleanly inside our grid */
+        .tp-widget-handle {
+            width: 100%;
+            display: block;
+        }
+
+    </style>
+
+    <!-- --- YOUR TRAVELPAYOUTS DRIVE INITIALIZATION SCRIPT (DON'T CHANGE) --- -->
+    <script nowprocket data-noptimize="1" data-cfasync="false" data-wpfc-render="false" seraph-accel-crit="1" data-no-defer="1" data-cmp-ab="2">
+      (function () {
+          var script = document.createElement("script");
+          script.async = 1;
+          script.setAttribute("data-cmp-ab","2");
+          script.src = 'https://emrld.ltd/NTU5Njcx.js?t=559671';
+          document.head.appendChild(script);
+      })();
+    </script>
+
+</head>
+<body>
+
+    <!-- 1. HEADER (Your Branding is First) -->
+    <header class="site-header">
+        <div class="container header-content">
+            <a href="index.html" class="logo">GEEP<span>CHRIS</span> BRIDGE</a>
+            <!-- Simple nav placeholder -->
+            <nav style="font-size: 14px; font-weight: 500; display:flex; gap: 20px; color: var(--text-light);">
+                <div>Book Flights</div>
+                <div>Manage Travel</div>
+              <li><a href="/blog.html">Blog</a></li>
+</nav>
+        </div>
+    </header>
+
+    <!-- 2. HERO / WELCOME (Builds context and trust) -->
+    <section class="booking-hero">
+        <div class="container">
+            <h1>We Connect, You Fly.</h1>
+            <p>Access the best available flight fares from hundreds of trusted airlines instantly. Secured by our travel partners at GeepChris Bridge.</p>
+        </div>
+    </section>
+
+    <!-- 3. BOOKING ENGINE (This is where the widget goes) -->
+    <main class="container">
+        <div class="search-engine-wrapper">
+            
+            <!-- ====== PASTE YOUR SPECIFIC TRAVELPAYOUTS WIDGET `div` HERE ====== -->
+            <!-- ====== REPLACE THE ENTIRE LINE BELOW WITH YOUR UNIQUE CODE ====== -->
+            
+            <div class="tp-widget-handle" data-widget-id="REPLACE_THIS_WITH_YOUR_DASHBOARD_ID"></div>
+            
+            <!-- ====== ================================================ ====== -->
+
+        </div>
+    </main>
+
+</body>
+</html>
