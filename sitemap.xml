@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Core Pages -->
+  <url>
+    <loc>https://geepchris.com/</loc>
+    <priority>1.00</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://geepchris.com/home</loc>
+    <priority>1.00</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://geepchris.com/about-us</loc>
+    <priority>0.80</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://geepchris.com/services</loc>
+    <priority>0.90</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://geepchris.com/structure</loc>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://geepchris.com/blog</loc>
+    <priority>0.80</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://geepchris.com/privacy</loc>
+    <priority>0.30</priority>
+    <changefreq>yearly</changefreq>
+  </url>
+  <url>
+    <loc>https://geepchris.com/terms</loc>
+    <priority>0.30</priority>
+    <changefreq>yearly</changefreq>
+  </url>
+
+  <!-- Service Main Categories -->
+  <url>
+    <loc>https://geepchris.com/services/business-registration</loc>
+    <priority>0.85</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://geepchris.com/services/moneipoint</loc>
+    <priority>0.85</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://geepchris.com/services/travel</loc>
+    <priority>0.85</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://geepchris.com/services/web-development</loc>
+    <priority>0.85</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <!-- Business Registration Sub-services -->
+  <url>
+    <loc>https://geepchris.com/services/business-registration/annual-return</loc>
+    <priority>0.75</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://geepchris.com/services/business-registration/business-name</loc>
+    <priority>0.75</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://geepchris.com/services/business-registration/company-registration</loc>
+    <priority>0.75</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://geepchris.com/services/business-registration/ngo</loc>
+    <priority>0.75</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://geepchris.com/services/business-registration/npo</loc>
+    <priority>0.75</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://geepchris.com/services/business-registration/scuml</loc>
+    <priority>0.75</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://geepchris.com/services/business-registration/tin</loc>
+    <priority>0.75</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://geepchris.com/services/business-registration/trademark</loc>
+    <priority>0.75</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- Moniepoint Sub-services -->
+  <url>
+    <loc>https://geepchris.com/services/moneipoint/account-opening</loc>
+    <priority>0.75</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://geepchris.com/services/moneipoint/loans</loc>
+    <priority>0.75</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://geepchris.com/services/moneipoint/pos</loc>
+    <priority>0.75</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- Travel Services -->
+  <url>
+    <loc>https://geepchris.com/services/travel%20visa/visa</loc>
+    <priority>0.75</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://geepchris.com/services/travel%20visa/visa-country</loc>
+    <priority>0.75</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- Blog Articles -->
+  <url>
+    <loc>https://geepchris.com/blog/visa-guide</loc>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://geepchris.com/blog/cheap-flights</loc>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://geepchris.com/blog/cac-guide</loc>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://geepchris.com/blog/moniepoint-guide</loc>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://geepchris.com/blog/business-docs</loc>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+</urlset>
