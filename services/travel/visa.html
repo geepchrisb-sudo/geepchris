@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Favicon - Use under45.png as the icon in search results -->
-    <link class="icon" type="image/png" href="/assets/logo.png" />
-    <link rel="apple-touch-icon" href="/assets/logo.png" />
-    <link rel="shortcut icon" href="/assets/logo.png" />
+  <link class="icon" type="image/png" href="/assets/logo.png" />
+  <link rel="apple-touch-icon" href="/assets/logo.png" />
+  <link rel="shortcut icon" href="/assets/logo.png" />
   
     
     <!-- ===== PRIMARY META TAGS ===== -->
@@ -64,7 +64,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- ===== FIREBASE SDK ===== -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
 
     <style>
@@ -76,68 +75,9 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            overflow-x: hidden;
         }
 
-        /* ===== BACK/FORWARD NAVIGATION ARROWS - BOTTOM LEFT, SMALLER ===== */
-        .nav-arrows {
-            position: fixed;
-            bottom: 24px;
-            left: 20px;
-            z-index: 999;
-            display: flex;
-            gap: 4px;
-            background: rgba(2,6,23,0.8);
-            backdrop-filter: blur(12px);
-            padding: 6px 10px;
-            border-radius: 999px;
-            border: 1px solid rgba(255,255,255,0.08);
-            box-shadow: 0 4px 16px rgba(0,0,0,0.25);
-            transition: all 0.3s ease;
-        }
-
-        .nav-arrows .arrow-btn {
-            width: 28px;
-            height: 28px;
-            border: none;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.06);
-            color: rgba(255,255,255,0.5);
-            font-size: 0.75rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .nav-arrows .arrow-btn:hover:not(:disabled) {
-            background: rgba(34,197,94,0.15);
-            color: #22c55e;
-            transform: scale(1.05);
-        }
-
-        .nav-arrows .arrow-btn:disabled {
-            opacity: 0.25;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .nav-arrows .arrow-btn i {
-            font-size: 0.7rem;
-        }
-
-        .nav-arrows .arrow-divider {
-            width: 1px;
-            background: rgba(255,255,255,0.1);
-            margin: 2px 0;
-        }
-
-        /* ===== HEADER / NAVBAR ===== */
+       /* ===== HEADER / NAVBAR ===== */
         .navbar{
             display:flex;
             align-items:center;
@@ -153,9 +93,24 @@
             backdrop-filter:blur(12px);
             border-bottom:1px solid rgba(255,255,255,0.06);
         }
+        .navbar .logo{ 
+            flex-shrink:0; 
+        }
         .navbar .logo img{ height:40px; width:auto; display:block; }
-        .nav-links{ display:flex; gap:2rem; list-style:none; align-items:center; margin-left:auto; margin-right:1.5rem; }
-        .nav-links a{ color:#fff; text-decoration:none; font-weight:500; font-size:.95rem; transition:.3s; }
+        
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-left: auto;
+        }
+        .nav-links{ 
+            display:flex; 
+            gap: 2rem; 
+            list-style:none; 
+            align-items:center;
+        }
+        .nav-links a{ color:#fff; text-decoration:none; font-weight:500; font-size:.95rem; transition:.3s; white-space:nowrap; }
         .nav-links a:hover{ color:#22c55e; }
         .has-dropdown{ position:relative; }
         .dropdown-trigger{ display:flex; align-items:center; gap:4px; cursor:pointer; }
@@ -176,63 +131,11 @@
         .nav-btn{
             text-decoration:none; padding:10px 22px; border-radius:999px; background:#16a34a; color:#fff;
             font-weight:600; font-size:.9rem; transition:.3s;
+            flex-shrink:0;
         }
         .nav-btn:hover{ transform:translateY(-2px); background:#22c55e; }
-        
-        /* ===== AUTH SECTION IN NAVBAR (ADDED) ===== */
-        .nav-auth { display: flex; align-items: center; gap: 12px; }
-        .nav-auth .btn-signin {
-            color: rgba(255,255,255,0.7);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.85rem;
-            padding: 8px 16px;
-            border-radius: 999px;
-            border: 1px solid rgba(255,255,255,0.15);
-            transition: all 0.3s ease;
-        }
-        .nav-auth .btn-signin:hover {
-            background: rgba(255,255,255,0.08);
-            color: #fff;
-            border-color: rgba(255,255,255,0.3);
-        }
-        .nav-auth .user-avatar {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            text-decoration: none;
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        .nav-auth .user-avatar:hover {
-            border-color: #22c55e;
-        }
-        .nav-auth .user-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-        .nav-auth .user-avatar .avatar-initial {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            background: #16a34a;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 0.9rem;
-        }
-        .nav-btn.hidden { display: none; }
 
-        .menu-toggle{ display:none; background:none; border:none; cursor:pointer; padding:4px; }
+        .menu-toggle{ display:none; background:none; border:none; cursor:pointer; padding:4px; flex-shrink:0; }
         .menu-toggle span{ display:block; width:26px; height:2.5px; background:#fff; margin:5px 0; border-radius:5px; transition:.3s; }
 
         /* ===== MOBILE MENU ===== */
@@ -266,23 +169,16 @@
         .mobile-services-dropdown a:hover{ color:#22c55e; }
         .mobile-btn{ margin-top:10px; background:#16a34a; padding:14px 40px; text-align:center; border-radius:999px; color:#fff !important; font-weight:700 !important; border:none !important; font-size:1rem !important; width:auto; min-width:200px; }
         .mobile-btn:hover{ background:#22c55e; }
-        
-        /* ===== MOBILE AUTH SECTION (ADDED) ===== */
-        .mobile-auth-section { margin-top: 10px; width: 100%; text-align: center; }
-        .mobile-auth-section .mobile-signin {
-            color: rgba(255,255,255,0.7);
-            text-decoration: none;
-            font-size: 1rem;
-            padding: 12px 0;
-            display: block;
-            font-weight: 500;
-        }
-        .mobile-auth-section .mobile-signin:hover { color: #22c55e; }
-        .mobile-auth-section .mobile-avatar { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 12px 0; }
-        .mobile-auth-section .mobile-avatar img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; }
-        .mobile-auth-section .mobile-avatar .avatar-initial { width: 48px; height: 48px; border-radius: 50%; background: #16a34a; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.2rem; }
-        .mobile-auth-section .mobile-avatar .mobile-user-name { color: #fff; font-weight: 600; }
 
+        /* ===== RESPONSIVE OVERRIDE FOR NAVBAR ===== */
+        @media (max-width: 992px) {
+            .nav-right {
+                display: none;
+            }
+            .menu-toggle {
+                display: block;
+            }
+        }
         /* ===== HERO (PRESERVED - KEPT THE EXISTING HEADER) ===== */
         header {
             position: relative;
@@ -558,7 +454,6 @@
         .footer-contact { display: flex; flex-direction: column; gap: 12px !important; }
         .footer-contact li { display: flex; align-items: flex-start; gap: 10px; }
         .footer-contact li svg { width: 16px; height: 16px; min-width: 16px; stroke: #22c55e; margin-top: 1px; }
-        .footer-contact li span { color: rgba(255,255,255,0.6); font-size: .85rem; line-height: 1.5; }
         .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding: 20px 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
         .footer-bottom p { font-size: .8rem; color: rgba(255,255,255,.4); }
         .footer-bottom-links { display: flex; gap: 24px; }
@@ -567,41 +462,15 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 992px) {
-            .nav-links, .nav-btn, .nav-auth { display: none; }
+            .nav-links, .nav-btn { display: none; }
             .menu-toggle { display: block; }
             .footer-grid { grid-template-columns: 1fr 1fr; }
-            .nav-arrows {
-                bottom: 20px;
-                left: 16px;
-                padding: 5px 8px;
-            }
-            .nav-arrows .arrow-btn {
-                width: 24px;
-                height: 24px;
-                font-size: 0.65rem;
-            }
-            .nav-arrows .arrow-btn i {
-                font-size: 0.6rem;
-            }
         }
         @media (max-width: 768px) {
             .footer-grid { grid-template-columns: 1fr; gap: 32px; }
             .footer-bottom { flex-direction: column; text-align: center; }
             .logo img { height: 50px; }
             .visa-grid { grid-template-columns: 1fr; }
-            .nav-arrows {
-                bottom: 16px;
-                left: 12px;
-                padding: 4px 6px;
-            }
-            .nav-arrows .arrow-btn {
-                width: 20px;
-                height: 20px;
-                font-size: 0.55rem;
-            }
-            .nav-arrows .arrow-btn i {
-                font-size: 0.5rem;
-            }
         }
         @media (max-width: 640px) {
             header h1 { font-size: 1.8rem; }
@@ -610,23 +479,6 @@
             .card-flag-wrapper { width: 42px; height: 42px; top: 140px; }
             .card-flag-wrapper .flag-fallback { font-size: 1.8rem; }
             header { min-height: 200px; padding: 64px 20px 32px; }
-            .nav-arrows {
-                bottom: 12px;
-                left: 10px;
-                padding: 3px 5px;
-                gap: 3px;
-            }
-            .nav-arrows .arrow-btn {
-                width: 18px;
-                height: 18px;
-                font-size: 0.5rem;
-            }
-            .nav-arrows .arrow-btn i {
-                font-size: 0.45rem;
-            }
-            .nav-arrows .arrow-divider {
-                margin: 1px 0;
-            }
         }
     </style>
     <script nowprocket data-noptimize="1" data-cfasync="false" data-wpfc-render="false" seraph-accel-crit="1" data-no-defer="1" data-cmp-ab="2">
@@ -641,82 +493,58 @@
 </head>
 <body>
 
-    <!-- ========================================================== -->
-    <!-- =================== BACK/FORWARD ARROWS ================== -->
-    <!-- ========================================================== -->
-    <div class="nav-arrows" id="navArrows">
-        <button class="arrow-btn" id="backBtn" title="Go back" disabled>
-            <i class="fas fa-chevron-left"></i>
-        </button>
-        <div class="arrow-divider"></div>
-        <button class="arrow-btn" id="forwardBtn" title="Go forward" disabled>
-            <i class="fas fa-chevron-right"></i>
-        </button>
-    </div>
-
-    <!-- ========================================================== -->
-    <!-- =================== NAVIGATION (STANDARD) ================= -->
-    <!-- ========================================================== -->
+    <!-- =================== NAVBAR =================== -->
     <nav class="navbar" id="navbar">
-        <a href="/" class="logo" data-no-hover-preview>
+        <a href="/index.html" class="logo">
             <img src="/assets/logo.png" alt="GeepChris Bridge">
         </a>
 
         <ul class="nav-links">
-            <li><a href="/" data-no-hover-preview>Home</a></li>
+            <li><a href="/index.html">Home</a></li>
             <li class="has-dropdown">
-                <a href="#services" class="dropdown-trigger" data-no-hover-preview>Services <span class="arrow-down">▾</span></a>
+                <a href="/services.html" class="dropdown-trigger">Services <span class="arrow-down">▾</span></a>
                 <div class="dropdown-menu">
-                    <a href="/services/moniepoint.html" data-no-hover-preview>Moniepoint Financial Services</a>
-                    <a href="/services/travel.html" data-no-hover-preview>Travel & Global Mobility</a>
-                    <a href="/services/business-registration.html" data-no-hover-preview>Business Registration</a>
-                    <a href="/services/web-development.html" data-no-hover-preview>Website Development</a>
+                    <a href="/services/moniepoint.html">Moniepoint Financial Services</a>
+                    <a href="/services/travel.html">Travel & Global Mobility</a>
+                    <a href="/services/business-registration.html">Business Registration</a>
+                    <a href="/services/web-development.html">Website Development</a>
                 </div>
             </li>
-            <li><a href="/about-us.html" data-no-hover-preview>About</a></li>
-            <li><a href="/faq.html" data-no-hover-preview>FAQs</a></li>
-            <li><a href="/contact.html" data-no-hover-preview>Contact</a></li>
+            
+                <li><a href="/about-us.html">About</a></li>
+                <li><a href="/faq.html">FAQs</a></li>
+                <li><a href="/contact.html">Contact</a></li>
           <li><a href="/blog.html">Blog</a></li>
 </ul>
 
-        <a href="/contact.html" class="nav-btn" id="navBtn" data-no-hover-preview>Get Started</a>
+        <a href="/contact.html" class="nav-btn" id="navBtn">Get Started</a>
         
-        <!-- ===== AUTH SECTION ===== -->
-        <div class="nav-auth" id="navAuth">
-            <!-- Dynamically populated by auth script -->
-        </div>
-
+       
         <button class="menu-toggle" aria-label="Toggle menu">
             <span></span><span></span><span></span>
         </button>
     </nav>
 
-    <!-- ========================================================== -->
-    <!-- =================== MOBILE MENU ========================== -->
-    <!-- ========================================================== -->
+    <!-- MOBILE MENU -->
     <div class="mobile-menu">
         <button class="mobile-menu-close" aria-label="Close menu">
             <span></span><span></span>
         </button>
-        <a href="/" data-no-hover-preview>Home</a>
+        <a href="/index.html">Home</a>
         <div class="mobile-services-group">
             <button class="mobile-services-toggle">Services <span>▾</span></button>
             <div class="mobile-services-dropdown">
-                <a href="/services/moniepoint.html" data-no-hover-preview>Moniepoint Financial Services</a>
-                <a href="/services/travel.html" data-no-hover-preview>Travel & Global Mobility</a>
-                <a href="/services/business-registration.html" data-no-hover-preview>Business Registration</a>
-                <a href="/services/web-development.html" data-no-hover-preview>Website Development</a>
+                <a href="/services/moniepoint.html">Moniepoint Financial Services</a>
+                <a href="/services/travel.html">Travel & Global Mobility</a>
+                <a href="/services/business-registration.html">Business Registration</a>
+                <a href="/services/web-development.html">Website Development</a>
             </div>
         </div>
-        <a href="/about-us.html" data-no-hover-preview>About</a>
-        <a href="/faq.html" data-no-hover-preview>FAQs</a>
-        <a href="/contact.html" data-no-hover-preview>Contact</a>
-        <a href="/contact.html" class="mobile-btn" data-no-hover-preview>Get Started</a>
         
-        <!-- ===== MOBILE AUTH SECTION ===== -->
-        <div class="mobile-auth-section" id="mobileAuth">
-            <!-- Dynamically populated by auth script -->
-        </div>
+        <a href="/about-us.html">About</a>
+        <a href="/faq.html">FAQs</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/contact.html" class="mobile-btn">Get Started</a>
     </div>
 
     <!-- =================== HERO (PRESERVED - KEPT EXISTING HEADER) =================== -->
@@ -741,9 +569,7 @@
         <div id="visaGrid" class="visa-grid"></div>
     </div>
 
-    <!-- ========================================================== -->
-    <!-- =================== FOOTER (STANDARD) ==================== -->
-    <!-- ========================================================== -->
+    <!-- =================== FOOTER =================== -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
@@ -751,50 +577,33 @@
                     <div class="footer-logo">
                         <img src="/assets/logo.png" alt="GeepChris Bridge" loading="lazy" decoding="async">
                     </div>
-                      <p>GeepChris Bridge Enterprise simplifies essential business, financial, identity, and travel processes through professional guidance and reliable service delivery.</p>
-                <div class="footer-socials">
-                    <!-- Facebook -->
-                    <a href="https://www.facebook.com/share/1F1BS8pK3p/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" data-no-hover-preview>
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-                    </a>
-                    <!-- Instagram -->
-                    <a href="https://www.instagram.com/geepchris_bridge_enterprise" target="_blank" rel="noopener noreferrer" aria-label="Instagram" data-no-hover-preview>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-                    </a>
-                    <!-- Twitter / X -->
-                    <a href="https://x.com/GeepChris_Bridg" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X" data-no-hover-preview>
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                    </a>
-                    <!-- TikTok -->
-                    <a href="https://www.tiktok.com/@geepchris.bridge" target="_blank" rel="noopener noreferrer" aria-label="TikTok" data-no-hover-preview>
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
-                    </a>
-                    <!-- YouTube -->
-                    <a href="https://youtube.com/@geepchrisbridge" target="_blank" rel="noopener noreferrer" aria-label="YouTube" data-no-hover-preview>
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                    </a>
+                    <p>GeepChris Bridge Enterprise simplifies essential business, financial, identity, and travel processes through professional guidance and reliable service delivery.</p>
+                    <div class="footer-socials">
+                        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+                        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+                        <a href="#" aria-label="Twitter / X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                        <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></a>
+                    </div>
                 </div>
-            </div>
-                
 
                 <div class="footer-col">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="/" data-no-hover-preview>Home</a></li>
-                        <li><a href="/services.html" data-no-hover-preview>Services</a></li>
-                        <li><a href="/about-us.html" data-no-hover-preview>About Us</a></li>
-                        <li><a href="/faq.html" data-no-hover-preview>FAQs</a></li>
-                        <li><a href="/contact.html" data-no-hover-preview>Contact</a></li>
+                        <li><a href="/index.html">Home</a></li>
+                        <li><a href="/services.html">Services</a></li>
+                        <li><a href="/about-us.html">About Us</a></li>
+                        <li><a href="/faq.html">FAQs</a></li>
+                        <li><a href="/contact.html">Contact</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-col">
                     <h4>Our Services</h4>
                     <ul>
-                        <li><a href="/services/moniepoint.html" data-no-hover-preview>Moniepoint Services</a></li>
-                        <li><a href="/services/travel.html" data-no-hover-preview>Travel & Mobility</a></li>
-                        <li><a href="/services/business-registration.html" data-no-hover-preview>Business Registration</a></li>
-                        <li><a href="/services/web-development.html" data-no-hover-preview>Web Development</a></li>
+                        <li><a href="/services/moniepoint.html">Moniepoint Services</a></li>
+                        <li><a href="/services/travel.html">Travel & Mobility</a></li>
+                        <li><a href="/services/business-registration.html">Business Registration</a></li>
+                        <li><a href="/services/web-development.html">Web Development</a></li>
                     </ul>
                 </div>
 
@@ -811,106 +620,18 @@
 
             <div class="footer-bottom">
                 <p>
-                    © 2026 GeepChris Bridge Enterprise. All Rights Reserved.<br>
-                    Website by <a href="https://vintechdigitalservices.com" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.5); text-decoration:none; transition:color 0.3s ease;" data-no-hover-preview>Vintech Digital Services</a>
-                </p>
+    © 2026 GeepChris Bridge Enterprise. All Rights Reserved.<br>
+    Website by <a href="https://vintechdigitalservices.com" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.5); text-decoration:none; transition:color 0.3s ease;">Vintech Digital Services</a>
+</p>
                 <div class="footer-bottom-links">
-                    <a href="/privacy.html" data-no-hover-preview>Privacy Policy</a>
-                    <a href="/terms.html" data-no-hover-preview>Terms of Service</a>
+                    <a href="/privacy.html">Privacy Policy</a>
+                    <a href="/terms.html">Terms of Service</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- ============================================ -->
-    <!-- SECURITY: BLOCK RIGHT-CLICK & KEYBOARD SHORTCUTS -->
-    <!-- ============================================ -->
     <script>
-        // ============================================
-        // BLOCK RIGHT-CLICK CONTEXT MENU
-        // ============================================
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-            return false;
-        });
-
-        // ============================================
-        // BLOCK KEYBOARD SHORTCUTS (F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U, Ctrl+S)
-        // ============================================
-        document.addEventListener('keydown', function(e) {
-            // Block F12
-            if (e.key === 'F12' || e.keyCode === 123) {
-                e.preventDefault();
-                return false;
-            }
-
-            // Block Ctrl+Shift+I (Inspect)
-            if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.keyCode === 73)) {
-                e.preventDefault();
-                return false;
-            }
-
-            // Block Ctrl+Shift+J (Console)
-            if (e.ctrlKey && e.shiftKey && (e.key === 'J' || e.key === 'j' || e.keyCode === 74)) {
-                e.preventDefault();
-                return false;
-            }
-
-            // Block Ctrl+U (View Source)
-            if (e.ctrlKey && (e.key === 'U' || e.key === 'u' || e.keyCode === 85)) {
-                e.preventDefault();
-                return false;
-            }
-
-            // Block Ctrl+S (Save Page)
-            if (e.ctrlKey && (e.key === 'S' || e.key === 's' || e.keyCode === 83)) {
-                e.preventDefault();
-                return false;
-            }
-        });
-
-        // ============================================
-        // DISABLE URL TOOLTIPS ON HOVER (Status Bar)
-        // ============================================
-        // Remove all title attributes from links and buttons
-        document.querySelectorAll('a, button, [role="button"]').forEach(function(el) {
-            if (el.hasAttribute('title')) {
-                el.removeAttribute('title');
-            }
-        });
-
-        // Prevent URL from showing in status bar
-        document.addEventListener('mouseover', function(e) {
-            var target = e.target;
-            while (target && target !== document) {
-                if (target.tagName === 'A' || target.tagName === 'BUTTON') {
-                    window.status = '';
-                    return false;
-                }
-                target = target.parentElement;
-            }
-        }, true);
-
-        // Also handle on mousemove for extra protection
-        document.addEventListener('mousemove', function(e) {
-            window.status = '';
-        });
-
-        // Override the default status bar behavior
-        if (window.status) {
-            window.status = '';
-        }
-
-        // Prevent any default link behavior that might show URL
-        document.querySelectorAll('a').forEach(function(link) {
-            link.addEventListener('mouseenter', function(e) {
-                window.status = '';
-            });
-            link.addEventListener('focus', function(e) {
-                window.status = '';
-            });
-        });
-
         // ==========================================
         // FIREBASE CONFIGURATION
         // ==========================================
@@ -927,59 +648,6 @@
             firebase.initializeApp(firebaseConfig);
         }
         const db = firebase.firestore();
-        const auth = firebase.auth();
-
-        // ==========================================
-        // BACK/FORWARD NAVIGATION
-        // ==========================================
-        (function() {
-            const backBtn = document.getElementById('backBtn');
-            const forwardBtn = document.getElementById('forwardBtn');
-
-            function updateButtons() {
-                if (backBtn) {
-                    backBtn.disabled = window.history.state?.backDisabled !== false && window.history.length <= 1;
-                }
-                if (forwardBtn) {
-                    forwardBtn.disabled = !window.history.state?.forwardAvailable && window.history.length <= 1;
-                }
-            }
-
-            if (backBtn) {
-                backBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    if (!this.disabled) {
-                        window.history.back();
-                    }
-                });
-            }
-
-            if (forwardBtn) {
-                forwardBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    if (!this.disabled) {
-                        window.history.forward();
-                    }
-                });
-            }
-
-            // Update on page load and when history changes
-            window.addEventListener('load', function() {
-                setTimeout(updateButtons, 100);
-            });
-
-            window.addEventListener('popstate', function() {
-                setTimeout(updateButtons, 50);
-            });
-
-            // Also update on any click that might change history
-            document.addEventListener('click', function() {
-                setTimeout(updateButtons, 100);
-            });
-
-            // Initial update
-            setTimeout(updateButtons, 200);
-        })();
 
         // ==========================================
         // COUNTRY FLAG DATA - SVG FORMAT
@@ -1204,81 +872,6 @@
         }
 
         // ==========================================
-        // AUTH GUARD — THIS PAGE IS PUBLIC
-        // ==========================================
-        // This page is public (does not require login)
-        // But we still show avatar if user is logged in
-
-        auth.onAuthStateChanged(async (user) => {
-            // ===== UPDATE NAVBAR AUTH =====
-            const navAuth = document.getElementById('navAuth');
-            const mobileAuth = document.getElementById('mobileAuth');
-            const navBtn = document.getElementById('navBtn');
-
-            if (user) {
-                // User is logged in - fetch user data
-                try {
-                    const userDoc = await db.collection('users').doc(user.uid).get();
-                    const userData = userDoc.exists ? userDoc.data() : null;
-                    const displayName = userData?.fullName || userData?.firstName || user.email || 'User';
-                    const initial = displayName.charAt(0).toUpperCase();
-                    const photoURL = userData?.photoURL || null;
-
-                    // Desktop navbar
-                    navAuth.innerHTML = `
-                        <a href="/dashboard.html" class="user-avatar" title="${displayName}" data-no-hover-preview>
-                            ${photoURL 
-                                ? `<img src="${photoURL}" alt="${displayName}">` 
-                                : `<span class="avatar-initial">${initial}</span>`
-                            }
-                        </a>
-                    `;
-
-                    // Mobile menu
-                    mobileAuth.innerHTML = `
-                        <a href="/dashboard.html" class="mobile-avatar" style="display:flex; align-items:center; gap:12px; text-decoration:none;" data-no-hover-preview>
-                            ${photoURL 
-                                ? `<img src="${photoURL}" alt="${displayName}">` 
-                                : `<span class="avatar-initial">${initial}</span>`
-                            }
-                            <span class="mobile-user-name">${displayName}</span>
-                        </a>
-                    `;
-
-                    // Hide Get Started button (since user is logged in)
-                    if (navBtn) navBtn.style.display = 'none';
-
-                } catch (error) {
-                    console.error('Error fetching user data:', error);
-                    // Show default avatar with email initial
-                    const initial = (user.email || 'U').charAt(0).toUpperCase();
-                    navAuth.innerHTML = `
-                        <a href="/dashboard.html" class="user-avatar" data-no-hover-preview>
-                            <span class="avatar-initial">${initial}</span>
-                        </a>
-                    `;
-                    mobileAuth.innerHTML = `
-                        <a href="/dashboard.html" class="mobile-avatar" style="display:flex; align-items:center; gap:12px; text-decoration:none;" data-no-hover-preview>
-                            <span class="avatar-initial">${initial}</span>
-                            <span class="mobile-user-name">${user.email || 'User'}</span>
-                        </a>
-                    `;
-                    if (navBtn) navBtn.style.display = 'none';
-                }
-            } else {
-                // User is not logged in - show sign in button
-                const currentUrl = window.location.pathname + window.location.search;
-                navAuth.innerHTML = `
-                    <a href="/auth.html?redirect=${encodeURIComponent(currentUrl)}" class="btn-signin" data-no-hover-preview>Sign In</a>
-                `;
-                mobileAuth.innerHTML = `
-                    <a href="/auth.html?redirect=${encodeURIComponent(currentUrl)}" class="mobile-signin" data-no-hover-preview>Sign In</a>
-                `;
-                if (navBtn) navBtn.style.display = 'inline-block';
-            }
-        });
-
-        // ==========================================
         // LOAD VISA COUNTRIES
         // ==========================================
         async function loadVisaCountries() {
@@ -1347,7 +940,7 @@
                     }
 
                     html += `
-                        <a href="visa-country.html?country=${slug}" class="visa-card anim-fade-up" data-no-hover-preview>
+                        <a href="visa-country.html?country=${slug}" class="visa-card anim-fade-up">
                             <div class="card-image-wrapper">
                                 ${imageHtml}
                             </div>
@@ -1466,6 +1059,215 @@
         // ==========================================
         document.addEventListener('DOMContentLoaded', loadVisaCountries);
     </script>
+<!-- ===== BACK/FORWARD NAVIGATION ARROWS ===== -->
+<script>
+(function() {
+    // ===== CREATE ARROW HTML =====
+    const arrowHTML = `
+        <div id="navArrowsContainer" style="
+            position: fixed;
+            bottom: 24px;
+            left: 20px;
+            z-index: 999;
+            display: flex;
+            gap: 4px;
+            background: rgba(2,6,23,0.8);
+            backdrop-filter: blur(12px);
+            padding: 6px 10px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+            transition: all 0.3s ease;
+        ">
+            <button id="backBtn" style="
+                width: 28px;
+                height: 28px;
+                border: none;
+                border-radius: 50%;
+                background: rgba(255,255,255,0.06);
+                color: rgba(255,255,255,0.5);
+                font-size: 0.75rem;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            " disabled>
+                <i class="fas fa-chevron-left" style="font-size: 0.7rem;"></i>
+            </button>
+            <div style="
+                width: 1px;
+                background: rgba(255,255,255,0.1);
+                margin: 2px 0;
+            "></div>
+            <button id="forwardBtn" style="
+                width: 28px;
+                height: 28px;
+                border: none;
+                border-radius: 50%;
+                background: rgba(255,255,255,0.06);
+                color: rgba(255,255,255,0.5);
+                font-size: 0.75rem;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            " disabled>
+                <i class="fas fa-chevron-right" style="font-size: 0.7rem;"></i>
+            </button>
+        </div>
+    `;
+
+    // ===== INSERT ARROWS INTO PAGE =====
+    document.body.insertAdjacentHTML('beforeend', arrowHTML);
+
+    // ===== GET REFERENCES =====
+    const container = document.getElementById('navArrowsContainer');
+    const backBtn = document.getElementById('backBtn');
+    const forwardBtn = document.getElementById('forwardBtn');
+
+    // ===== HIDE ARROWS ON MOBILE BELOW 480px =====
+    function checkMobile() {
+        if (window.innerWidth < 480) {
+            container.style.display = 'none';
+        } else {
+            container.style.display = 'flex';
+        }
+    }
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    // ===== UPDATE BUTTON STATES =====
+    function updateButtons() {
+        if (backBtn) {
+            backBtn.disabled = window.history.length <= 1;
+            backBtn.style.opacity = window.history.length <= 1 ? '0.25' : '1';
+            backBtn.style.cursor = window.history.length <= 1 ? 'not-allowed' : 'pointer';
+        }
+        if (forwardBtn) {
+            forwardBtn.disabled = true;
+            forwardBtn.style.opacity = '0.25';
+            forwardBtn.style.cursor = 'not-allowed';
+        }
+    }
+
+    // ===== BACK BUTTON CLICK =====
+    if (backBtn) {
+        backBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (!this.disabled && window.history.length > 1) {
+                window.history.back();
+            }
+        });
+    }
+
+    // ===== FORWARD BUTTON CLICK =====
+    if (forwardBtn) {
+        forwardBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (!this.disabled) {
+                window.history.forward();
+            }
+        });
+    }
+
+    // ===== UPDATE ON HISTORY CHANGE =====
+    window.addEventListener('load', function() {
+        setTimeout(updateButtons, 150);
+    });
+
+    window.addEventListener('popstate', function() {
+        setTimeout(updateButtons, 100);
+    });
+
+    // ===== SCROLL TO HIDE ARROWS AT FOOTER =====
+    function handleScroll() {
+        const footer = document.querySelector('footer');
+        const container = document.getElementById('navArrowsContainer');
+        
+        if (!footer || !container) return;
+
+        const footerRect = footer.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        const containerHeight = container.offsetHeight || 50;
+
+        // If footer is visible and near the bottom of the viewport
+        if (footerRect.top < windowHeight && footerRect.bottom > 0) {
+            // Calculate how much to push the arrows up
+            const overlap = windowHeight - footerRect.top + 20;
+            if (overlap > 0) {
+                const maxPush = footerRect.height + containerHeight + 10;
+                const pushAmount = Math.min(overlap, maxPush);
+                container.style.transform = `translateY(-${pushAmount}px)`;
+                container.style.transition = 'transform 0.3s ease';
+            }
+        } else {
+            container.style.transform = 'translateY(0)';
+            container.style.transition = 'transform 0.3s ease';
+        }
+    }
+
+    // Throttled scroll handler
+    let scrollTimeout;
+    window.addEventListener('scroll', function() {
+        if (scrollTimeout) return;
+        scrollTimeout = setTimeout(function() {
+            handleScroll();
+            scrollTimeout = null;
+        }, 50);
+    }, { passive: true });
+
+    // Also update on resize
+    window.addEventListener('resize', handleScroll);
+
+    // Initial call after a small delay
+    setTimeout(handleScroll, 300);
+
+    // ===== HOVER EFFECTS =====
+    document.querySelectorAll('#backBtn, #forwardBtn').forEach(btn => {
+        btn.addEventListener('mouseenter', function() {
+            if (!this.disabled) {
+                this.style.background = 'rgba(34,197,94,0.15)';
+                this.style.color = '#22c55e';
+                this.style.transform = 'scale(1.05)';
+            }
+        });
+        btn.addEventListener('mouseleave', function() {
+            this.style.background = 'rgba(255,255,255,0.06)';
+            this.style.color = 'rgba(255,255,255,0.5)';
+            this.style.transform = 'scale(1)';
+        });
+    });
+
+    // ===== RESPONSIVE STYLES =====
+    const style = document.createElement('style');
+    style.textContent = `
+        @media (max-width: 768px) {
+            #navArrowsContainer {
+                bottom: 16px !important;
+                left: 12px !important;
+                padding: 5px 8px !important;
+            }
+            #navArrowsContainer button {
+                width: 24px !important;
+                height: 24px !important;
+                font-size: 0.65rem !important;
+            }
+            #navArrowsContainer button i {
+                font-size: 0.6rem !important;
+            }
+        }
+        @media (max-width: 480px) {
+            #navArrowsContainer {
+                display: none !important;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+
+})();
+</script>
 
 </body>
 </html>

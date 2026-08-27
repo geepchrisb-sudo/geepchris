@@ -64,7 +64,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- ===== FIREBASE SDK ===== -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
 
     <style>
@@ -78,7 +77,7 @@
             min-height: 100vh;
         }
 
-        /* ===== HEADER / NAVBAR ===== */
+       /* ===== HEADER / NAVBAR ===== */
         .navbar{
             display:flex;
             align-items:center;
@@ -94,9 +93,24 @@
             backdrop-filter:blur(12px);
             border-bottom:1px solid rgba(255,255,255,0.06);
         }
+        .navbar .logo{ 
+            flex-shrink:0; 
+        }
         .navbar .logo img{ height:40px; width:auto; display:block; }
-        .nav-links{ display:flex; gap:2rem; list-style:none; align-items:center; }
-        .nav-links a{ color:#fff; text-decoration:none; font-weight:500; font-size:.95rem; transition:.3s; }
+        
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-left: auto;
+        }
+        .nav-links{ 
+            display:flex; 
+            gap: 2rem; 
+            list-style:none; 
+            align-items:center;
+        }
+        .nav-links a{ color:#fff; text-decoration:none; font-weight:500; font-size:.95rem; transition:.3s; white-space:nowrap; }
         .nav-links a:hover{ color:#22c55e; }
         .has-dropdown{ position:relative; }
         .dropdown-trigger{ display:flex; align-items:center; gap:4px; cursor:pointer; }
@@ -117,63 +131,11 @@
         .nav-btn{
             text-decoration:none; padding:10px 22px; border-radius:999px; background:#16a34a; color:#fff;
             font-weight:600; font-size:.9rem; transition:.3s;
+            flex-shrink:0;
         }
         .nav-btn:hover{ transform:translateY(-2px); background:#22c55e; }
-        
-        /* ===== AUTH SECTION IN NAVBAR (ADDED) ===== */
-        .nav-auth { display: flex; align-items: center; gap: 12px; }
-        .nav-auth .btn-signin {
-            color: rgba(255,255,255,0.7);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.85rem;
-            padding: 8px 16px;
-            border-radius: 999px;
-            border: 1px solid rgba(255,255,255,0.15);
-            transition: all 0.3s ease;
-        }
-        .nav-auth .btn-signin:hover {
-            background: rgba(255,255,255,0.08);
-            color: #fff;
-            border-color: rgba(255,255,255,0.3);
-        }
-        .nav-auth .user-avatar {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            text-decoration: none;
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        .nav-auth .user-avatar:hover {
-            border-color: #22c55e;
-        }
-        .nav-auth .user-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-        .nav-auth .user-avatar .avatar-initial {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            background: #16a34a;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 0.9rem;
-        }
-        .nav-btn.hidden { display: none; }
 
-        .menu-toggle{ display:none; background:none; border:none; cursor:pointer; padding:4px; }
+        .menu-toggle{ display:none; background:none; border:none; cursor:pointer; padding:4px; flex-shrink:0; }
         .menu-toggle span{ display:block; width:26px; height:2.5px; background:#fff; margin:5px 0; border-radius:5px; transition:.3s; }
 
         /* ===== MOBILE MENU ===== */
@@ -207,23 +169,16 @@
         .mobile-services-dropdown a:hover{ color:#22c55e; }
         .mobile-btn{ margin-top:10px; background:#16a34a; padding:14px 40px; text-align:center; border-radius:999px; color:#fff !important; font-weight:700 !important; border:none !important; font-size:1rem !important; width:auto; min-width:200px; }
         .mobile-btn:hover{ background:#22c55e; }
-        
-        /* ===== MOBILE AUTH SECTION (ADDED) ===== */
-        .mobile-auth-section { margin-top: 10px; width: 100%; text-align: center; }
-        .mobile-auth-section .mobile-signin {
-            color: rgba(255,255,255,0.7);
-            text-decoration: none;
-            font-size: 1rem;
-            padding: 12px 0;
-            display: block;
-            font-weight: 500;
-        }
-        .mobile-auth-section .mobile-signin:hover { color: #22c55e; }
-        .mobile-auth-section .mobile-avatar { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 12px 0; }
-        .mobile-auth-section .mobile-avatar img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; }
-        .mobile-auth-section .mobile-avatar .avatar-initial { width: 48px; height: 48px; border-radius: 50%; background: #16a34a; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.2rem; }
-        .mobile-auth-section .mobile-avatar .mobile-user-name { color: #fff; font-weight: 600; }
 
+        /* ===== RESPONSIVE OVERRIDE FOR NAVBAR ===== */
+        @media (max-width: 992px) {
+            .nav-right {
+                display: none;
+            }
+            .menu-toggle {
+                display: block;
+            }
+        }
         /* ===== HERO (PRESERVED - KEPT THE EXISTING HEADER) ===== */
         header {
             position: relative;
@@ -507,7 +462,7 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 992px) {
-            .nav-links, .nav-btn, .nav-auth { display: none; }
+            .nav-links, .nav-btn { display: none; }
             .menu-toggle { display: block; }
             .footer-grid { grid-template-columns: 1fr 1fr; }
         }
@@ -564,11 +519,7 @@
 
         <a href="/contact.html" class="nav-btn" id="navBtn">Get Started</a>
         
-        <!-- ===== AUTH SECTION (ADDED) ===== -->
-        <div class="nav-auth" id="navAuth">
-            <!-- Dynamically populated by auth script -->
-        </div>
-
+       
         <button class="menu-toggle" aria-label="Toggle menu">
             <span></span><span></span><span></span>
         </button>
@@ -594,11 +545,6 @@
         <a href="/faq.html">FAQs</a>
         <a href="/contact.html">Contact</a>
         <a href="/contact.html" class="mobile-btn">Get Started</a>
-        
-        <!-- ===== MOBILE AUTH SECTION (ADDED) ===== -->
-        <div class="mobile-auth-section" id="mobileAuth">
-            <!-- Dynamically populated by auth script -->
-        </div>
     </div>
 
     <!-- =================== HERO (PRESERVED - KEPT EXISTING HEADER) =================== -->
@@ -702,7 +648,6 @@
             firebase.initializeApp(firebaseConfig);
         }
         const db = firebase.firestore();
-        const auth = firebase.auth();
 
         // ==========================================
         // COUNTRY FLAG DATA - SVG FORMAT
@@ -925,81 +870,6 @@
             
             return null;
         }
-
-        // ==========================================
-        // AUTH GUARD — THIS PAGE IS PUBLIC
-        // ==========================================
-        // This page is public (does not require login)
-        // But we still show avatar if user is logged in
-
-        auth.onAuthStateChanged(async (user) => {
-            // ===== UPDATE NAVBAR AUTH =====
-            const navAuth = document.getElementById('navAuth');
-            const mobileAuth = document.getElementById('mobileAuth');
-            const navBtn = document.getElementById('navBtn');
-
-            if (user) {
-                // User is logged in - fetch user data
-                try {
-                    const userDoc = await db.collection('users').doc(user.uid).get();
-                    const userData = userDoc.exists ? userDoc.data() : null;
-                    const displayName = userData?.fullName || userData?.firstName || user.email || 'User';
-                    const initial = displayName.charAt(0).toUpperCase();
-                    const photoURL = userData?.photoURL || null;
-
-                    // Desktop navbar
-                    navAuth.innerHTML = `
-                        <a href="/dashboard.html" class="user-avatar" title="${displayName}">
-                            ${photoURL 
-                                ? `<img src="${photoURL}" alt="${displayName}">` 
-                                : `<span class="avatar-initial">${initial}</span>`
-                            }
-                        </a>
-                    `;
-
-                    // Mobile menu
-                    mobileAuth.innerHTML = `
-                        <a href="/dashboard.html" class="mobile-avatar" style="display:flex; align-items:center; gap:12px; text-decoration:none;">
-                            ${photoURL 
-                                ? `<img src="${photoURL}" alt="${displayName}">` 
-                                : `<span class="avatar-initial">${initial}</span>`
-                            }
-                            <span class="mobile-user-name">${displayName}</span>
-                        </a>
-                    `;
-
-                    // Hide Get Started button (since user is logged in)
-                    if (navBtn) navBtn.style.display = 'none';
-
-                } catch (error) {
-                    console.error('Error fetching user data:', error);
-                    // Show default avatar with email initial
-                    const initial = (user.email || 'U').charAt(0).toUpperCase();
-                    navAuth.innerHTML = `
-                        <a href="/dashboard.html" class="user-avatar">
-                            <span class="avatar-initial">${initial}</span>
-                        </a>
-                    `;
-                    mobileAuth.innerHTML = `
-                        <a href="/dashboard.html" class="mobile-avatar" style="display:flex; align-items:center; gap:12px; text-decoration:none;">
-                            <span class="avatar-initial">${initial}</span>
-                            <span class="mobile-user-name">${user.email || 'User'}</span>
-                        </a>
-                    `;
-                    if (navBtn) navBtn.style.display = 'none';
-                }
-            } else {
-                // User is not logged in - show sign in button
-                const currentUrl = window.location.pathname + window.location.search;
-                navAuth.innerHTML = `
-                    <a href="/auth.html?redirect=${encodeURIComponent(currentUrl)}" class="btn-signin">Sign In</a>
-                `;
-                mobileAuth.innerHTML = `
-                    <a href="/auth.html?redirect=${encodeURIComponent(currentUrl)}" class="mobile-signin">Sign In</a>
-                `;
-                if (navBtn) navBtn.style.display = 'inline-block';
-            }
-        });
 
         // ==========================================
         // LOAD VISA COUNTRIES

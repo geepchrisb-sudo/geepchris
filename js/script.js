@@ -311,6 +311,70 @@ document.querySelectorAll(".trust-card").forEach(card => {
 });
 
 // ==================================================
+// SECTION 3: SERVICES - CARD APPEARANCE ANIMATIONS
+// ==================================================
+const serviceCardObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("animate-in");
+        } else {
+            entry.target.classList.remove("animate-in");
+        }
+    });
+}, { threshold: 0.12 });
+
+document.querySelectorAll(".service-card").forEach((card, index) => {
+    // Desktop: first 3 cards (0,1,2) = row-1, next 3 (3,4,5) = row-2
+    if (window.innerWidth >= 769) {
+        if (index < 3) {
+            card.classList.add("row-1");
+        } else {
+            card.classList.add("row-2");
+        }
+    } else {
+        // Mobile: alternate left/right
+        if (index % 2 === 0) {
+            card.classList.add("mobile-right");
+        } else {
+            card.classList.add("mobile-left");
+        }
+    }
+    serviceCardObserver.observe(card);
+});
+
+// Re-run on resize to reassign classes
+let serviceResizeTimer;
+window.addEventListener('resize', () => {
+    clearTimeout(serviceResizeTimer);
+    serviceResizeTimer = setTimeout(() => {
+        document.querySelectorAll(".service-card").forEach((card, index) => {
+            // Remove existing animation classes
+            card.classList.remove("row-1", "row-2", "mobile-right", "mobile-left", "animate-in");
+            
+            if (window.innerWidth >= 769) {
+                if (index < 3) {
+                    card.classList.add("row-1");
+                } else {
+                    card.classList.add("row-2");
+                }
+            } else {
+                if (index % 2 === 0) {
+                    card.classList.add("mobile-right");
+                } else {
+                    card.classList.add("mobile-left");
+                }
+            }
+            
+            // Re-check visibility
+            const rect = card.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 100) {
+                card.classList.add("animate-in");
+            }
+        });
+    }, 300);
+});
+
+// ==================================================
 // SECTION 3: SERVICES - MOBILE SIDE FLIP CARDS
 // ==================================================
 document.querySelectorAll('.service-mobile-toggle').forEach(btn => {
@@ -860,7 +924,7 @@ const whyFeatureObserver = new IntersectionObserver((entries) => {
             features.forEach((f, i) => {
                 setTimeout(() => {
                     f.classList.add("animate-in");
-                }, i * 100);
+                }, i * 120);
             });
         } else {
             const features = entry.target.querySelectorAll(".why-feature");
@@ -869,7 +933,7 @@ const whyFeatureObserver = new IntersectionObserver((entries) => {
             });
         }
     });
-}, { threshold: 0.2 });
+}, { threshold: 0.15 });
 
 const whyFeaturesGrid = document.querySelector(".why-features");
 if (whyFeaturesGrid) whyFeatureObserver.observe(whyFeaturesGrid);
